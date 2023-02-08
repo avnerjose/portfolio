@@ -1,5 +1,6 @@
 import { Button } from "@/components/Button";
-import { Container, Paragraph, Span, Title } from "./styles";
+import { Container, Span, Title } from "./styles";
+import { Paragraph } from "@/components/Paragraph";
 
 export function HeroSection() {
   return (

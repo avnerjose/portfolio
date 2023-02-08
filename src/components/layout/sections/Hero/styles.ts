@@ -6,6 +6,10 @@ export const Container = styled("section", {
   justifyContent: "center",
   minHeight: "100vh",
   padding: 24,
+
+  "& p": {
+    marginBottom: 32,
+  },
 });
 
 export const Span = styled("span", {
@@ -33,11 +37,4 @@ export const Title = styled("h1", {
   defaultVariants: {
     color: "white",
   },
-});
-
-export const Paragraph = styled("p", {
-  color: "$gray500",
-  fontSize: 18,
-  marginTop: 8,
-  marginBottom: 32,
 });
