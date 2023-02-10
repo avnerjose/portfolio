@@ -10,6 +10,10 @@ export const Container = styled("section", {
   "& p": {
     marginBottom: 32,
   },
+
+  "& button": {
+    alignSelf: "flex-start",
+  },
 });
 
 export const Span = styled("span", {

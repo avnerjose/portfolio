@@ -4,7 +4,6 @@ export const Button = styled("button", {
   background: "transparent",
   border: "3px solid $green400",
   color: "$green400",
-  alignSelf: "flex-start",
   fontWeight: "bold",
   paddingY: 16,
   paddingX: 64,
