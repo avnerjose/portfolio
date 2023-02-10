@@ -1,3 +1,4 @@
+import { Footer } from "@/components/layout/Footer";
 import { AboutMeSection } from "@/components/layout/sections/AboutMe";
 import { ContactSection } from "@/components/layout/sections/Contact";
 import { HeroSection } from "@/components/layout/sections/Hero";
@@ -14,6 +15,7 @@ export default function Home() {
       <MyProjectsSection />
       <WorkExperienceSection />
       <ContactSection />
+      <Footer />
     </>
   );
 }
