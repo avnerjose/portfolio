@@ -71,13 +71,13 @@ export const TechBubble = styled("div", {
       small: {
         height: 124,
         width: 124,
-        top: 80,
+        top: "5%",
         right: 400,
       },
       medium: {
         height: 156,
         width: 156,
-        top: 420,
+        top: "72%",
         right: 320,
       },
       big: {
