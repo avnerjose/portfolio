@@ -1,11 +1,17 @@
 import { styled } from "stitches.config";
 
 export const Container = styled("section", {
+  minHeight: "100vh",
+});
+
+export const Content = styled("div", {
   display: "flex",
   flexDirection: "column",
   justifyContent: "center",
-  minHeight: "100vh",
   padding: 24,
+  maxWidth: "1120px",
+  margin: "auto",
+  minHeight: "100vh",
 
   "& p": {
     marginBottom: 32,

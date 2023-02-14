@@ -1,6 +1,6 @@
 import { SkillItem } from "@/components/SkillItem";
-import { Container, SkillsWrapper } from "./styles";
 import { NumberedHeading } from "@/components/NumberedHeading";
+import { Container, Content, SkillsWrapper } from "./styles";
 
 const SKILLS_AND_TOOLS = [
   {
@@ -48,12 +48,14 @@ const SKILLS_AND_TOOLS = [
 export function SkillsAndToolsSection() {
   return (
     <Container>
-      <NumberedHeading number={2} label="Skills and tools" />
-      <SkillsWrapper>
-        {SKILLS_AND_TOOLS.map(({ id, imageUrl, label }) => (
-          <SkillItem key={id} imageUrl={imageUrl} label={label} />
-        ))}
-      </SkillsWrapper>
+      <Content>
+        <NumberedHeading number={2} label="Skills and tools" />
+        <SkillsWrapper>
+          {SKILLS_AND_TOOLS.map(({ id, imageUrl, label }) => (
+            <SkillItem key={id} imageUrl={imageUrl} label={label} />
+          ))}
+        </SkillsWrapper>
+      </Content>
     </Container>
   );
 }

@@ -3,7 +3,7 @@ import { BarChart } from "react-feather";
 import { useMediaQuery } from "react-responsive";
 import { MobileMenu } from "@/components/layout/MobileMenu";
 
-import { Container } from "./styles";
+import { Container, Content } from "./styles";
 
 export function Header() {
   const [showLogo, setShowLogo] = useState(false);
@@ -22,13 +22,15 @@ export function Header() {
 
   return (
     <Container>
-      {showLogo && (
-        <img
-          src={`/images/${isMobile ? "logoIcon.svg" : "logo.svg"}`}
-          alt="Logo"
-        />
-      )}
-      <BarChart size={32} onClick={handleOpenMobileMenu} />
+      <Content>
+        {showLogo && (
+          <img
+            src={`/images/${isMobile ? "logoIcon.svg" : "logo.svg"}`}
+            alt="Logo"
+          />
+        )}
+        <BarChart size={32} onClick={handleOpenMobileMenu} />
+      </Content>
       {isMobileMenuOpen && <MobileMenu onClose={handleCloseMobileMenu} />}
     </Container>
   );

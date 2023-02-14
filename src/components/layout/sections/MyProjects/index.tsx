@@ -1,15 +1,16 @@
 import { useState } from "react";
 
 import { NumberedHeading } from "@/components/NumberedHeading";
+import { ProjectItemMobile } from "@/components/ProjectItem/Mobile";
+import { PaginationItem } from "@/components/PaginationItem";
 import {
   Container,
+  Content,
   TabsContent,
   TabsList,
   TabsRoot,
   TabsTrigger,
 } from "./styles";
-import { ProjectItemMobile } from "@/components/ProjectItem/Mobile";
-import { PaginationItem } from "@/components/PaginationItem";
 
 const PROJECTS = [
   {
@@ -47,34 +48,38 @@ export function MyProjectsSection() {
 
   return (
     <Container>
-      <NumberedHeading number={3} label="My Projects" />
-      <TabsRoot
-        defaultValue="tab1"
-        value={selectedTab}
-        onValueChange={(value) => setSelectedTab(value)}
-      >
-        <TabsList className="TabsList" aria-label="Manage your account">
-          <TabsTrigger value="tab1">Personal projects & challenges</TabsTrigger>
-          <TabsTrigger value="tab2">Courses & events</TabsTrigger>
-        </TabsList>
-        <TabsContent className="TabsContent" value="tab1">
-          {projectsList}
-          <ul>
-            <li>
-              <PaginationItem label={1} isActive />
-            </li>
-            <li>
-              <PaginationItem label={2} />
-            </li>
-            <li>
-              <PaginationItem label={3} />
-            </li>
-          </ul>
-        </TabsContent>
-        <TabsContent className="TabsContent" value="tab2">
-          <h2>Tab 2</h2>
-        </TabsContent>
-      </TabsRoot>
+      <Content>
+        <NumberedHeading number={3} label="My Projects" />
+        <TabsRoot
+          defaultValue="tab1"
+          value={selectedTab}
+          onValueChange={(value) => setSelectedTab(value)}
+        >
+          <TabsList className="TabsList" aria-label="Manage your account">
+            <TabsTrigger value="tab1">
+              Personal projects & challenges
+            </TabsTrigger>
+            <TabsTrigger value="tab2">Courses & events</TabsTrigger>
+          </TabsList>
+          <TabsContent className="TabsContent" value="tab1">
+            {projectsList}
+            <ul>
+              <li>
+                <PaginationItem label={1} isActive />
+              </li>
+              <li>
+                <PaginationItem label={2} />
+              </li>
+              <li>
+                <PaginationItem label={3} />
+              </li>
+            </ul>
+          </TabsContent>
+          <TabsContent className="TabsContent" value="tab2">
+            <h2>Tab 2</h2>
+          </TabsContent>
+        </TabsRoot>
+      </Content>
     </Container>
   );
 }
