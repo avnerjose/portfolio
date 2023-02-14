@@ -11,4 +11,15 @@ export const globalStyles = globalCss({
     background: "$gray900",
     color: "$white",
   },
+
+  body: {
+    "&.blur": {
+      "section > *": {
+        filter: "blur(5px) brightness(0.7)",
+        pointerEvents: "none",
+        userSelect: "none",
+      
+      },
+    },
+  },
 });

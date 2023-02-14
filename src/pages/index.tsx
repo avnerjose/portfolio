@@ -1,4 +1,5 @@
 import { Footer } from "@/components/layout/Footer";
+import { Header } from "@/components/layout/Header";
 import { AboutMeSection } from "@/components/layout/sections/AboutMe";
 import { ContactSection } from "@/components/layout/sections/Contact";
 import { HeroSection } from "@/components/layout/sections/Hero";
@@ -9,7 +10,8 @@ import { WorkExperienceSection } from "@/components/layout/sections/WorkExperien
 export default function Home() {
   return (
     <>
-      <HeroSection />
+      <Header />
+      <HeroSection/>
       <AboutMeSection />
       <SkillsAndToolsSection />
       <MyProjectsSection />

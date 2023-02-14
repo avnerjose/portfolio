@@ -15,4 +15,9 @@ export const Button = styled("button", {
     background: "$green400",
     color: "$white",
   },
+
+  "&:focus": {
+    outline: "$green400",
+    background: "rgba(21,193,150,0.2)",
+  },
 });
