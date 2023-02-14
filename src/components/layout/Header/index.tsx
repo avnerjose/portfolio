@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { BarChart } from "react-feather";
 import { useMediaQuery } from "react-responsive";
 import { MobileMenu } from "@/components/layout/MobileMenu";
+import { useScrollDirection } from "@/hooks/useScrollDirection";
 
 import { Container, Content, Navigation } from "./styles";
 import { Button } from "@/components/Button";
@@ -17,6 +18,7 @@ const WEBSITE_SECTIONS = [
 export function Header() {
   const [showLogo, setShowLogo] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const scrollDirection = useScrollDirection();
   const isMobile = useMediaQuery({
     query: "(max-width: 768px)",
   });
@@ -29,7 +31,7 @@ export function Header() {
   }, []);
 
   return (
-    <Container>
+    <Container visibility={scrollDirection === "down" ? "hidden" : "visible"}>
       <Content>
         {showLogo && (
           <img
@@ -37,7 +39,7 @@ export function Header() {
             alt="Logo"
           />
         )}
-        {isMobile ? (
+        {isMobile && showLogo ? (
           <BarChart size={32} onClick={handleOpenMobileMenu} />
         ) : (
           <Navigation>
@@ -48,9 +50,7 @@ export function Header() {
                 </li>
               ))}
             </ul>
-            <Button size="small">
-              Resume
-            </Button>
+            <Button size="small">Resume</Button>
           </Navigation>
         )}
       </Content>

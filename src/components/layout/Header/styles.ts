@@ -1,12 +1,29 @@
 import { styled } from "stitches.config";
 
 export const Container = styled("header", {
-  position: "fixed",
-  top: 0,
+  position: "sticky",
   right: 0,
   left: 0,
   zIndex: 10,
   background: "$gray900",
+  transitionProperty: "all",
+  transitionTimingFunction: "cubic-bezier(0.4, 0, 0.2, 1)",
+  transitionDuration: "500ms",
+
+  variants: {
+    visibility: {
+      visible: {
+        top: 0,
+      },
+      hidden: {
+        top: "-6rem",
+      },
+    },
+  },
+
+  defaultVariants: {
+    visibility: "visible",
+  },
 });
 
 export const Content = styled("div", {

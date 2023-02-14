@@ -1,12 +1,6 @@
 import { styled } from "stitches.config";
 
-export const Container = styled("section", {
-  minHeight: "100vh",
-  perspective: 100,
-  perspectiveOrigin: "0 0",
-  "-webkit-perspective": 100,
-  "-webkit-perspective-origin": "0 0",
-});
+export const Container = styled("section", {});
 
 export const Content = styled("div", {
   display: "flex",
@@ -15,9 +9,8 @@ export const Content = styled("div", {
   padding: 24,
   maxWidth: "1120px",
   margin: "auto",
-  minHeight: "100vh",
+  minHeight: "calc(100vh - 117px)",
   position: "relative",
-  zIndex: -1,
   transformStyle: "preserve-3d",
   "-webkit-transform": "preserver-3d",
 
@@ -84,13 +77,13 @@ export const TechBubble = styled("div", {
       medium: {
         height: 156,
         width: 156,
-        top: 480,
+        top: 420,
         right: 320,
       },
       big: {
         height: 184,
         width: 184,
-        top: 90,
+        top: 40,
         right: 140,
 
         "& img": {
@@ -98,6 +91,10 @@ export const TechBubble = styled("div", {
         },
       },
     },
+  },
+
+  "@lg": {
+    display: "none",
   },
 
   defaultVariants: {
