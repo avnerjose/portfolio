@@ -2,8 +2,11 @@ import { Paragraph } from "@/components/Paragraph";
 import { Avatar, Container, Content } from "./styles";
 import Image from "next/image";
 import { NumberedHeading } from "@/components/NumberedHeading";
+import { useParallax } from "react-scroll-parallax";
 
 export function AboutMeSection() {
+  const { ref } = useParallax<HTMLImageElement>({ speed: -5 });
+
   return (
     <Container>
       <Content>
@@ -22,7 +25,7 @@ export function AboutMeSection() {
             aliquet arcu viverra neque leo neque fusce sed.
           </Paragraph>
         </div>
-        <Avatar>
+        <Avatar ref={ref}>
           <Image src="https://github.com/avnerjose.png" alt="Avner José" fill />
         </Avatar>
       </Content>

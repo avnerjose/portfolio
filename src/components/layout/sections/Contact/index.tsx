@@ -1,8 +1,15 @@
+import { useParallax } from "react-scroll-parallax";
+
 import { NumberedHeading } from "@/components/NumberedHeading";
-import { Container, Content, MainContent } from "./styles";
 import { Button } from "@/components/Button";
+import { Container, Content, MainContent } from "./styles";
 
 export function ContactSection() {
+  const { ref: ref1 } = useParallax<HTMLImageElement>({ speed: -30 });
+  const { ref: ref2 } = useParallax<HTMLImageElement>({ speed: -20 });
+  const { ref: ref3 } = useParallax<HTMLImageElement>({ speed: -30 });
+  const { ref: ref4 } = useParallax<HTMLImageElement>({ speed: -20 });
+
   return (
     <Container>
       <Content>
@@ -16,10 +23,26 @@ export function ContactSection() {
           <Button>Contact me</Button>
         </MainContent>
       </Content>
-      <img src="/images/floatingLeftGreen.svg" alt="Floating symbols" />
-      <img src="/images/floatingLeftGray.svg" alt="Floating symbols" />
-      <img src="/images/floatingRightGreen.svg" alt="Floating symbols" />
-      <img src="/images/floatingRightGray.svg" alt="Floating symbols" />
+      <img
+        ref={ref1}
+        src="/images/floatingLeftGreen.svg"
+        alt="Floating symbols"
+      />
+      <img
+        ref={ref2}
+        src="/images/floatingLeftGray.svg"
+        alt="Floating symbols"
+      />
+      <img
+        ref={ref3}
+        src="/images/floatingRightGreen.svg"
+        alt="Floating symbols"
+      />
+      <img
+        ref={ref4}
+        src="/images/floatingRightGray.svg"
+        alt="Floating symbols"
+      />
     </Container>
   );
 }

@@ -2,6 +2,10 @@ import { styled } from "stitches.config";
 
 export const Container = styled("section", {
   minHeight: "100vh",
+  perspective: 100,
+  perspectiveOrigin: "0 0",
+  "-webkit-perspective": 100,
+  "-webkit-perspective-origin": "0 0",
 });
 
 export const Content = styled("div", {
@@ -12,6 +16,10 @@ export const Content = styled("div", {
   maxWidth: "1120px",
   margin: "auto",
   minHeight: "100vh",
+  position: "relative",
+  zIndex: -1,
+  transformStyle: "preserve-3d",
+  "-webkit-transform": "preserver-3d",
 
   "& p": {
     marginBottom: 32,
@@ -53,5 +61,46 @@ export const Title = styled("h1", {
 
   defaultVariants: {
     color: "white",
+  },
+});
+
+export const TechBubble = styled("div", {
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  borderRadius: "50%",
+  background: "$gray800",
+  boxShadow: "1px 10px 10px rgba(0,0,0,0.25)",
+  position: "absolute",
+
+  variants: {
+    size: {
+      small: {
+        height: 124,
+        width: 124,
+        top: 80,
+        right: 400,
+      },
+      medium: {
+        height: 156,
+        width: 156,
+        top: 480,
+        right: 320,
+      },
+      big: {
+        height: 184,
+        width: 184,
+        top: 90,
+        right: 140,
+
+        "& img": {
+          height: 124,
+        },
+      },
+    },
+  },
+
+  defaultVariants: {
+    size: "big",
   },
 });
