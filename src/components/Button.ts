@@ -5,19 +5,34 @@ export const Button = styled("button", {
   border: "3px solid $green400",
   color: "$green400",
   fontWeight: "bold",
-  paddingY: 16,
-  paddingX: 64,
+
   borderRadius: 8,
   transition: "ease-in-out 0.2s",
   cursor: "pointer",
 
   "&:hover": {
-    background: "$green400",
-    color: "$white",
+    background: "rgba(21,193,150,0.2)",
   },
 
   "&:focus": {
     outline: "$green400",
     background: "rgba(21,193,150,0.2)",
+  },
+
+  variants: {
+    size: {
+      big: {
+        paddingY: 16,
+        paddingX: 64,
+      },
+      small: {
+        paddingY: 16,
+        paddingX: 32,
+      },
+    },
+  },
+
+  defaultVariants: {
+    size: "big",
   },
 });

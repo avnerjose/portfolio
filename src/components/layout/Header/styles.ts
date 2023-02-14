@@ -37,3 +37,29 @@ export const Content = styled("div", {
     },
   },
 });
+
+export const Navigation = styled("nav", {
+  display: "flex",
+  alignItems: "center",
+  gap: 24,
+
+  "@lg": {
+    gap: 16,
+  },
+
+  "& ul": {
+    display: "flex",
+    listStyle: "none",
+    gap: 24,
+
+    "@lg": {
+      gap: 16,
+    },
+
+    "& a": {
+      textDecoration: "none",
+      color: "$white",
+      fontSize: 18,
+    },
+  },
+});

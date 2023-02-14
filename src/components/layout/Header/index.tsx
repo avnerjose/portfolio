@@ -3,12 +3,20 @@ import { BarChart } from "react-feather";
 import { useMediaQuery } from "react-responsive";
 import { MobileMenu } from "@/components/layout/MobileMenu";
 
-import { Container, Content } from "./styles";
+import { Container, Content, Navigation } from "./styles";
+import { Button } from "@/components/Button";
+
+const WEBSITE_SECTIONS = [
+  "About",
+  "Skills",
+  "Projects",
+  "Experience",
+  "Contact",
+];
 
 export function Header() {
   const [showLogo, setShowLogo] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-
   const isMobile = useMediaQuery({
     query: "(max-width: 768px)",
   });
@@ -29,7 +37,22 @@ export function Header() {
             alt="Logo"
           />
         )}
-        <BarChart size={32} onClick={handleOpenMobileMenu} />
+        {isMobile ? (
+          <BarChart size={32} onClick={handleOpenMobileMenu} />
+        ) : (
+          <Navigation>
+            <ul>
+              {WEBSITE_SECTIONS.map((item, i) => (
+                <li key={i}>
+                  <a href="">{item}</a>
+                </li>
+              ))}
+            </ul>
+            <Button size="small">
+              Resume
+            </Button>
+          </Navigation>
+        )}
       </Content>
       {isMobileMenuOpen && <MobileMenu onClose={handleCloseMobileMenu} />}
     </Container>

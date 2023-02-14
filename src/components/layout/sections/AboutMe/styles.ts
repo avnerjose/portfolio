@@ -5,9 +5,8 @@ export const Container = styled("section", {
 });
 
 export const Content = styled("div", {
-  display: "flex",
-  flexDirection: "column",
-  justifyContent: "center",
+  display: "grid",
+  gridTemplateColumns: "repeat(2,1fr)",
   minHeight: "100vh",
   paddingX: 24,
   paddingY: 32,
@@ -17,14 +16,32 @@ export const Content = styled("div", {
   "& h2": {
     marginBottom: 32,
   },
+
+  "@md": {
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+  },
 });
 
 export const Avatar = styled("figure", {
   alignSelf: "center",
+  justifySelf: "center",
   marginTop: 40,
   position: "relative",
-  height: 170,
-  width: 170,
+  height: 350,
+  width: 350,
+
+  "@md": {
+    height: 170,
+    width: 170,
+    alignSelf: "center",
+  },
+
+  "@lg": {
+    height: 200,
+    width: 200,
+  },
 
   "& img": {
     borderRadius: "50%",

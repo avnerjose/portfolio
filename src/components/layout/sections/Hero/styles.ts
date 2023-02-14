@@ -28,9 +28,16 @@ export const Span = styled("span", {
 });
 
 export const Title = styled("h1", {
+  fontSize: 75,
+  fontWeight: "bold",
+
   "@md": {
     fontSize: 40,
     lineHeight: "50px",
+  },
+
+  "@lg": {
+    fontSize: 50,
   },
 
   variants: {

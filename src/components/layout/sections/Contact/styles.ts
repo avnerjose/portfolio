@@ -11,19 +11,38 @@ export const Container = styled("section", {
 
   "& img:nth-child(2)": {
     top: 120,
-    left: -100,
+    left: 0,
   },
   "& img:nth-child(3)": {
     top: 100,
-    left: -140,
+    left: -40,
   },
   "& img:nth-child(4)": {
     top: 100,
-    right: -100,
+    right: 0,
   },
   "& img:nth-child(5)": {
     top: 100,
-    right: -160,
+    right: -60,
+  },
+
+  "@md": {
+    "& img:nth-child(2)": {
+      top: 120,
+      left: -100,
+    },
+    "& img:nth-child(3)": {
+      top: 100,
+      left: -140,
+    },
+    "& img:nth-child(4)": {
+      top: 100,
+      right: -100,
+    },
+    "& img:nth-child(5)": {
+      top: 100,
+      right: -160,
+    },
   },
 });
 
@@ -48,10 +67,19 @@ export const MainContent = styled("div", {
   width: "70%",
 
   "& h2": {
-    fontSize: 40,
+    fontSize: 65,
   },
-
   "& p": {
     color: "$gray500",
+    fontSize: 20,
+  },
+
+  "@md": {
+    "& h2": {
+      fontSize: 40,
+    },
+    "& p": {
+      fontSize: 18,
+    },
   },
 });

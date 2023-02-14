@@ -4,12 +4,17 @@ export const Container = styled("footer", {});
 
 export const Content = styled("div", {
   display: "flex",
-  flexDirection: "column",
+  alignItem: "center",
   paddingY: 32,
   paddingX: 24,
-  gap: 8,
+  gap: 32,
   maxWidth: "1120px",
   margin: "auto",
+
+  "@md": {
+    flexDirection: "column",
+    gap: 8,
+  },
 
   "& img": {
     width: 140,
