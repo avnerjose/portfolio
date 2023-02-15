@@ -8,6 +8,7 @@ import { Container, Menu } from "./styles";
 
 interface MobileMenuProps {
   onClose: () => void;
+  setActiveSection: (p: number) => void;
 }
 
 const WEBSITE_SECTIONS = [
@@ -18,7 +19,14 @@ const WEBSITE_SECTIONS = [
   { label: "Contact", to: "contact" },
 ];
 
-export function MobileMenu({ onClose }: MobileMenuProps) {
+export function MobileMenu({ onClose, setActiveSection }: MobileMenuProps) {
+  const handleLinkClick = (to: string) => {
+    const index = WEBSITE_SECTIONS.findIndex((item) => item.to === to);
+
+    setActiveSection(index);
+    onClose();
+  };
+
   useEffect(() => {
     document.body.style.overflow = "hidden";
 
@@ -47,7 +55,7 @@ export function MobileMenu({ onClose }: MobileMenuProps) {
             <li key={i}>
               <Link
                 to={item.to}
-                onClick={onClose}
+                onClick={() => handleLinkClick(item.to)}
                 smooth
                 spy
                 offset={-85}

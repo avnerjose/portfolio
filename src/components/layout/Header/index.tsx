@@ -100,7 +100,12 @@ export function Header() {
         )}
       </Content>
       <AnimatePresence>
-        {isMobileMenuOpen && <MobileMenu onClose={handleCloseMobileMenu} />}
+        {isMobileMenuOpen && (
+          <MobileMenu
+            onClose={handleCloseMobileMenu}
+            setActiveSection={setActiveSection}
+          />
+        )}
       </AnimatePresence>
     </Container>
   );
