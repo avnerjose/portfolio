@@ -1,3 +1,5 @@
+import { BulletNavigation } from "@/components/BulletNavigation";
+import { SocialMediaLinks } from "@/components/SocialMediaLinks";
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
 import { AboutMeSection } from "@/components/layout/sections/AboutMe";
@@ -11,13 +13,15 @@ export default function Home() {
   return (
     <>
       <Header />
-      <HeroSection/>
+      <HeroSection />
       <AboutMeSection />
       <SkillsAndToolsSection />
       <MyProjectsSection />
       <WorkExperienceSection />
       <ContactSection />
       <Footer />
+      <SocialMediaLinks />
+      <BulletNavigation />
     </>
   );
 }

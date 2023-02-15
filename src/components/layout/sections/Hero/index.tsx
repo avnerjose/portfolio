@@ -9,7 +9,7 @@ export function HeroSection() {
   const { ref: ref3 } = useParallax<HTMLDivElement>({ speed: -40 });
 
   return (
-    <Container>
+    <Container id="hero">
       <Content>
         <Span>Hi, my name is</Span>
         <Title>Avner José.</Title>
