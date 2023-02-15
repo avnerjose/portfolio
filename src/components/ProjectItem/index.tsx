@@ -7,8 +7,9 @@ import {
   LinksWrapper,
   TagsWrapper,
 } from "./styles";
+import { HTMLMotionProps } from "framer-motion";
 
-interface ProjectItemProps {
+interface ProjectItemProps extends HTMLMotionProps<"article"> {
   project: {
     category: string;
     name: string;
@@ -22,9 +23,10 @@ interface ProjectItemProps {
 
 export function ProjectItem({
   project: { category, description, imageUrl, name, repoUrl, tags, webUrl },
+  ...rest
 }: ProjectItemProps) {
   return (
-    <Container>
+    <Container {...rest}>
       <ImageWrapper>
         <a href={webUrl ?? repoUrl} target="_blank">
           <img src={imageUrl} />

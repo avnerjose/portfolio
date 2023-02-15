@@ -1,4 +1,7 @@
 import { Link } from "react-scroll";
+import { motion } from "framer-motion";
+
+import * as Variants from "./animations";
 import { Container } from "./styles";
 
 const WEBSITE_SECTIONS = [
@@ -13,13 +16,13 @@ const WEBSITE_SECTIONS = [
 export function BulletNavigation() {
   return (
     <Container>
-      <ul>
+      <motion.ul variants={Variants.list} initial="hidden" animate="show">
         {WEBSITE_SECTIONS.map((item) => (
-          <li key={item.to}>
-            <Link to={item.to} smooth spy activeClass="active" offset={-85}/>
-          </li>
+          <motion.li variants={Variants.itemFromBottom} key={item.to}>
+            <Link to={item.to} smooth spy activeClass="active" offset={-85} />
+          </motion.li>
         ))}
-      </ul>
+      </motion.ul>
     </Container>
   );
 }

@@ -1,6 +1,7 @@
 import { styled } from "stitches.config";
+import { motion } from "framer-motion";
 
-export const Heading = styled("h2", {
+export const Heading = styled(motion.h2, {
   display: "flex",
   alignItems: "center",
   width: "100%",

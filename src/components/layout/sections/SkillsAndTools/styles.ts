@@ -1,4 +1,5 @@
 import { styled } from "stitches.config";
+import { motion } from "framer-motion";
 
 export const Container = styled("section", {});
 
@@ -10,7 +11,7 @@ export const Content = styled("div", {
   margin: "auto",
 });
 
-export const SkillsWrapper = styled("div", {
+export const SkillsWrapper = styled(motion.div, {
   display: "grid",
   gap: 8,
   gridTemplateColumns: "repeat(4,1fr)",

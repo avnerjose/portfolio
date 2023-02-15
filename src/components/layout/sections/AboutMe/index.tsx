@@ -1,31 +1,45 @@
-import { Paragraph } from "@/components/Paragraph";
-import { Avatar, Container, Content } from "./styles";
 import Image from "next/image";
+import { motion } from "framer-motion";
+
+import { Paragraph } from "@/components/Paragraph";
 import { NumberedHeading } from "@/components/NumberedHeading";
-import { useParallax } from "react-scroll-parallax";
+import * as Variants from "./animation";
+import { Avatar, Container, Content } from "./styles";
 
 export function AboutMeSection() {
-  const { ref } = useParallax<HTMLImageElement>({ speed: -5 });
-
   return (
     <Container id="about">
       <Content>
-        <div>
-          <NumberedHeading number={1} label="About me" />
-          <Paragraph>
+        <motion.div
+          variants={Variants.content}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true }}
+        >
+          <NumberedHeading
+            variants={Variants.itemFromLeft}
+            number={1}
+            label="About me"
+          />
+          <Paragraph variants={Variants.itemFromBottom}>
             Lorem ipsum dolor sit amet consectetur. Facilisi fermentum diam eu
             diam habitant sem odio donec at. Nisi purus sit et phasellus. Sit
             viverra amet a urna penatibus tortor tincidunt odio. Adipiscing
             aliquet arcu viverra neque leo neque fusce sed.
           </Paragraph>
-          <Paragraph>
+          <Paragraph variants={Variants.itemFromBottom}>
             Lorem ipsum dolor sit amet consectetur. Facilisi fermentum diam eu
             diam habitant sem odio donec at. Nisi purus sit et phasellus. Sit
             viverra amet a urna penatibus tortor tincidunt odio. Adipiscing
             aliquet arcu viverra neque leo neque fusce sed.
           </Paragraph>
-        </div>
-        <Avatar ref={ref}>
+        </motion.div>
+        <Avatar
+          variants={Variants.itemFromRight}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true }}
+        >
           <Image src="https://github.com/avnerjose.png" alt="Avner José" fill />
         </Avatar>
       </Content>

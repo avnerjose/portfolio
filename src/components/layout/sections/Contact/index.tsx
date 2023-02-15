@@ -1,7 +1,10 @@
 import { useParallax } from "react-scroll-parallax";
+import { motion } from "framer-motion";
 
-import { NumberedHeading } from "@/components/NumberedHeading";
 import { Button } from "@/components/Button";
+import { NumberedHeading } from "@/components/NumberedHeading";
+import { Paragraph } from "@/components/Paragraph";
+import * as Variants from "./animations";
 import { Container, Content, MainContent } from "./styles";
 
 export function ContactSection() {
@@ -12,15 +15,26 @@ export function ContactSection() {
 
   return (
     <Container id="contact">
-      <Content>
-        <NumberedHeading number={5} label="Contact" />
+      <Content
+        variants={Variants.content}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true }}
+      >
+        <NumberedHeading
+          variants={Variants.itemFromLeft}
+          number={5}
+          label="Contact"
+        />
         <MainContent>
-          <h2>Let's get in touch</h2>
-          <p>
+          <motion.h2 variants={Variants.itemFromBottom}>
+            Let's get in touch
+          </motion.h2>
+          <Paragraph variants={Variants.itemFromBottom}>
             Got a question or proposal, or just want to say hello? Go ahead,
             I’ll try my best to get back to you!
-          </p>
-          <Button>Contact me</Button>
+          </Paragraph>
+          <Button variants={Variants.itemFromBottom}>Contact me</Button>
         </MainContent>
       </Content>
       <img

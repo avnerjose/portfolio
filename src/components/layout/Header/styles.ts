@@ -6,10 +6,25 @@ export const Container = styled("header", {
   left: 0,
   top: 0,
   zIndex: 10,
-  background: "$gray900",
+  minHeight: 85,
   transitionProperty: "all",
   transitionTimingFunction: "cubic-bezier(0.4, 0, 0.2, 1)",
   transitionDuration: "500ms",
+
+  variants: {
+    color: {
+      darkGray: {
+        background: "$gray900",
+      },
+      lightGray: {
+        background: "$gray800",
+      },
+    },
+  },
+
+  defaultVariants: {
+    color: "darkGray",
+  },
 });
 
 export const Content = styled("div", {
@@ -28,8 +43,9 @@ export const Content = styled("div", {
     },
   },
 
-  "& > svg": {
+  "& > div > svg": {
     color: "$green400",
+    cursor: "pointer",
     transform: "rotate(270deg)",
   },
 

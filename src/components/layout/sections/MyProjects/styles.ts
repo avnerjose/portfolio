@@ -1,12 +1,12 @@
 import * as Tabs from "@radix-ui/react-tabs";
-
 import { styled } from "stitches.config";
+import { motion } from "framer-motion";
 
 export const Container = styled("section", {
   background: "$gray800",
 });
 
-export const Content = styled("div", {
+export const Content = styled(motion.div, {
   display: "flex",
   flexDirection: "column",
   minHeight: "100vh",
@@ -52,12 +52,13 @@ export const TabsTrigger = styled(Tabs.Trigger, {
 });
 
 export const TabsContent = styled(Tabs.Content, {
+  "&[data-state='active']": {
+    paddingY: 32,
+  },
+
   display: "flex",
   flexDirection: "column",
-
-  "&[data-state='active']": {
-    paddingTop: 32,
-  },
+  overflow: "hidden",
 
   "& ul": {
     display: "flex",

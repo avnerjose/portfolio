@@ -8,8 +8,13 @@ import { HeroSection } from "@/components/layout/sections/Hero";
 import { MyProjectsSection } from "@/components/layout/sections/MyProjects";
 import { SkillsAndToolsSection } from "@/components/layout/sections/SkillsAndTools";
 import { WorkExperienceSection } from "@/components/layout/sections/WorkExperience";
+import { useDetectReachedScrollBottom } from "@/hooks/useDetectReachedScrollBottom";
 
 export default function Home() {
+  const hasReachedBottom = useDetectReachedScrollBottom({
+    offset: 89,
+  });
+
   return (
     <>
       <Header />
@@ -20,8 +25,8 @@ export default function Home() {
       <WorkExperienceSection />
       <ContactSection />
       <Footer />
-      <SocialMediaLinks />
       <BulletNavigation />
+      <SocialMediaLinks variant={hasReachedBottom ? "dislocated" : "default"} />
     </>
   );
 }

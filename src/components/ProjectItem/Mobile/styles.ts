@@ -1,6 +1,7 @@
 import { styled } from "stitches.config";
+import { motion } from "framer-motion";
 
-export const Container = styled("article", {
+export const Container = styled(motion.article, {
   background: "$gray900",
   padding: 24,
   borderRadius: 8,

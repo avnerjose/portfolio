@@ -1,8 +1,9 @@
 import { useEffect } from "react";
 import { GitHub, Linkedin, X } from "react-feather";
-import { Link, animateScroll } from "react-scroll";
+import { Link } from "react-scroll";
 
 import { Button } from "@/components/Button";
+import * as Variants from "./animations";
 import { Container, Menu } from "./styles";
 
 interface MobileMenuProps {
@@ -30,7 +31,13 @@ export function MobileMenu({ onClose }: MobileMenuProps) {
   }, []);
 
   return (
-    <Container tabIndex={1}>
+    <Container
+      tabIndex={1}
+      variants={Variants.menu}
+      initial="hidden"
+      animate="show"
+      exit="hidden"
+    >
       <button onClick={onClose}>
         <X size={32} />
       </button>

@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import { styled } from "stitches.config";
 
 export const Container = styled("section", {
@@ -46,7 +47,7 @@ export const Container = styled("section", {
   },
 });
 
-export const Content = styled("div", {
+export const Content = styled(motion.div, {
   display: "flex",
   flexDirection: "column",
   minHeight: "100vh",
@@ -57,7 +58,7 @@ export const Content = styled("div", {
   margin: "auto",
 });
 
-export const MainContent = styled("div", {
+export const MainContent = styled(motion.div, {
   display: "flex",
   gap: 16,
   flexDirection: "column",

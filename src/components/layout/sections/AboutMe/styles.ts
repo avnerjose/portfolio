@@ -1,10 +1,12 @@
 import { styled } from "stitches.config";
+import { motion } from "framer-motion";
 
 export const Container = styled("section", {
   background: "$gray800",
+  overflow: "hidden",
 });
 
-export const Content = styled("div", {
+export const Content = styled(motion.div, {
   display: "grid",
   gridTemplateColumns: "repeat(2,1fr)",
   minHeight: "100vh",
@@ -24,7 +26,7 @@ export const Content = styled("div", {
   },
 });
 
-export const Avatar = styled("figure", {
+export const Avatar = styled(motion.figure, {
   alignSelf: "center",
   justifySelf: "center",
   marginTop: 40,

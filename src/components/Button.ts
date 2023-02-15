@@ -1,6 +1,7 @@
 import { styled } from "stitches.config";
+import { motion } from "framer-motion";
 
-export const Button = styled("button", {
+export const Button = styled(motion.button, {
   background: "transparent",
   border: "3px solid $green400",
   color: "$green400",

@@ -2,10 +2,11 @@ import { useEffect, useState } from "react";
 import { BarChart } from "react-feather";
 import { useMediaQuery } from "react-responsive";
 import { Link } from "react-scroll";
+import { AnimatePresence, motion } from "framer-motion";
 
 import { MobileMenu } from "@/components/layout/MobileMenu";
-import { useScrollDirection } from "@/hooks/useScrollDirection";
 import { Button } from "@/components/Button";
+import * as Variants from "./animations";
 import { Container, Content, Navigation } from "./styles";
 
 const WEBSITE_SECTIONS = [
@@ -19,7 +20,8 @@ const WEBSITE_SECTIONS = [
 export function Header() {
   const [showLogo, setShowLogo] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const scrollDirection = useScrollDirection();
+  const [activeSection, setActiveSection] = useState(-1);
+
   const isMobile = useMediaQuery({
     query: "(max-width: 768px)",
   });
@@ -27,37 +29,79 @@ export function Header() {
   const handleOpenMobileMenu = () => setIsMobileMenuOpen(true);
   const handleCloseMobileMenu = () => setIsMobileMenuOpen(false);
 
+  const handleSetActive = (to: string) => {
+    const index = WEBSITE_SECTIONS.findIndex((item) => item.to === to);
+    setActiveSection(index);
+  };
+
+  const handleSetInactive = (to: string) => {
+    const index = WEBSITE_SECTIONS.findIndex((item) => item.to === to);
+    setActiveSection(index + 1);
+  };
+
   useEffect(() => {
     setShowLogo(true);
   }, []);
 
   return (
-    <Container>
+    <Container
+      color={Math.abs(activeSection) % 2 === 1 ? "darkGray" : "lightGray"}
+    >
       <Content>
         {showLogo && (
-          <img
+          <motion.img
+            variants={Variants.logo}
+            initial="hidden"
+            animate="show"
             src={`/images/${isMobile ? "logoIcon.svg" : "logo.svg"}`}
             alt="Logo"
           />
         )}
         {isMobile && showLogo ? (
-          <BarChart size={32} onClick={handleOpenMobileMenu} />
+          <motion.div
+            variants={Variants.menuIcon}
+            initial="hidden"
+            animate="show"
+          >
+            <BarChart size={32} onClick={handleOpenMobileMenu} />
+          </motion.div>
         ) : (
           <Navigation>
-            <ul>
+            <motion.ul
+              variants={Variants.container}
+              initial="hidden"
+              animate="show"
+            >
               {WEBSITE_SECTIONS.map((item, i) => (
-                <li key={i}>
-                  <Link to={item.to} smooth spy offset={-85} activeClass="active">
+                <motion.li variants={Variants.listItem} key={i}>
+                  <Link
+                    to={item.to}
+                    smooth
+                    spy
+                    offset={-85}
+                    activeClass="active"
+                    onSetActive={handleSetActive}
+                    onSetInactive={handleSetInactive}
+                  >
                     {item.label}
                   </Link>
-                </li>
+                </motion.li>
               ))}
-            </ul>
-            <Button size="small">Resume</Button>
+            </motion.ul>
+            <Button
+              variants={Variants.button}
+              initial="hidden"
+              animate="show"
+              size="small"
+            >
+              Resume
+            </Button>
           </Navigation>
         )}
       </Content>
-      {isMobileMenuOpen && <MobileMenu onClose={handleCloseMobileMenu} />}
+      <AnimatePresence>
+        {isMobileMenuOpen && <MobileMenu onClose={handleCloseMobileMenu} />}
+      </AnimatePresence>
     </Container>
   );
 }

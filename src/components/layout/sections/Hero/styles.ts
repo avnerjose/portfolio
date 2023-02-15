@@ -1,8 +1,9 @@
 import { styled } from "stitches.config";
+import { motion } from "framer-motion";
 
 export const Container = styled("section", {});
 
-export const Content = styled("div", {
+export const Content = styled(motion.div, {
   display: "flex",
   flexDirection: "column",
   justifyContent: "center",
@@ -23,12 +24,12 @@ export const Content = styled("div", {
   },
 });
 
-export const Span = styled("span", {
+export const Span = styled(motion.span, {
   color: "$green400",
   marginBottom: 8,
 });
 
-export const Title = styled("h1", {
+export const Title = styled(motion.h1, {
   fontSize: 75,
   fontWeight: "bold",
 
@@ -57,7 +58,7 @@ export const Title = styled("h1", {
   },
 });
 
-export const TechBubble = styled("div", {
+export const TechBubble = styled(motion.div, {
   display: "flex",
   alignItems: "center",
   justifyContent: "center",

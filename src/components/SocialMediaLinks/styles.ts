@@ -1,10 +1,11 @@
 import { styled } from "stitches.config";
+import { motion } from "framer-motion";
 
-export const Container = styled("ul", {
+export const Container = styled(motion.ul, {
   position: "fixed",
-  bottom: 200,
   left: "4rem",
   listStyle: "none",
+  transition: "all 0.2s",
 
   "& a": {
     color: "$gray500",
@@ -33,5 +34,20 @@ export const Container = styled("ul", {
 
   "@lg": {
     display: "none",
+  },
+
+  variants: {
+    position: {
+      default: {
+        bottom: 200,
+      },
+      dislocated: {
+        bottom: 289,
+      },
+    },
+  },
+
+  defaultVariants: {
+    position: "default",
   },
 });

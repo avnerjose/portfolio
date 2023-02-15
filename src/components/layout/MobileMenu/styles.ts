@@ -1,6 +1,7 @@
 import { styled } from "stitches.config";
+import { motion } from "framer-motion";
 
-export const Container = styled("aside", {
+export const Container = styled(motion.aside, {
   position: "fixed",
   background: "$gray800",
   top: 0,
@@ -8,7 +9,7 @@ export const Container = styled("aside", {
   bottom: 0,
   zIndex: 14,
 
-  width: "min(450px, 70%)",
+  width: "min(400px, 100vw)",
   maxHeight: "100vh",
 
   display: "flex",

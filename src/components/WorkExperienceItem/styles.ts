@@ -1,4 +1,5 @@
 import { styled } from "stitches.config";
+import { motion } from "framer-motion";
 
 export const Container = styled("article", {
   display: "flex",
@@ -9,7 +10,7 @@ export const Container = styled("article", {
   },
 });
 
-export const Trail = styled("div", {
+export const Trail = styled(motion.div, {
   display: "flex",
   height: 32,
   width: 32,
@@ -28,7 +29,7 @@ export const Trail = styled("div", {
   },
 });
 
-export const Content = styled("div", {
+export const Content = styled(motion.div, {
   display: "flex",
   flexDirection: "column",
   flex: 1,

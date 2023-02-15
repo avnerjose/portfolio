@@ -1,5 +1,6 @@
 import { SkillItem } from "@/components/SkillItem";
 import { NumberedHeading } from "@/components/NumberedHeading";
+import * as Variants from "./animations";
 import { Container, Content, SkillsWrapper } from "./styles";
 
 const SKILLS_AND_TOOLS = [
@@ -49,10 +50,31 @@ export function SkillsAndToolsSection() {
   return (
     <Container id="skills">
       <Content>
-        <NumberedHeading number={2} label="Skills and tools" />
-        <SkillsWrapper>
+        <NumberedHeading
+          variants={Variants.itemFromFromLeft}
+          initial="hidden"
+          whileInView="show"
+          viewport={{
+            once: true,
+          }}
+          number={2}
+          label="Skills and tools"
+        />
+        <SkillsWrapper
+          variants={Variants.gridContainer}
+          initial="hidden"
+          whileInView="show"
+          viewport={{
+            once: true,
+          }}
+        >
           {SKILLS_AND_TOOLS.map(({ id, imageUrl, label }) => (
-            <SkillItem key={id} imageUrl={imageUrl} label={label} />
+            <SkillItem
+              key={id}
+              variants={Variants.itemFromTop}
+              imageUrl={imageUrl}
+              label={label}
+            />
           ))}
         </SkillsWrapper>
       </Content>
