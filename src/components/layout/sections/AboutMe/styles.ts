@@ -32,17 +32,6 @@ export const Avatar = styled("figure", {
   height: 350,
   width: 350,
 
-  "@md": {
-    height: 170,
-    width: 170,
-    alignSelf: "center",
-  },
-
-  "@lg": {
-    height: 200,
-    width: 200,
-  },
-
   "& img": {
     borderRadius: "50%",
     outline: "10px solid $green400",
@@ -53,9 +42,33 @@ export const Avatar = styled("figure", {
     backgroundRepeat: "no-repeat",
     content: " ",
     position: "absolute",
-    top: -32,
-    left: -32,
+    top: 60,
+    left: 50,
     width: 250,
     height: 195,
+    transform: "scale(2)",
+  },
+
+  "@lg": {
+    height: 200,
+    width: 200,
+
+    "&::before": {
+      top: 0,
+      left: -10,
+      transform: "scale(1.5)",
+    },
+  },
+
+  "@md": {
+    height: 170,
+    width: 170,
+    alignSelf: "center",
+
+    "&::before": {
+      top: -20,
+      left: -30,
+      transform: "scale(1.1)",
+    },
   },
 });

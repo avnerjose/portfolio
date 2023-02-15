@@ -7,6 +7,25 @@ export const globalStyles = globalCss({
     boxSizing: "border-box",
   },
 
+  html: {
+    scrollbarWidth: "thin",
+    scrollbarColor: "$gray900 $gray800",
+  },
+
+  "::-webkit-scrollbar": {
+    width: 8,
+  },
+
+  "::-webkit-scrollbar-track": {
+    background: "$gray900",
+  },
+
+  "::-webkit-scrollbar-thumb": {
+    backgroundColor: "$gray800",
+    borderRadius: 10,
+  },
+
+
   main: {
     background: "$gray900",
     color: "$white",
@@ -18,7 +37,6 @@ export const globalStyles = globalCss({
         filter: "blur(5px) brightness(0.7)",
         pointerEvents: "none",
         userSelect: "none",
-      
       },
     },
   },

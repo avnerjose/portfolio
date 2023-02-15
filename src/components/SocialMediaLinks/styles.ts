@@ -31,7 +31,7 @@ export const Container = styled("ul", {
     left: "50%",
   },
 
-  "@xl": {
+  "@lg": {
     display: "none",
   },
 });

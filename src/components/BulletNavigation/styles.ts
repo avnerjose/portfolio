@@ -17,8 +17,8 @@ export const Container = styled("nav", {
 
   "& a": {
     display: "flex",
-    height: 12,
-    width: 12,
+    height: 10,
+    width: 10,
     border: "1px solid $green400",
     cursor: "pointer",
     transition: "all 0.2s",
