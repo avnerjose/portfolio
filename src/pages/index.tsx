@@ -9,6 +9,7 @@ import { MyProjectsSection } from "@/components/layout/sections/MyProjects";
 import { SkillsAndToolsSection } from "@/components/layout/sections/SkillsAndTools";
 import { WorkExperienceSection } from "@/components/layout/sections/WorkExperience";
 import { useDetectReachedScrollBottom } from "@/hooks/useDetectReachedScrollBottom";
+import Head from "next/head";
 
 export default function Home() {
   const hasReachedBottom = useDetectReachedScrollBottom({
@@ -17,6 +18,9 @@ export default function Home() {
 
   return (
     <>
+      <Head>
+        <title>Portfolio | Avner José</title>
+      </Head>
       <Header />
       <HeroSection />
       <AboutMeSection />
