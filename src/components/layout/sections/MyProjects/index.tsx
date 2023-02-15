@@ -2,6 +2,7 @@ import { useState } from "react";
 
 import { NumberedHeading } from "@/components/NumberedHeading";
 import { ProjectItemMobile } from "@/components/ProjectItem/Mobile";
+import { ProjectItem } from "@/components/ProjectItem";
 import { PaginationItem } from "@/components/PaginationItem";
 import {
   Container,
@@ -46,6 +47,10 @@ export function MyProjectsSection() {
     <ProjectItemMobile key={project.id} project={project} />
   ));
 
+  const projectsList2 = PROJECTS.map((project) => (
+    <ProjectItem key={project.id} project={project} />
+  ));
+
   return (
     <Container>
       <Content>
@@ -76,7 +81,18 @@ export function MyProjectsSection() {
             </ul>
           </TabsContent>
           <TabsContent className="TabsContent" value="tab2">
-            <h2>Tab 2</h2>
+            {projectsList2}
+            <ul>
+              <li>
+                <PaginationItem label={1} isActive />
+              </li>
+              <li>
+                <PaginationItem label={2} />
+              </li>
+              <li>
+                <PaginationItem label={3} />
+              </li>
+            </ul>
           </TabsContent>
         </TabsRoot>
       </Content>

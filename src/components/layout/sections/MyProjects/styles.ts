@@ -43,6 +43,7 @@ export const TabsTrigger = styled(Tabs.Trigger, {
   padding: 2,
   paddingBottom: 16,
   width: "100%",
+  cursor: "pointer",
 
   "&[data-state='active']": {
     color: "$white",
