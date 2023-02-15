@@ -9,7 +9,7 @@ export const Content = styled("div", {
   padding: 24,
   maxWidth: "1120px",
   margin: "auto",
-  minHeight: "calc(100vh - 117px)",
+  minHeight: "100vh",
   position: "relative",
   transformStyle: "preserve-3d",
   "-webkit-transform": "preserver-3d",

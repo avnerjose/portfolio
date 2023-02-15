@@ -47,7 +47,7 @@ const SKILLS_AND_TOOLS = [
 
 export function SkillsAndToolsSection() {
   return (
-    <Container>
+    <Container id="skills">
       <Content>
         <NumberedHeading number={2} label="Skills and tools" />
         <SkillsWrapper>

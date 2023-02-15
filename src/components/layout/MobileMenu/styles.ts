@@ -8,7 +8,7 @@ export const Container = styled("aside", {
   bottom: 0,
   zIndex: 14,
 
-  width: "70%",
+  width: "min(450px, 70%)",
   maxHeight: "100vh",
 
   display: "flex",

@@ -1,7 +1,8 @@
 import { useEffect } from "react";
 import { GitHub, Linkedin, X } from "react-feather";
-import { Button } from "@/components/Button";
+import { Link, animateScroll } from "react-scroll";
 
+import { Button } from "@/components/Button";
 import { Container, Menu } from "./styles";
 
 interface MobileMenuProps {
@@ -9,11 +10,11 @@ interface MobileMenuProps {
 }
 
 const WEBSITE_SECTIONS = [
-  "About me",
-  "Skills and tools",
-  "My projects",
-  "Work Experience",
-  "Contact",
+  { label: "About me", to: "about" },
+  { label: "Skills and tools", to: "skills" },
+  { label: "My Projects", to: "projects" },
+  { label: "Work Experience", to: "experience" },
+  { label: "Contact", to: "contact" },
 ];
 
 export function MobileMenu({ onClose }: MobileMenuProps) {
@@ -37,10 +38,17 @@ export function MobileMenu({ onClose }: MobileMenuProps) {
         <ul>
           {WEBSITE_SECTIONS.map((item, i) => (
             <li key={i}>
-              <a href="">
-                <span>{i + 1}.</span> {item}
+              <Link
+                to={item.to}
+                onClick={onClose}
+                smooth
+                spy
+                offset={-85}
+                delay={200}
+              >
+                <span>{i + 1}.</span> {item.label}
                 <span>.</span>
-              </a>
+              </Link>
             </li>
           ))}
         </ul>

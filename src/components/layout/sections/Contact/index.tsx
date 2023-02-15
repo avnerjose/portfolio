@@ -11,7 +11,7 @@ export function ContactSection() {
   const { ref: ref4 } = useParallax<HTMLImageElement>({ speed: -20 });
 
   return (
-    <Container>
+    <Container id="contact">
       <Content>
         <NumberedHeading number={5} label="Contact" />
         <MainContent>

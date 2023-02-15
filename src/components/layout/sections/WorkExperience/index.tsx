@@ -4,7 +4,7 @@ import { Container, Content } from "./styles";
 
 export function WorkExperienceSection() {
   return (
-    <Container>
+    <Container id="experience">
       <Content>
         <NumberedHeading number={4} label="Work Experience" />
         {[...new Array(2)].map((_, i) => (

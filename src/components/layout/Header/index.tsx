@@ -1,18 +1,19 @@
 import { useEffect, useState } from "react";
 import { BarChart } from "react-feather";
 import { useMediaQuery } from "react-responsive";
+import { Link } from "react-scroll";
+
 import { MobileMenu } from "@/components/layout/MobileMenu";
 import { useScrollDirection } from "@/hooks/useScrollDirection";
-
-import { Container, Content, Navigation } from "./styles";
 import { Button } from "@/components/Button";
+import { Container, Content, Navigation } from "./styles";
 
 const WEBSITE_SECTIONS = [
-  "About",
-  "Skills",
-  "Projects",
-  "Experience",
-  "Contact",
+  { label: "About", to: "about" },
+  { label: "Skills", to: "skills" },
+  { label: "Projects", to: "projects" },
+  { label: "Experience", to: "experience" },
+  { label: "Contact", to: "contact" },
 ];
 
 export function Header() {
@@ -31,7 +32,7 @@ export function Header() {
   }, []);
 
   return (
-    <Container visibility={scrollDirection === "down" ? "hidden" : "visible"}>
+    <Container>
       <Content>
         {showLogo && (
           <img
@@ -46,7 +47,9 @@ export function Header() {
             <ul>
               {WEBSITE_SECTIONS.map((item, i) => (
                 <li key={i}>
-                  <a href="">{item}</a>
+                  <Link to={item.to} smooth spy offset={-85} activeClass="active">
+                    {item.label}
+                  </Link>
                 </li>
               ))}
             </ul>

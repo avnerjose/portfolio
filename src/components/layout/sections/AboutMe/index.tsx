@@ -8,7 +8,7 @@ export function AboutMeSection() {
   const { ref } = useParallax<HTMLImageElement>({ speed: -5 });
 
   return (
-    <Container>
+    <Container id="about">
       <Content>
         <div>
           <NumberedHeading number={1} label="About me" />

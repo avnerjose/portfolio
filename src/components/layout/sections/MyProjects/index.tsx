@@ -52,7 +52,7 @@ export function MyProjectsSection() {
   ));
 
   return (
-    <Container>
+    <Container id="projects">
       <Content>
         <NumberedHeading number={3} label="My Projects" />
         <TabsRoot

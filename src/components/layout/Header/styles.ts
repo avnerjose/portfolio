@@ -1,34 +1,20 @@
 import { styled } from "stitches.config";
 
 export const Container = styled("header", {
-  position: "sticky",
+  position: "fixed",
   right: 0,
   left: 0,
+  top: 0,
   zIndex: 10,
   background: "$gray900",
   transitionProperty: "all",
   transitionTimingFunction: "cubic-bezier(0.4, 0, 0.2, 1)",
   transitionDuration: "500ms",
-
-  variants: {
-    visibility: {
-      visible: {
-        top: 0,
-      },
-      hidden: {
-        top: "-6rem",
-      },
-    },
-  },
-
-  defaultVariants: {
-    visibility: "visible",
-  },
 });
 
 export const Content = styled("div", {
   maxWidth: "1120px",
-  paddingY: 32,
+  paddingY: 16,
   paddingX: 24,
   margin: "auto",
 
@@ -77,6 +63,23 @@ export const Navigation = styled("nav", {
       textDecoration: "none",
       color: "$white",
       fontSize: 18,
+      cursor: "pointer",
+      transition: "all 0.2s",
+
+      "&:hover": {
+        color: "$green400",
+      },
+
+      "&.active": {
+        "&::before": {
+          content: "<",
+          color: "$green400",
+        },
+        "&::after": {
+          content: "/>",
+          color: "$green400",
+        },
+      },
     },
   },
 });
