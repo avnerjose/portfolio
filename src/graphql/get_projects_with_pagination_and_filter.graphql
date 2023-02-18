@@ -14,12 +14,14 @@ query GetProjectsWithPaginationAndFilter($projectsPerPage: Int = 3, $skip: Int =
                 url
             }
         }
-        projectsConnection {
+        projectsConnection(
+        where: {
+            category_in: $categories
+        }) {
             pageInfo {
-                hasNextPage
                 pageSize
-        }
-    }
+            }
+        }   
 }
 
 #$currentPage * $projectsPerPage - $projectsPerPage?

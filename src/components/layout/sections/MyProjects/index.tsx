@@ -1,10 +1,10 @@
 import { useState } from "react";
 
+import { Categories } from "@/graphql/generated";
 import { NumberedHeading } from "@/components/NumberedHeading";
-import { Container, Content, TabsList, TabsRoot, TabsTrigger } from "./styles";
 import * as Variants from "./animations";
 import { ProjectTab } from "./ProjectTab";
-import { Categories } from "@/graphql/generated";
+import { Container, Content, TabsList, TabsRoot, TabsTrigger } from "./styles";
 
 export function MyProjectsSection() {
   const [selectedTab, setSelectedTab] = useState("tab1");

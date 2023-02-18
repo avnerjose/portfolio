@@ -5,12 +5,14 @@ import {
   useGetProjectsWithPaginationAndFilterQuery,
 } from "@/graphql/generated";
 import { ProjectItem } from "@/components/ProjectItem";
-import { PaginationItem } from "@/components/PaginationItem";
+import { PaginationItem } from "@/components/Pagination/PaginationItem";
 import { ProjectMapper } from "@/mappers/ProjectMapper";
 import { useMediaQuery } from "react-responsive";
 import { ProjectItemMobile } from "@/components/ProjectItem/Mobile";
 import * as Variants from "../animations";
 import { Container } from "./styles";
+import { useMemo, useState } from "react";
+import { Pagination } from "@/components/Pagination";
 
 interface ProjectTabProps {
   tabValue: string;
@@ -18,18 +20,27 @@ interface ProjectTabProps {
 }
 
 export function ProjectTab({ categories, tabValue }: ProjectTabProps) {
+  const [currentPage, setCurrentPage] = useState(1);
+  const projectsPerPage = 3;
+  const skip = useMemo(() => currentPage * projectsPerPage - projectsPerPage, [
+    currentPage,
+    projectsPerPage,
+  ]);
   const { data } = useGetProjectsWithPaginationAndFilterQuery({
     variables: {
       categories,
+      projectsPerPage,
+      skip,
     },
   });
-  const convertedData = data
-    ? ProjectMapper.projectsWithPaginationQueryToDomain(data)
-    : null;
+  const mappedData = ProjectMapper.getProjectsWithPaginationAndFilterQuery(
+    data
+  );
+
   const isMobile = useMediaQuery({ query: "(max-width: 768px)" });
   const ProjectItemComponent = isMobile ? ProjectItemMobile : ProjectItem;
 
-  const projectsList = convertedData?.map((project, i) => (
+  const projectsList = mappedData?.results?.map((project, i) => (
     <ProjectItemComponent
       key={project.id}
       project={project}
@@ -46,24 +57,12 @@ export function ProjectTab({ categories, tabValue }: ProjectTabProps) {
   return (
     <Container className="TabsContent" value={tabValue}>
       {projectsList}
-      <motion.ul
-        variants={Variants.list}
-        initial="hidden"
-        whileInView="show"
-        viewport={{
-          once: true,
-        }}
-      >
-        <motion.li variants={Variants.itemFromBottom}>
-          <PaginationItem label={1} isActive />
-        </motion.li>
-        <motion.li variants={Variants.itemFromBottom}>
-          <PaginationItem label={2} />
-        </motion.li>
-        <motion.li variants={Variants.itemFromBottom}>
-          <PaginationItem label={3} />
-        </motion.li>
-      </motion.ul>
+      <Pagination
+        currentPage={currentPage}
+        onPageChange={setCurrentPage}
+        resultsPerPage={projectsPerPage}
+        totalResults={mappedData?.pageInfo.totalResults ?? 0}
+      />
     </Container>
   );
 }

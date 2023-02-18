@@ -14,30 +14,16 @@ export const list: Variants = {
   },
 };
 
-export const itemFromLeft: Variants = {
+export const itemFromBottom: Variants = {
   hidden: {
-    x: "-50%",
     opacity: 0,
+    y: -20,
   },
-  show: (param: number = 0) => ({
-    x: 0,
+  show: {
     opacity: 1,
+    y: 0,
     transition: {
-      delay: param * 0.2,
+      type: "spring",
     },
-  }),
-};
-
-export const itemFromRight: Variants = {
-  hidden: {
-    x: "50%",
-    opacity: 0,
   },
-  show: (param: number = 0) => ({
-    x: 0,
-    opacity: 1,
-    transition: {
-      delay: param * 0.2,
-    },
-  }),
 };

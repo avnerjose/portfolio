@@ -3239,11 +3239,22 @@ export enum SystemDateTimeFieldVariation {
 
 /** Project Tags */
 export enum Tags {
+  Backend = 'Backend',
+  Cms = 'CMS',
   Css = 'CSS',
+  ChakraUi = 'ChakraUI',
+  Dart = 'Dart',
+  DesignSystem = 'DesignSystem',
+  Firebase = 'Firebase',
+  Flutter = 'Flutter',
+  Frontend = 'Frontend',
+  Fullstack = 'Fullstack',
   GraphQl = 'GraphQL',
   Html = 'HTML',
+  Mobile = 'Mobile',
   NextJs = 'NextJS',
   ReactJs = 'ReactJS',
+  Storybook = 'Storybook',
   Tailwind = 'Tailwind'
 }
 
@@ -3747,7 +3758,7 @@ export type GetProjectsWithPaginationAndFilterQueryVariables = Exact<{
 }>;
 
 
-export type GetProjectsWithPaginationAndFilterQuery = { __typename?: 'Query', projects: Array<{ __typename?: 'Project', id: string, title: string, category: Categories, description: string, webUrl?: string | null, repoUrl: string, tags: Array<Tags>, thumbnail?: { __typename?: 'Asset', url: string } | null }>, projectsConnection: { __typename?: 'ProjectConnection', pageInfo: { __typename?: 'PageInfo', hasNextPage: boolean, pageSize?: number | null } } };
+export type GetProjectsWithPaginationAndFilterQuery = { __typename?: 'Query', projects: Array<{ __typename?: 'Project', id: string, title: string, category: Categories, description: string, webUrl?: string | null, repoUrl: string, tags: Array<Tags>, thumbnail?: { __typename?: 'Asset', url: string } | null }>, projectsConnection: { __typename?: 'ProjectConnection', pageInfo: { __typename?: 'PageInfo', pageSize?: number | null } } };
 
 
 export const GetProjectsWithPaginationAndFilterDocument = gql`
@@ -3768,9 +3779,8 @@ export const GetProjectsWithPaginationAndFilterDocument = gql`
       url
     }
   }
-  projectsConnection {
+  projectsConnection(where: {category_in: $categories}) {
     pageInfo {
-      hasNextPage
       pageSize
     }
   }
