@@ -2,24 +2,17 @@ import { GitHub, ExternalLink } from "react-feather";
 
 import { Container, LinksWrapper, TagsWrapper } from "./styles";
 import { HTMLMotionProps } from "framer-motion";
+import { Project } from "@/entities/Project";
 
 interface ProjectItemMobileProps extends HTMLMotionProps<"article"> {
-  project: {
-    category: string;
-    name: string;
-    description: string;
-    tags: string[];
-    imageUrl: string;
-    repoUrl: string;
-    webUrl?: string;
-  };
+  project: Project;
 }
 
 export function ProjectItemMobile({
-  project: { category, description, name, repoUrl, tags, webUrl, imageUrl },
+  project: { category, description, title, repoUrl, tags, webUrl, imageUrl },
   ...rest
 }: ProjectItemMobileProps) {
-  const tagsList = tags.map((tag) => <span key={tag}>{tag}</span>);
+  const tagsList = tags?.map((tag) => <span key={tag}>{tag}</span>);
 
   return (
     <Container
@@ -33,7 +26,7 @@ export function ProjectItemMobile({
       }}
     >
       <span>{category}</span>
-      <h3>{name}</h3>
+      <h3>{title}</h3>
       <p>{description}</p>
       <TagsWrapper>{tagsList}</TagsWrapper>
       <LinksWrapper>

@@ -1,0 +1,25 @@
+query GetProjectsWithPaginationAndFilter($projectsPerPage: Int = 3, $skip: Int = 0,$categories: [Categories] = []) {
+    projects(first: $projectsPerPage, skip: $skip, 
+        where: {
+            category_in: $categories
+        }) {
+            id
+            title
+            category
+            description
+            webUrl
+            repoUrl
+            tags
+            thumbnail {
+                url
+            }
+        }
+        projectsConnection {
+            pageInfo {
+                hasNextPage
+                pageSize
+        }
+    }
+}
+
+#$currentPage * $projectsPerPage - $projectsPerPage?

@@ -10,11 +10,15 @@ import { SkillsAndToolsSection } from "@/components/layout/sections/SkillsAndToo
 import { WorkExperienceSection } from "@/components/layout/sections/WorkExperience";
 import { useDetectReachedScrollBottom } from "@/hooks/useDetectReachedScrollBottom";
 import Head from "next/head";
+import { useEffect } from "react";
 
 export default function Home() {
   const hasReachedBottom = useDetectReachedScrollBottom({
     offset: 89,
   });
+  const currentPage = 1;
+  const projectsPerPage = 3;
+  const skip = currentPage * projectsPerPage - projectsPerPage;
 
   return (
     <>

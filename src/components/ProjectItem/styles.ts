@@ -40,6 +40,14 @@ export const ImageWrapper = styled("div", {
   position: "relative",
   height: "fit-content",
 
+  "& a": {
+    display: "block",
+    aspectRatio: "16 / 9",
+    position: "relative",
+    borderRadius: 8,
+    overflow: "hidden"
+  },
+
   "&:hover": {
     "&::before": {
       content: "none",
@@ -50,6 +58,7 @@ export const ImageWrapper = styled("div", {
     position: "absolute",
     content: "",
     inset: 0,
+    zIndex: 1,
     background: "rgba(20,20,27,0.5)",
   },
 });
@@ -58,6 +67,7 @@ export const Content = styled("div", {
   position: "relative",
   gridColumn: "7  / -1",
   gridArea: "1 / 1 / -1 / 7",
+  zIndex: 2,
 
   "> span": {
     color: "$green400",

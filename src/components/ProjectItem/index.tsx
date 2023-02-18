@@ -8,40 +8,34 @@ import {
   TagsWrapper,
 } from "./styles";
 import { HTMLMotionProps } from "framer-motion";
+import { Project } from "@/entities/Project";
+import Image from "next/image";
 
 interface ProjectItemProps extends HTMLMotionProps<"article"> {
-  project: {
-    category: string;
-    name: string;
-    description: string;
-    tags: string[];
-    imageUrl: string;
-    repoUrl: string;
-    webUrl?: string;
-  };
+  project: Project;
 }
 
 export function ProjectItem({
-  project: { category, description, imageUrl, name, repoUrl, tags, webUrl },
+  project: { category, description, imageUrl, title, repoUrl, tags, webUrl },
   ...rest
 }: ProjectItemProps) {
   return (
     <Container {...rest}>
       <ImageWrapper>
         <a href={webUrl ?? repoUrl} target="_blank">
-          <img src={imageUrl} />
+          <Image fill alt={title} src={imageUrl ?? ""}  />
         </a>
       </ImageWrapper>
       <Content>
         <span>{category}</span>
         <h3>
           <a href={webUrl ?? repoUrl} target="_blank">
-            {name}
+            {title}
           </a>
         </h3>
         <p>{description}</p>
         <TagsWrapper>
-          {tags.map((item) => (
+          {tags?.map((item) => (
             <span>{item}</span>
           ))}
         </TagsWrapper>
