@@ -1,9 +1,11 @@
 import { NumberedHeading } from "@/components/NumberedHeading";
 import { WorkExperienceItem } from "@/components/WorkExperienceItem";
+import { useGetWorkExperiencesQuery } from "@/graphql/generated";
 import * as Variants from "./animations";
 import { Container, Content } from "./styles";
 
 export function WorkExperienceSection() {
+  const { data } = useGetWorkExperiencesQuery();
   return (
     <Container id="experience">
       <Content>
@@ -15,8 +17,12 @@ export function WorkExperienceSection() {
           number={4}
           label="Work Experience"
         />
-        {[...new Array(3)].map((_, i) => (
-          <WorkExperienceItem key={i} animationDelay={i + 1} />
+        {data?.workExperiences.map((workExperience, i) => (
+          <WorkExperienceItem
+            key={workExperience.id}
+            animationDelay={i + 1}
+            workExperience={workExperience}
+          />
         ))}
       </Content>
     </Container>

@@ -32,7 +32,7 @@ export const Container = styled(motion.ul, {
     left: "50%",
   },
 
-  "@lg": {
+  "@xl": {
     display: "none",
   },
 

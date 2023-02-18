@@ -1,0 +1,10 @@
+query GetWorkExperiences {
+  workExperiences {
+    id
+    title
+    description
+    company
+    startDate
+    endDate
+  }
+}

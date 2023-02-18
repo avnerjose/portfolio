@@ -36,7 +36,7 @@ export function ProjectItem({
         <p>{description}</p>
         <TagsWrapper>
           {tags?.map((item) => (
-            <span>{item}</span>
+            <span key={item} >{item}</span>
           ))}
         </TagsWrapper>
         <LinksWrapper>

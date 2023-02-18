@@ -1,16 +1,36 @@
 import { motion } from "framer-motion";
 
 import * as Variants from "./animations";
-import { Container, Content, Trail } from "./styles";
+import { Container, Content, Trail, YearFlag } from "./styles";
 import { Paragraph } from "../Paragraph";
 
 interface WorkExperienceItem {
   animationDelay: number;
+  workExperience: {
+    title: string;
+    description: string[];
+    company: string;
+    startDate: Date;
+    endDate?: Date;
+  };
 }
 
-export function WorkExperienceItem({ animationDelay }: WorkExperienceItem) {
+export function WorkExperienceItem({
+  workExperience: { title, description, company, startDate, endDate },
+
+  animationDelay,
+}: WorkExperienceItem) {
   return (
     <Container>
+      <YearFlag
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true }}
+        variants={Variants.itemFromLeft}
+        custom={animationDelay}
+      >
+        {endDate ? endDate.getFullYear() : new Date().getFullYear()}
+      </YearFlag>
       <Trail
         variants={Variants.itemFromBottom}
         initial="hidden"
@@ -25,25 +45,18 @@ export function WorkExperienceItem({ animationDelay }: WorkExperienceItem) {
         viewport={{ once: true }}
         custom={animationDelay}
       >
-        <motion.h3 variants={Variants.itemFromLeft}>
-          Frontend part-time contractor
-        </motion.h3>
-        <motion.span variants={Variants.itemFromLeft}>Viasat Inc.</motion.span>
-        <Paragraph variants={Variants.itemFromLeft} color="white" size="small">
-          Lorem ipsum dolor sit amet consectetur. Facilisi fermentum diam eu
-          diam habitant sem odio donec at. Nisi purus sit et phasellus. Sit
-          viverra amet a urna penatibus tortor tincidunt odio. Adipiscing
-          aliquet arcu viverra neque leo neque fusce sed. Lorem, ipsum dolor sit
-          amet consectetur adipisicing elit. Expedita modi amet mollitia nemo
-          eius saepe explicabo dolorem unde non. Ipsam molestiae id excepturi
-          perspiciatis commodi vitae veniam magnam, vero fugiat.
-        </Paragraph>
-        <Paragraph variants={Variants.itemFromLeft} color="white" size="small">
-          Lorem ipsum dolor sit amet consectetur. Facilisi fermentum diam eu
-          diam habitant sem odio donec at. Nisi purus sit et phasellus. Sit
-          viverra amet a urna penatibus tortor tincidunt odio. Adipiscing
-          aliquet arcu viverra neque leo neque fusce sed.
-        </Paragraph>
+        <motion.h3 variants={Variants.itemFromLeft}>{title}</motion.h3>
+        <motion.span variants={Variants.itemFromLeft}>{company}</motion.span>
+        {description.map((item, i) => (
+          <Paragraph
+            variants={Variants.itemFromLeft}
+            color="white"
+            size="small"
+            key={i}
+          >
+            {item}
+          </Paragraph>
+        ))}
       </Content>
     </Container>
   );

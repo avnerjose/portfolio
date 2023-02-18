@@ -18,6 +18,9 @@ export const {
       gray500: "#535459",
       green400: "#15C196",
     },
+    shadows: {
+      green400: "#15C196",
+    },
   },
   media: {
     sm: "(max-width: 640px)",
