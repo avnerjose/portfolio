@@ -1,3 +1,5 @@
+"use client";
+
 import { HTMLMotionProps } from "framer-motion";
 import { Heading, Span } from "./styles";
 

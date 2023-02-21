@@ -1,5 +1,6 @@
-import { useState } from "react";
+"use client";
 
+import { useState } from "react";
 import { Categories } from "@/graphql/generated";
 import { NumberedHeading } from "@/components/NumberedHeading";
 import * as Variants from "./animations";

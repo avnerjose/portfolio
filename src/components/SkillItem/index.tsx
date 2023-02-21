@@ -1,3 +1,4 @@
+"use client";
 import { HTMLMotionProps } from "framer-motion";
 import { Container } from "./styles";
 

@@ -1,3 +1,5 @@
+"use client";
+
 import { GitHub, Linkedin } from "react-feather";
 import { motion } from "framer-motion";
 

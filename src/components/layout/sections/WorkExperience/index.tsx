@@ -1,3 +1,5 @@
+"use client";
+
 import { NumberedHeading } from "@/components/NumberedHeading";
 import { WorkExperienceItem } from "@/components/WorkExperienceItem";
 import { useGetWorkExperiencesQuery } from "@/graphql/generated";

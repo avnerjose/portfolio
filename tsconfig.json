@@ -15,10 +15,16 @@
     "jsx": "preserve",
     "incremental": true,
     "baseUrl": ".",
+    "types": [],
     "paths": {
       "@/*": ["./src/*"]
-    }
+    },
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ]
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
-  "exclude": ["node_modules","./src/graphql/generated.ts"]
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "exclude": ["node_modules", "./node_modules", "./src/graphql/generated.ts"]
 }

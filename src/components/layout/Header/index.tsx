@@ -1,3 +1,5 @@
+"use client";
+
 import { useEffect, useState } from "react";
 import { BarChart } from "react-feather";
 import { useMediaQuery } from "react-responsive";

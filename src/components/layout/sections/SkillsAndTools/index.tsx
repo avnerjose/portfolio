@@ -1,3 +1,4 @@
+"use client";
 import { SkillItem } from "@/components/SkillItem";
 import { NumberedHeading } from "@/components/NumberedHeading";
 import * as Variants from "./animations";
