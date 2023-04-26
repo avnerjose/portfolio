@@ -58,6 +58,35 @@ export const Title = styled(motion.h1, {
   },
 });
 
+export const Subtitle = styled(motion.p, {
+  fontSize: 63,
+  fontWeight: "bold",
+
+  "@md": {
+    fontSize: 35,
+    lineHeight: "50px",
+  },
+
+  "@lg": {
+    fontSize: 45,
+  },
+
+  variants: {
+    color: {
+      white: {
+        color: "$white",
+      },
+      gray: {
+        color: "$gray500",
+      },
+    },
+  },
+
+  defaultVariants: {
+    color: "white",
+  },
+});
+
 export const TechBubble = styled(motion.div, {
   display: "flex",
   alignItems: "center",

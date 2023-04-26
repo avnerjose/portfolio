@@ -5,7 +5,14 @@ import { useParallax } from "react-scroll-parallax";
 import { Button } from "@/components/Button";
 import { Paragraph } from "@/components/Paragraph";
 import * as Variants from "./animations";
-import { Container, Content, Span, TechBubble, Title } from "./styles";
+import {
+  Container,
+  Content,
+  Span,
+  TechBubble,
+  Title,
+  Subtitle,
+} from "./styles";
 import { ComponentWithTranslation } from "@/contracts";
 import { useTranslation } from "@/app/i18n/client";
 
@@ -20,15 +27,13 @@ export function HeroSection({ lang }: ComponentWithTranslation) {
       <Content variants={Variants.content} initial="hidden" animate="show">
         <Span variants={Variants.itemFromLeft}>{t("myNameIs")}</Span>
         <Title variants={Variants.itemFromBottom}>Avner José.</Title>
-        <Title color="gray" variants={Variants.itemFromBottom}>
+        <Subtitle color="gray" variants={Variants.itemFromBottom}>
           {t("occupation")}
-        </Title>
+        </Subtitle>
         <Paragraph variants={Variants.itemFromRight}>
           {t("description")}
         </Paragraph>
-        <Button variants={Variants.itemFromBottom}>
-          {t("contactMe")}
-        </Button>
+        <Button variants={Variants.itemFromBottom}>{t("contactMe")}</Button>
         <TechBubble variants={Variants.itemFromTop1} ref={ref1}>
           <img src="/images/react.svg" alt="ReactJS" />
         </TechBubble>
