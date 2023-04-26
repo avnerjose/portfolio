@@ -10,14 +10,20 @@ import { SkillsAndToolsSection } from "@/components/layout/sections/SkillsAndToo
 import { WorkExperienceSection } from "@/components/layout/sections/WorkExperience";
 import { useDetectReachedScrollBottom } from "@/hooks/useDetectReachedScrollBottom";
 
-export default function Home() {
+interface HomeProps {
+  params: {
+    lang: string;
+  };
+}
+
+export default function Home({ params: { lang } }: HomeProps) {
   const hasReachedBottom = useDetectReachedScrollBottom({
     offset: 89,
   });
 
   return (
     <>
-      <HeroSection />
+      <HeroSection lang={lang} />
       <AboutMeSection />
       <SkillsAndToolsSection />
       <MyProjectsSection />

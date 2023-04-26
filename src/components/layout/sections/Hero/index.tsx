@@ -6,8 +6,11 @@ import { Button } from "@/components/Button";
 import { Paragraph } from "@/components/Paragraph";
 import * as Variants from "./animations";
 import { Container, Content, Span, TechBubble, Title } from "./styles";
+import { ComponentWithTranslation } from "@/contracts";
+import { useTranslation } from "@/app/i18n/client";
 
-export function HeroSection() {
+export function HeroSection({ lang }: ComponentWithTranslation) {
+  const { t } = useTranslation(lang, "home");
   const { ref: ref1 } = useParallax<HTMLDivElement>({ speed: -10 });
   const { ref: ref2 } = useParallax<HTMLDivElement>({ speed: -4 });
   const { ref: ref3 } = useParallax<HTMLDivElement>({ speed: -40 });
@@ -15,17 +18,17 @@ export function HeroSection() {
   return (
     <Container id="hero">
       <Content variants={Variants.content} initial="hidden" animate="show">
-        <Span variants={Variants.itemFromLeft}>Hi, my name is</Span>
+        <Span variants={Variants.itemFromLeft}>{t("myNameIs")}</Span>
         <Title variants={Variants.itemFromBottom}>Avner José.</Title>
         <Title color="gray" variants={Variants.itemFromBottom}>
-          I'm a Frontend Developer.
+          {t("occupation")}
         </Title>
         <Paragraph variants={Variants.itemFromRight}>
-          Currently located in Brazil. I’m a Computer Engineering student in my
-          last year of college and also a web developer passionate about
-          building websites and apps.
+          {t("description")}
         </Paragraph>
-        <Button variants={Variants.itemFromBottom}>Contact me</Button>
+        <Button variants={Variants.itemFromBottom}>
+          {t("contactMe")}
+        </Button>
         <TechBubble variants={Variants.itemFromTop1} ref={ref1}>
           <img src="/images/react.svg" alt="ReactJS" />
         </TechBubble>

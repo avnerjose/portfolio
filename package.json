@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@apollo/client": "^3.7.8",
+    "@formatjs/intl-localematcher": "^0.2.32",
     "@next/font": "13.1.6",
     "@radix-ui/react-tabs": "^1.0.2",
     "@stitches/react": "^1.2.8",
@@ -22,10 +23,15 @@
     "eslint-config-next": "^13.1.6",
     "framer-motion": "^9.0.3",
     "graphql": "^16.6.0",
+    "i18next": "^22.4.10",
+    "i18next-resources-to-backend": "^1.1.1",
+    "negotiator": "^0.6.3",
     "next": "^13.1.7-canary.21",
+    "next-i18next": "^13.1.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-feather": "^2.0.10",
+    "react-i18next": "^12.1.5",
     "react-responsive": "^9.0.2",
     "react-scroll": "^1.8.9",
     "react-scroll-parallax": "^3.3.2",
@@ -36,6 +42,7 @@
     "@graphql-codegen/client-preset": "2.0.0",
     "@graphql-codegen/typescript": "^3.0.0",
     "@graphql-codegen/typescript-react-apollo": "^3.3.7",
+    "@types/negotiator": "^0.6.1",
     "@types/react-scroll": "^1.8.6"
   }
 }
