@@ -1,7 +1,10 @@
 import { styled } from "stitches.config";
 import { motion } from "framer-motion";
 
-export const Container = styled("section", {});
+export const Container = styled("section", {
+  position: "relative",
+  overflow: "hidden",
+});
 
 export const Content = styled(motion.div, {
   display: "flex",
@@ -11,9 +14,9 @@ export const Content = styled(motion.div, {
   maxWidth: "1120px",
   margin: "auto",
   minHeight: "100vh",
-  position: "relative",
   transformStyle: "preserve-3d",
   "-webkit-transform": "preserver-3d",
+  overflow: "hidden",
 
   "& p": {
     marginBottom: 32,

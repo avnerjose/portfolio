@@ -15,6 +15,7 @@ import {
 } from "./styles";
 import { ComponentWithTranslation } from "@/contracts";
 import { useTranslation } from "@/app/i18n/client";
+import { HeroPattern } from "@/components/HeroPattern";
 
 export function HeroSection({ lang }: ComponentWithTranslation) {
   const { t } = useTranslation(lang, "home");
@@ -24,6 +25,7 @@ export function HeroSection({ lang }: ComponentWithTranslation) {
 
   return (
     <Container id="hero">
+      <HeroPattern />
       <Content variants={Variants.content} initial="hidden" animate="show">
         <Span variants={Variants.itemFromLeft}>{t("myNameIs")}</Span>
         <Title variants={Variants.itemFromBottom}>Avner José.</Title>
