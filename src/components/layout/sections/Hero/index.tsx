@@ -16,15 +16,17 @@ import {
 import { ComponentWithTranslation } from "@/contracts";
 import { useTranslation } from "@/app/i18n/client";
 import { HeroPattern } from "@/components/HeroPattern";
+import { useRef } from "react";
 
 export function HeroSection({ lang }: ComponentWithTranslation) {
   const { t } = useTranslation(lang, "home");
+  const sectionRef = useRef(null);
   const { ref: ref1 } = useParallax<HTMLDivElement>({ speed: -10 });
   const { ref: ref2 } = useParallax<HTMLDivElement>({ speed: -4 });
   const { ref: ref3 } = useParallax<HTMLDivElement>({ speed: -40 });
 
   return (
-    <Container id="hero">
+    <Container id="hero" ref={sectionRef}>
       <HeroPattern />
       <Content variants={Variants.content} initial="hidden" animate="show">
         <Span variants={Variants.itemFromLeft}>{t("myNameIs")}</Span>

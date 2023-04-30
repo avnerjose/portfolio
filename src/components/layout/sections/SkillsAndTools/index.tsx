@@ -3,6 +3,7 @@ import { SkillItem } from "@/components/SkillItem";
 import { NumberedHeading } from "@/components/NumberedHeading";
 import * as Variants from "./animations";
 import { Container, Content, SkillsWrapper } from "./styles";
+import { useRef } from "react";
 
 const SKILLS_AND_TOOLS = [
   {
@@ -48,8 +49,11 @@ const SKILLS_AND_TOOLS = [
 ];
 
 export function SkillsAndToolsSection() {
+  const sectionRef = useRef(null);
+
+
   return (
-    <Container id="skills">
+    <Container id="skills" ref={sectionRef}>
       <Content>
         <NumberedHeading
           variants={Variants.itemFromFromLeft}

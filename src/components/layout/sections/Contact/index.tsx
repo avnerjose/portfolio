@@ -1,5 +1,6 @@
 "use client";
 
+import { useRef } from "react";
 import { useParallax } from "react-scroll-parallax";
 import { motion } from "framer-motion";
 
@@ -10,13 +11,14 @@ import * as Variants from "./animations";
 import { Container, Content, MainContent } from "./styles";
 
 export function ContactSection() {
+  const sectionRef = useRef(null);
   const { ref: ref1 } = useParallax<HTMLImageElement>({ speed: -30 });
   const { ref: ref2 } = useParallax<HTMLImageElement>({ speed: -20 });
   const { ref: ref3 } = useParallax<HTMLImageElement>({ speed: -30 });
   const { ref: ref4 } = useParallax<HTMLImageElement>({ speed: -20 });
 
   return (
-    <Container id="contact">
+    <Container id="contact" ref={sectionRef}>
       <Content
         variants={Variants.content}
         initial="hidden"

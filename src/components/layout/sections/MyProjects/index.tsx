@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Categories } from "@/graphql/generated";
 import { NumberedHeading } from "@/components/NumberedHeading";
 import * as Variants from "./animations";
@@ -8,10 +8,11 @@ import { ProjectTab } from "./ProjectTab";
 import { Container, Content, TabsList, TabsRoot, TabsTrigger } from "./styles";
 
 export function MyProjectsSection() {
+  const sectionRef = useRef(null);
   const [selectedTab, setSelectedTab] = useState("tab1");
 
   return (
-    <Container id="projects">
+    <Container id="projects" ref={sectionRef}>
       <Content>
         <NumberedHeading
           variants={Variants.itemFromLeft}

@@ -1,4 +1,5 @@
 "use client";
+import { useRef } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 
@@ -15,9 +16,11 @@ export function AboutMeSection({ lang }: ComponentWithTranslation) {
       locale: [lang.split("-")[0] as Locale],
     },
   });
+  const sectionRef = useRef(null);
+
 
   return (
-    <Container id="about">
+    <Container id="about" ref={sectionRef}>
       <Content>
         <motion.div
           variants={Variants.content}

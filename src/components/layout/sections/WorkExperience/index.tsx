@@ -1,5 +1,6 @@
 "use client";
 
+import { useRef } from "react";
 import { NumberedHeading } from "@/components/NumberedHeading";
 import { WorkExperienceItem } from "@/components/WorkExperienceItem";
 import { useGetWorkExperiencesQuery } from "@/graphql/generated";
@@ -8,8 +9,11 @@ import { Container, Content } from "./styles";
 
 export function WorkExperienceSection() {
   const { data } = useGetWorkExperiencesQuery();
+  const sectionRef = useRef(null);
+
+
   return (
-    <Container id="experience">
+    <Container id="experience" ref={sectionRef}>
       <Content>
         <NumberedHeading
           variants={Variants.itemFromLeft}
