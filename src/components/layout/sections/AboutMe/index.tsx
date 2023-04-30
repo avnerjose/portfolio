@@ -6,8 +6,16 @@ import { Paragraph } from "@/components/Paragraph";
 import { NumberedHeading } from "@/components/NumberedHeading";
 import * as Variants from "./animation";
 import { Avatar, Container, Content } from "./styles";
+import { Locale, useGetAboutMeQuery } from "@/graphql/generated";
+import { ComponentWithTranslation } from "@/contracts";
 
-export function AboutMeSection() {
+export function AboutMeSection({ lang }: ComponentWithTranslation) {
+  const { data } = useGetAboutMeQuery({
+    variables: {
+      locale: [lang.split("-")[0] as Locale],
+    },
+  });
+
   return (
     <Container id="about">
       <Content>
@@ -22,18 +30,11 @@ export function AboutMeSection() {
             number={1}
             label="About me"
           />
-          <Paragraph variants={Variants.itemFromBottom}>
-            Lorem ipsum dolor sit amet consectetur. Facilisi fermentum diam eu
-            diam habitant sem odio donec at. Nisi purus sit et phasellus. Sit
-            viverra amet a urna penatibus tortor tincidunt odio. Adipiscing
-            aliquet arcu viverra neque leo neque fusce sed.
-          </Paragraph>
-          <Paragraph variants={Variants.itemFromBottom}>
-            Lorem ipsum dolor sit amet consectetur. Facilisi fermentum diam eu
-            diam habitant sem odio donec at. Nisi purus sit et phasellus. Sit
-            viverra amet a urna penatibus tortor tincidunt odio. Adipiscing
-            aliquet arcu viverra neque leo neque fusce sed.
-          </Paragraph>
+          {data?.aboutMes[0].content.map((item, i) => (
+            <Paragraph key={i} variants={Variants.itemFromBottom}>
+              {item}
+            </Paragraph>
+          ))}
         </motion.div>
         <Avatar
           variants={Variants.itemFromRight}

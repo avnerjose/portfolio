@@ -9,6 +9,7 @@ import { MyProjectsSection } from "@/components/layout/sections/MyProjects";
 import { SkillsAndToolsSection } from "@/components/layout/sections/SkillsAndTools";
 import { WorkExperienceSection } from "@/components/layout/sections/WorkExperience";
 import { useDetectReachedScrollBottom } from "@/hooks/useDetectReachedScrollBottom";
+import { useEffect } from "react";
 
 interface HomeProps {
   params: {
@@ -21,10 +22,16 @@ export default function Home({ params: { lang } }: HomeProps) {
     offset: 89,
   });
 
+  useEffect(() => {
+    window.scroll({
+      top: 0,
+    });
+  }, []);
+
   return (
     <>
       <HeroSection lang={lang} />
-      <AboutMeSection />
+      <AboutMeSection lang={lang} />
       <SkillsAndToolsSection />
       <MyProjectsSection />
       <WorkExperienceSection />

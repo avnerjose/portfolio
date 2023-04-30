@@ -1,0 +1,5 @@
+query GetAboutMe($locale: [Locale!]!) {
+  aboutMes(locales: $locale) {
+    content
+  }
+}
