@@ -1,14 +1,14 @@
 "use client";
 import { ParallaxProvider } from "react-scroll-parallax";
 
-import { Footer } from "@/components/layout/Footer";
-import { Header } from "@/components/layout/Header";
+
 import { client } from "@/libs/apollo";
 import { globalStyles } from "@/styles/global";
 import { ApolloProvider } from "@apollo/client";
 import { Poppins } from "@next/font/google";
 import { dir } from "i18next";
 import { locales } from "../i18n/settings";
+import { getCssText } from "stitches.config";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -40,13 +40,13 @@ export default function RootLayout({
               href="/images/logoIconSmall.svg"
               type="image/x-icon"
             />
+            <style
+              id="stitches"
+              dangerouslySetInnerHTML={{ __html: getCssText() }}
+            />
           </head>
           <body lang={lang} dir={dir(lang)}>
-            <main className={poppins.className}>
-              <Header />
-              {children}
-              <Footer />
-            </main>
+            <main className={poppins.className}>{children}</main>
           </body>
         </html>
       </ApolloProvider>
