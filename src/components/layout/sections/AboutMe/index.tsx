@@ -9,6 +9,7 @@ import * as Variants from "./animation";
 import { Avatar, Container, Content } from "./styles";
 import { Locale, useGetAboutMeQuery } from "@/graphql/generated";
 import { ComponentWithTranslation } from "@/contracts";
+import { AnimatedAvatarShapes } from "@/components/AnimatedAvatarShapes";
 
 export function AboutMeSection({ lang }: ComponentWithTranslation) {
   const { data } = useGetAboutMeQuery({
@@ -17,7 +18,6 @@ export function AboutMeSection({ lang }: ComponentWithTranslation) {
     },
   });
   const sectionRef = useRef(null);
-
 
   return (
     <Container id="about" ref={sectionRef}>
@@ -45,6 +45,7 @@ export function AboutMeSection({ lang }: ComponentWithTranslation) {
           whileInView="show"
           viewport={{ once: true }}
         >
+          <AnimatedAvatarShapes />
           <Image src="https://github.com/avnerjose.png" alt="Avner José" fill />
         </Avatar>
       </Content>

@@ -39,10 +39,7 @@ export const Avatar = styled(motion.figure, {
     outline: "10px solid $green400",
   },
 
-  "&::before": {
-    backgroundImage: "url('/images/avatarShapes.svg')",
-    backgroundRepeat: "no-repeat",
-    content: " ",
+  svg: {
     position: "absolute",
     top: 60,
     left: 50,
@@ -55,7 +52,7 @@ export const Avatar = styled(motion.figure, {
     height: 200,
     width: 200,
 
-    "&::before": {
+    svg: {
       top: 0,
       left: -10,
       transform: "scale(1.5)",
@@ -67,7 +64,7 @@ export const Avatar = styled(motion.figure, {
     width: 170,
     alignSelf: "center",
 
-    "&::before": {
+    svg: {
       top: -20,
       left: -30,
       transform: "scale(1.1)",
