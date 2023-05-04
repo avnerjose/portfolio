@@ -21,8 +21,8 @@ export function AnimatedAvatarShapes() {
       <motion.path
         d="M1 97.9556L6.06833 103.087L11.1367 97.9556L16.2043 103.087L21.2727 97.9556L26.341 103.087L31.4093 97.9556L36.478 103.087L41.547 97.9556"
         stroke="#535459"
-        stroke-width="2"
-        stroke-miterlimit="50"
+        strokeWidth="2"
+        strokeMiterlimit="50"
         variants={pathVariants}
         transition={{
           duration: 4,
@@ -41,8 +41,8 @@ export function AnimatedAvatarShapes() {
         d="M205.689 58.1298L213.157 58.3069L212.97 51.294L220.438 51.4704L220.25 44.4582L227.719 44.6347L227.531 37.6227L235 37.7989L234.812 30.786"
         viewport={{ once: true }}
         stroke="#15C196"
-        stroke-width="2"
-        stroke-miterlimit="50"
+        strokeWidth="2"
+        strokeMiterlimit="50"
         variants={pathVariants}
         transition={{
           duration: 2,
@@ -53,8 +53,8 @@ export function AnimatedAvatarShapes() {
         d="M21.7026 165.125L21.5178 172.137L28.8618 171.961L28.677 178.973L36.021 178.797L35.8362 185.809L43.1802 185.633L42.9957 192.646L50.3404 192.469"
         viewport={{ once: true }}
         stroke="#15C196"
-        stroke-width="2"
-        stroke-miterlimit="50"
+        strokeWidth="2"
+        strokeMiterlimit="50"
         variants={pathVariants}
         transition={{
           duration: 2,

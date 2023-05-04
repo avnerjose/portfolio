@@ -18,7 +18,7 @@ interface HomeProps {
 
 export function Home({ lang }: HomeProps) {
   const hasReachedBottom = useDetectReachedScrollBottom({
-    offset: 89,
+    offset: 82,
   });
 
   return (
