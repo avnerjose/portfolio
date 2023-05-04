@@ -6,51 +6,20 @@ export const Container = styled("section", {
   position: "relative",
   overflow: "hidden",
 
-  "& img": {
+  "#tsparticles": {
     position: "absolute",
-  },
-
-  "& img:nth-child(2)": {
-    top: 120,
+    zIndex: 0,
+    top: 0,
+    bottom: 0,
     left: 0,
-  },
-  "& img:nth-child(3)": {
-    top: 100,
-    left: -40,
-  },
-  "& img:nth-child(4)": {
-    top: 100,
     right: 0,
-  },
-  "& img:nth-child(5)": {
-    top: 100,
-    right: -60,
-  },
-
-  "@md": {
-    "& img:nth-child(2)": {
-      top: 120,
-      left: -100,
-    },
-    "& img:nth-child(3)": {
-      top: 100,
-      left: -140,
-    },
-    "& img:nth-child(4)": {
-      top: 100,
-      right: -100,
-    },
-    "& img:nth-child(5)": {
-      top: 100,
-      right: -160,
-    },
   },
 });
 
 export const Content = styled(motion.div, {
   display: "flex",
   flexDirection: "column",
-  minHeight: "100vh",
+  minHeight: "calc(100vh - 85px)",
   paddingX: 24,
   paddingY: 32,
   textAlign: "center",
@@ -66,6 +35,8 @@ export const MainContent = styled(motion.div, {
   justifyContent: "center",
   margin: "auto",
   width: "70%",
+  // background: "$gray800",
+  zIndex: 1,
 
   "& h2": {
     fontSize: 65,
@@ -82,5 +53,41 @@ export const MainContent = styled(motion.div, {
     "& p": {
       fontSize: 18,
     },
+  },
+});
+
+export const ContactForm = styled("form", {
+  display: "flex",
+  flexDirection: "column",
+  width: "100%",
+  gap: "1rem",
+  alignItems: "center",
+  maxWidth: "500px",
+
+  ".validation-error": {
+    alignSelf: "flex-start",
+    color: "red",
+  },
+
+  "& input, & textarea": {
+    width: "100%",
+    background: "$gray900",
+    border: "none",
+    padding: "1rem",
+    color: "$white",
+    borderRadius: "0.5rem",
+
+    "&:focus": {
+      outline: "1px solid $green400",
+    },
+  },
+
+  "& textarea": {
+    height: "120px",
+    resize: "none",
+  },
+
+  "& button": {
+    alignSelf: "center",
   },
 });
