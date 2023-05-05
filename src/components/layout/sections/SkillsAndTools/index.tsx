@@ -1,9 +1,11 @@
 "use client";
+import { useRef } from "react";
+import Carousel from "react-grid-carousel";
+
 import { SkillItem } from "@/components/SkillItem";
 import { NumberedHeading } from "@/components/NumberedHeading";
 import * as Variants from "./animations";
-import { Container, Content, SkillsWrapper } from "./styles";
-import { useRef } from "react";
+import { Container, Content } from "./styles";
 
 const SKILLS_AND_TOOLS = [
   {
@@ -51,7 +53,6 @@ const SKILLS_AND_TOOLS = [
 export function SkillsAndToolsSection() {
   const sectionRef = useRef(null);
 
-
   return (
     <Container id="skills" ref={sectionRef}>
       <Content>
@@ -65,23 +66,31 @@ export function SkillsAndToolsSection() {
           number={2}
           label="Skills and tools"
         />
-        <SkillsWrapper
-          variants={Variants.gridContainer}
-          initial="hidden"
-          whileInView="show"
-          viewport={{
-            once: true,
+
+        <Carousel
+          containerStyle={{
+            marginTop: 32,
           }}
+          cols={4}
+          rows={2}
         >
-          {SKILLS_AND_TOOLS.map(({ id, imageUrl, label }) => (
-            <SkillItem
-              key={id}
-              variants={Variants.itemFromTop}
-              imageUrl={imageUrl}
-              label={label}
-            />
+          {SKILLS_AND_TOOLS.map(({ id, imageUrl, label }, index) => (
+            <Carousel.Item>
+              <SkillItem
+                key={id}
+                variants={Variants.itemFromTop}
+                imageUrl={imageUrl}
+                label={label}
+                initial="hidden"
+                whileInView="show"
+                viewport={{
+                  once: true,
+                }}
+                custom={index % (4 * 2)}
+              />
+            </Carousel.Item>
           ))}
-        </SkillsWrapper>
+        </Carousel>
       </Content>
     </Container>
   );

@@ -2,7 +2,7 @@
 import { HTMLMotionProps } from "framer-motion";
 import { Container } from "./styles";
 
-interface SkillItemProps extends HTMLMotionProps<"h1"> {
+interface SkillItemProps extends HTMLMotionProps<"div"> {
   label: string;
   imageUrl: string;
 }

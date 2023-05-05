@@ -17,13 +17,14 @@ export const itemFromTop: Variants = {
     opacity: 0,
     y: 60,
   },
-  show: {
+  show: (custom) => ({
     opacity: 1,
     y: 0,
     transition: {
+      delay: custom * 0.2,
       type: "spring",
     },
-  },
+  }),
 };
 
 export const itemFromFromLeft: Variants = {
