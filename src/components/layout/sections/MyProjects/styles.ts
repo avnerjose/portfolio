@@ -9,7 +9,7 @@ export const Container = styled("section", {
 export const Content = styled(motion.div, {
   display: "flex",
   flexDirection: "column",
-  minHeight: "100vh",
+  minHeight: "calc(100vh - 85px)",
   paddingX: 24,
   paddingY: 32,
   maxWidth: "1120px",

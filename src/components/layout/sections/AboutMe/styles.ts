@@ -9,7 +9,7 @@ export const Container = styled("section", {
 export const Content = styled(motion.div, {
   display: "grid",
   gridTemplateColumns: "repeat(2,1fr)",
-  minHeight: "100vh",
+  minHeight: "calc(100vh - 85px)",
   paddingX: 24,
   paddingY: 32,
   maxWidth: "1120px",

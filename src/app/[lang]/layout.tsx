@@ -4,7 +4,7 @@ import { ParallaxProvider } from "react-scroll-parallax";
 import { client } from "@/libs/apollo";
 import { globalStyles } from "@/styles/global";
 import { ApolloProvider } from "@apollo/client";
-import { Poppins } from "@next/font/google";
+import { Poppins } from "next/font/google";
 import { dir } from "i18next";
 import { locales } from "../i18n/settings";
 import { StitchesRegistry } from "@/components/StitchesRegistry";
