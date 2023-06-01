@@ -57,7 +57,7 @@ export function WorkExperienceItem({
           {title}
         </WorkExperienceTitle>
         {sortedJobs?.map((job) => (
-          <JobContainer>
+          <JobContainer key={job.name.trim()}>
             <JobTitle variants={Variants.itemFromLeft}>
               {job.name} | {formatDate(new Date(job.startDate), locale)} -{" "}
               {job.endDate ? formatDate(new Date(job.endDate), locale) : "Now"}{" "}

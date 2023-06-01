@@ -72,10 +72,30 @@ export function SkillsAndToolsSection() {
             marginTop: 32,
           }}
           cols={4}
-          rows={2}
+          rows={3}
+          responsiveLayout={[
+            {
+              breakpoint: 550,
+              cols: 1,
+              rows: 3,
+              gap: 0,
+            },
+            {
+              breakpoint: 768,
+              cols: 3,
+              rows: 3,
+              gap: 10,
+            },
+            {
+              breakpoint: 800,
+              cols: 3,
+              rows: 3,
+              gap: 0,
+            },
+          ]}
         >
           {SKILLS_AND_TOOLS.map(({ id, imageUrl, label }, index) => (
-            <Carousel.Item>
+            <Carousel.Item key={id}>
               <SkillItem
                 key={id}
                 variants={Variants.itemFromTop}
