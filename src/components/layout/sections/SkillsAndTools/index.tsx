@@ -71,26 +71,24 @@ export function SkillsAndToolsSection() {
           containerStyle={{
             marginTop: 32,
           }}
+          mobileBreakpoint={100}
           cols={4}
-          rows={3}
+          rows={2}
           responsiveLayout={[
             {
-              breakpoint: 550,
+              breakpoint: 410,
               cols: 1,
               rows: 3,
-              gap: 0,
+            },
+            {
+              breakpoint: 550,
+              cols: 2,
+              rows: 3,
             },
             {
               breakpoint: 768,
               cols: 3,
               rows: 3,
-              gap: 10,
-            },
-            {
-              breakpoint: 800,
-              cols: 3,
-              rows: 3,
-              gap: 0,
             },
           ]}
         >

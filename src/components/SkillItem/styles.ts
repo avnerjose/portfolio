@@ -16,8 +16,4 @@ export const Container = styled(motion.div, {
     fontWeight: "bold",
     marginTop: 24,
   },
-
-  "@md": {
-    width: 150
-  }
 });
