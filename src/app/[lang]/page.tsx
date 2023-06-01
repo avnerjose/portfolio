@@ -1,7 +1,7 @@
 "use client";
 
-import { Home } from "@/pages/Home";
-import { LoadingPage } from "@/pages/LoadingPage";
+import { Home } from "@/views/Home";
+import { LoadingPage } from "@/views/LoadingPage";
 import { useEffect, useState } from "react";
 
 interface IndexPageProps {
