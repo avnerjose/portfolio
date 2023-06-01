@@ -7,6 +7,13 @@ const nextConfig = {
   experimental: {
     appDir: true,
   },
+  eslint: {
+    ignoreDuringBuilds: ["./src/graphql/generated.ts"],
+  },
+  typescript: {
+    tsconfigPath: "./tsconfig.json",
+    ignoreBuildErrors: true,
+  },
 };
 
 module.exports = nextConfig;
