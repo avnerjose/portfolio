@@ -95,9 +95,6 @@ export function Header() {
               initial="hidden"
               animate="show"
               size="small"
-              background={
-                Math.abs(activeSection) % 2 === 1 ? "gray800" : "gray900"
-              }
             >
               Resume
             </Button>
