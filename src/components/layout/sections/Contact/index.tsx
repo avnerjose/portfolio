@@ -143,7 +143,7 @@ export function ContactSection() {
               field="message"
               errors={errors}
             />
-            <Button type="submit" background="gray900" variants={Variants.itemFromBottom}>
+            <Button type="submit" variants={Variants.itemFromBottom}>
               Contact me
             </Button>
             <ValidationError errors={state.errors} />
