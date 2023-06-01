@@ -28,7 +28,7 @@ export function Home({ lang }: HomeProps) {
       <AboutMeSection lang={lang} />
       <SkillsAndToolsSection />
       <MyProjectsSection />
-      <WorkExperienceSection />
+      <WorkExperienceSection lang={lang} />
       <ContactSection />
       <BulletNavigation />
       <SocialMediaLinks variant={hasReachedBottom ? "dislocated" : "default"} />

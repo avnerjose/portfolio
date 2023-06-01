@@ -1,5 +1,6 @@
 import { styled } from "stitches.config";
 import { motion } from "framer-motion";
+import { Fragment } from "react";
 
 export const Container = styled("article", {
   display: "flex",
@@ -26,37 +27,7 @@ export const Trail = styled(motion.div, {
     width: 2,
     background: "$gray500",
     bottom: 0,
-    left: 80,
-
-    "@lg": {
-      left: 16,
-    },
-  },
-});
-
-export const YearFlag = styled(motion.span, {
-  display: "flex",
-  alignItems: "center",
-  background: "$gray500",
-  alignSelf: "flex-start",
-  position: "relative",
-  paddingX: 8,
-  height: 32,
-  marginRight: 16,
-
-  "&::after": {
-    position: "absolute",
-    right: "-10px",
-    content: "",
-    width: 0,
-    height: 0,
-    borderTop: "16px solid transparent",
-    borderBottom: "16px solid transparent",
-    borderLeft: "10px solid $gray500  ",
-  },
-
-  "@lg": {
-    display: "none",
+    left: 16,
   },
 });
 
@@ -70,4 +41,21 @@ export const Content = styled(motion.div, {
     color: "$green400",
     marginBottom: 8,
   },
+});
+
+export const WorkExperienceTitle = styled(motion.h3, {
+  color: "$green400",
+  fontWeight: "bold",
+  fontSize: 28,
+});
+
+export const JobContainer = styled("div", {
+  "& + &": {
+    marginTop: 16,
+  },
+});
+
+export const JobTitle = styled(motion.h4, {
+  fontSize: 22,
+  fontWeight: "normal",
 });

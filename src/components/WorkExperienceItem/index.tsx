@@ -1,36 +1,44 @@
 import { motion } from "framer-motion";
 
 import * as Variants from "./animations";
-import { Container, Content, Trail, YearFlag } from "./styles";
+import {
+  Container,
+  Content,
+  Trail,
+  WorkExperienceTitle,
+  JobTitle,
+  JobContainer,
+} from "./styles";
 import { Paragraph } from "../Paragraph";
+import { formatDate } from "@/utils/format-date";
+import { useEffect } from "react";
 
 interface WorkExperienceItem {
+  locale: string;
   animationDelay: number;
   workExperience: {
     title: string;
-    description: string[];
-    company: string;
-    startDate: Date;
-    endDate?: Date;
+    jobs: Array<{
+      name: string;
+      startDate: Date;
+      endDate?: Date;
+      description: string[];
+    }>;
   };
 }
 
 export function WorkExperienceItem({
-  workExperience: { title, description, company, startDate, endDate },
-
+  workExperience: { title, jobs },
+  locale,
   animationDelay,
 }: WorkExperienceItem) {
+  const sortedJobs = [...jobs]?.sort(
+    (j1, j2) =>
+      new Date(j2.startDate).getTime() - new Date(j1.startDate).getTime()
+  );
+
   return (
     <Container>
-      <YearFlag
-        initial="hidden"
-        whileInView="show"
-        viewport={{ once: true }}
-        variants={Variants.itemFromLeft}
-        custom={animationDelay}
-      >
-        {endDate ? endDate.getFullYear() : new Date().getFullYear()}
-      </YearFlag>
       <Trail
         variants={Variants.itemFromBottom}
         initial="hidden"
@@ -45,17 +53,26 @@ export function WorkExperienceItem({
         viewport={{ once: true }}
         custom={animationDelay}
       >
-        <motion.h3 variants={Variants.itemFromLeft}>{title}</motion.h3>
-        <motion.span variants={Variants.itemFromLeft}>{company}</motion.span>
-        {description.map((item, i) => (
-          <Paragraph
-            variants={Variants.itemFromLeft}
-            color="white"
-            size="small"
-            key={i}
-          >
-            {item}
-          </Paragraph>
+        <WorkExperienceTitle variants={Variants.itemFromLeft}>
+          {title}
+        </WorkExperienceTitle>
+        {sortedJobs?.map((job) => (
+          <JobContainer>
+            <JobTitle variants={Variants.itemFromLeft}>
+              {job.name} | {formatDate(new Date(job.startDate), locale)} -{" "}
+              {job.endDate ? formatDate(new Date(job.endDate), locale) : "Now"}{" "}
+            </JobTitle>
+            {job.description.map((item, i) => (
+              <Paragraph
+                variants={Variants.itemFromLeft}
+                color="gray"
+                size="small"
+                key={i}
+              >
+                {item}
+              </Paragraph>
+            ))}
+          </JobContainer>
         ))}
       </Content>
     </Container>

@@ -2,9 +2,13 @@ query GetWorkExperiences {
   workExperiences {
     id
     title
-    description
-    company
-    startDate
-    endDate
+    jobs {
+      ... on Job {
+				name
+        startDate
+        endDate
+        description
+      }
+    }
   }
 }
