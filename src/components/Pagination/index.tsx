@@ -1,6 +1,3 @@
-import { motion } from "framer-motion";
-
-import * as Variants from "./animations";
 import { PaginationItem } from "./PaginationItem";
 import { Container } from "./styles";
 
@@ -21,22 +18,13 @@ export function Pagination({
   const pageNumbers = [...new Array(pageAmount)].map((_, i) => i + 1);
 
   return (
-    <Container
-      variants={Variants.list}
-      initial="hidden"
-      whileInView="show"
-      viewport={{
-        once: true,
-      }}
-    >
+    <Container>
       {pageNumbers.map((i) => (
-        <motion.li key={i} variants={Variants.itemFromBottom}>
-          <PaginationItem
-            label={i}
-            isActive={i === currentPage}
-            onClick={() => onPageChange(i)}
-          />
-        </motion.li>
+        <PaginationItem
+          label={i}
+          isActive={i === currentPage}
+          onClick={() => onPageChange(i)}
+        />
       ))}
     </Container>
   );

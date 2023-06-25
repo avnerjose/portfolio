@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import {
   Categories,
   useGetProjectsWithPaginationAndFilterQuery,
+  useGetProjectsWithPaginationAndFilterLazyQuery,
 } from "@/graphql/generated";
 import { ProjectItem } from "@/components/ProjectItem";
 import { PaginationItem } from "@/components/Pagination/PaginationItem";
@@ -11,22 +12,30 @@ import { useMediaQuery } from "react-responsive";
 import { ProjectItemMobile } from "@/components/ProjectItem/Mobile";
 import * as Variants from "../animations";
 import { Container } from "./styles";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Pagination } from "@/components/Pagination";
 
 interface ProjectTabProps {
   tabValue: string;
   categories: Categories[];
+  isSelected: boolean;
 }
 
-export function ProjectTab({ categories, tabValue }: ProjectTabProps) {
+export function ProjectTab({
+  categories,
+  tabValue,
+  isSelected,
+}: ProjectTabProps) {
   const [currentPage, setCurrentPage] = useState(1);
   const projectsPerPage = 3;
   const skip = useMemo(() => currentPage * projectsPerPage - projectsPerPage, [
     currentPage,
     projectsPerPage,
   ]);
-  const { data } = useGetProjectsWithPaginationAndFilterQuery({
+  const [
+    getProjects,
+    { loading, data },
+  ] = useGetProjectsWithPaginationAndFilterLazyQuery({
     variables: {
       categories,
       projectsPerPage,
@@ -53,6 +62,16 @@ export function ProjectTab({ categories, tabValue }: ProjectTabProps) {
       }}
     />
   ));
+
+  useEffect(() => {
+    if (isSelected) {
+      getProjects();
+    }
+  }, [categories, projectsPerPage, skip]);
+
+  useEffect(() => {
+    console.log(mappedData);
+  }, [mappedData]);
 
   return (
     <Container className="TabsContent" value={tabValue}>

@@ -1,7 +1,6 @@
-import { motion } from "framer-motion";
 import { styled } from "stitches.config";
 
-export const Container = styled(motion.ol, {
+export const Container = styled("ol", {
   display: "flex",
   gap: 16,
   marginTop: 16,

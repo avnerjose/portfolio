@@ -38,10 +38,12 @@ export function MyProjectsSection() {
           <ProjectTab
             tabValue="tab1"
             categories={[Categories.PersonalProject, Categories.Challenge]}
+            isSelected={selectedTab === "tab1"}
           />
           <ProjectTab
             tabValue="tab2"
             categories={[Categories.Event, Categories.Course]}
+            isSelected={selectedTab === "tab2"}
           />
         </TabsRoot>
       </Content>
