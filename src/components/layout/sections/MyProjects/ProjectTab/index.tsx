@@ -1,12 +1,8 @@
-import { motion } from "framer-motion";
-
 import {
   Categories,
-  useGetProjectsWithPaginationAndFilterQuery,
   useGetProjectsWithPaginationAndFilterLazyQuery,
 } from "@/graphql/generated";
 import { ProjectItem } from "@/components/ProjectItem";
-import { PaginationItem } from "@/components/Pagination/PaginationItem";
 import { ProjectMapper } from "@/mappers/ProjectMapper";
 import { useMediaQuery } from "react-responsive";
 import { ProjectItemMobile } from "@/components/ProjectItem/Mobile";
@@ -68,10 +64,6 @@ export function ProjectTab({
       getProjects();
     }
   }, [categories, projectsPerPage, skip]);
-
-  useEffect(() => {
-    console.log(mappedData);
-  }, [mappedData]);
 
   return (
     <Container className="TabsContent" value={tabValue}>
