@@ -1,16 +1,11 @@
 "use client";
 
+import { useLanguage } from "@/hooks/useLanguage";
 import { Home } from "@/views/Home";
 import { LoadingPage } from "@/views/LoadingPage";
 import { useEffect, useState } from "react";
 
-interface IndexPageProps {
-  params: {
-    lang: string;
-  };
-}
-
-export default function IndexPage({ params: { lang } }: IndexPageProps) {
+export default function IndexPage() {
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
@@ -23,5 +18,5 @@ export default function IndexPage({ params: { lang } }: IndexPageProps) {
     return <LoadingPage />;
   }
 
-  return <Home lang={lang} />;
+  return <Home />;
 }

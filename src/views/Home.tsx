@@ -12,11 +12,7 @@ import { SkillsAndToolsSection } from "@/components/layout/sections/SkillsAndToo
 import { WorkExperienceSection } from "@/components/layout/sections/WorkExperience";
 import { useDetectReachedScrollBottom } from "@/hooks/useDetectReachedScrollBottom";
 
-interface HomeProps {
-  lang: string;
-}
-
-export function Home({ lang }: HomeProps) {
+export function Home() {
   const hasReachedBottom = useDetectReachedScrollBottom({
     offset: 82,
   });
@@ -24,11 +20,11 @@ export function Home({ lang }: HomeProps) {
   return (
     <>
       <Header />
-      <HeroSection lang={lang} />
-      <AboutMeSection lang={lang} />
+      <HeroSection />
+      <AboutMeSection />
       <SkillsAndToolsSection />
       <MyProjectsSection />
-      <WorkExperienceSection lang={lang} />
+      <WorkExperienceSection />
       <ContactSection />
       <BulletNavigation />
       <SocialMediaLinks variant={hasReachedBottom ? "dislocated" : "default"} />

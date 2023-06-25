@@ -8,13 +8,14 @@ import { NumberedHeading } from "@/components/NumberedHeading";
 import * as Variants from "./animation";
 import { Avatar, Container, Content } from "./styles";
 import { Locale, useGetAboutMeQuery } from "@/graphql/generated";
-import { ComponentWithTranslation } from "@/contracts";
 import { AnimatedAvatarShapes } from "@/components/AnimatedAvatarShapes";
+import { useLanguage } from "@/hooks/useLanguage";
 
-export function AboutMeSection({ lang }: ComponentWithTranslation) {
+export function AboutMeSection() {
+  const { locale } = useLanguage();
   const { data } = useGetAboutMeQuery({
     variables: {
-      locale: [lang.split("-")[0] as Locale],
+      locale: [locale],
     },
   });
   const sectionRef = useRef(null);

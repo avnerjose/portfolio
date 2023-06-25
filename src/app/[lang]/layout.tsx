@@ -8,6 +8,7 @@ import { Poppins } from "next/font/google";
 import { dir } from "i18next";
 import { locales } from "../i18n/settings";
 import { StitchesRegistry } from "@/components/StitchesRegistry";
+import { LanguageContextProvider } from "@/contexts/LanguageContext";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -31,22 +32,24 @@ export default function RootLayout({
 
   return (
     <ParallaxProvider>
-      <ApolloProvider client={client}>
-        <html>
-          <head>
-            <link
-              rel="shortcut icon"
-              href="/images/logoIconSmall.svg"
-              type="image/x-icon"
-            />
-          </head>
-          <StitchesRegistry>
-            <body lang={lang} dir={dir(lang)}>
-              <main className={poppins.className}>{children}</main>
-            </body>
-          </StitchesRegistry>
-        </html>
-      </ApolloProvider>
+      <LanguageContextProvider lang={lang}>
+        <ApolloProvider client={client}>
+          <html>
+            <head>
+              <link
+                rel="shortcut icon"
+                href="/images/logoIconSmall.svg"
+                type="image/x-icon"
+              />
+            </head>
+            <StitchesRegistry>
+              <body lang={lang} dir={dir(lang)}>
+                <main className={poppins.className}>{children}</main>
+              </body>
+            </StitchesRegistry>
+          </html>
+        </ApolloProvider>
+      </LanguageContextProvider>
     </ParallaxProvider>
   );
 }

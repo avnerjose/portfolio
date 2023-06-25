@@ -1,5 +1,3 @@
-import { motion } from "framer-motion";
-
 import * as Variants from "./animations";
 import {
   Container,
@@ -11,10 +9,9 @@ import {
 } from "./styles";
 import { Paragraph } from "../Paragraph";
 import { formatDate } from "@/utils/format-date";
-import { useEffect } from "react";
+import { useLanguage } from "@/hooks/useLanguage";
 
 interface WorkExperienceItem {
-  locale: string;
   animationDelay: number;
   workExperience: {
     title: string;
@@ -29,9 +26,9 @@ interface WorkExperienceItem {
 
 export function WorkExperienceItem({
   workExperience: { title, jobs },
-  locale,
   animationDelay,
 }: WorkExperienceItem) {
+  const { lang } = useLanguage();
   const sortedJobs = [...jobs]?.sort(
     (j1, j2) =>
       new Date(j2.startDate).getTime() - new Date(j1.startDate).getTime()
@@ -60,8 +57,8 @@ export function WorkExperienceItem({
             key={job.name.trim()}
           >
             <JobTitle>
-              {job.name} | {formatDate(new Date(job.startDate), locale)} -{" "}
-              {job.endDate ? formatDate(new Date(job.endDate), locale) : "Now"}{" "}
+              {job.name} | {formatDate(new Date(job.startDate), lang)} -{" "}
+              {job.endDate ? formatDate(new Date(job.endDate), lang) : "Now"}{" "}
             </JobTitle>
             {job.description.map((item, i) => (
               <Paragraph color="gray" size="small" key={i}>

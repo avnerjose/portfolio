@@ -6,9 +6,10 @@ import { WorkExperienceItem } from "@/components/WorkExperienceItem";
 import { useGetWorkExperiencesQuery } from "@/graphql/generated";
 import * as Variants from "./animations";
 import { Container, Content } from "./styles";
-import { ComponentWithTranslation } from "@/contracts";
+import { useLanguage } from "@/hooks/useLanguage";
 
-export function WorkExperienceSection({ lang }: ComponentWithTranslation) {
+export function WorkExperienceSection() {
+  const { lang } = useLanguage();
   const { data } = useGetWorkExperiencesQuery();
   const sectionRef = useRef(null);
 
@@ -25,7 +26,6 @@ export function WorkExperienceSection({ lang }: ComponentWithTranslation) {
         />
         {data?.workExperiences.map((workExperience, i) => (
           <WorkExperienceItem
-            locale={lang}
             key={workExperience.id}
             animationDelay={i + 1}
             workExperience={workExperience}
