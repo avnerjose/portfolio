@@ -49,7 +49,7 @@ export const WorkExperienceTitle = styled(motion.h3, {
   fontSize: 28,
 });
 
-export const JobContainer = styled("div", {
+export const JobContainer = styled(motion.div, {
   "& + &": {
     marginTop: 16,
   },

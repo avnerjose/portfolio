@@ -10,6 +10,15 @@ export function HeroPattern() {
       viewBox="0 0 1217 479"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      transition={{
+        delay: 2,
+      }}
+      initial={{
+        opacity: 0,
+      }}
+      animate={{
+        opacity: 1,
+      }}
     >
       <path
         d="M632 168L632 122C632 113.163 639.163 106 648 106L661 106"

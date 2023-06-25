@@ -53,6 +53,7 @@ export const MainContent = styled(motion.div, {
     "& p": {
       fontSize: 18,
     },
+    width: "100%",
   },
 });
 

@@ -1,19 +1,17 @@
 import { styled } from "stitches.config";
 import { motion } from "framer-motion";
 
-export const Button = styled(motion.button, {
+export const Container = styled(motion.button, {
   color: "$green400",
   fontWeight: "bold",
   position: "relative",
   background: "transparent",
   zIndex: 1,
-  transition: "all 0.25s cubic-bezier(0.645,0.045,0.355,1)",
   userSelect: "none",
   cursor: "pointer",
   transformStyle: "preserve-3d",
   border: "1px solid $green400",
   borderRadius: 4,
-  transitionDelay: "100ms",
   display: "inline-block",
 
   "&:focus": {
@@ -39,9 +37,18 @@ export const Button = styled(motion.button, {
         paddingX: 32,
       },
     },
+    transition: {
+      default: {
+        transition: "all 0.25s cubic-bezier(0.645,0.045,0.355,1)",
+      },
+      none: {
+        transition: "unset",
+      },
+    },
   },
 
   defaultVariants: {
     size: "big",
+    transition: "none",
   },
 });

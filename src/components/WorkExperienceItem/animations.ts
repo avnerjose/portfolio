@@ -3,9 +3,11 @@ import type { Variants } from "framer-motion";
 export const content: Variants = {
   hidden: {
     opacity: 0,
+    y: 30,
   },
   show: (param: number) => ({
     opacity: 1,
+    y: 0,
     transition: {
       staggerChildren: 0.2,
       delay: param * 0.2,

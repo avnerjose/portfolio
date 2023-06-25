@@ -78,12 +78,12 @@ export function SkillsAndToolsSection() {
             {
               breakpoint: 410,
               cols: 1,
-              rows: 3,
+              rows: 2,
             },
             {
               breakpoint: 550,
               cols: 2,
-              rows: 3,
+              rows: 2,
             },
             {
               breakpoint: 768,
@@ -94,18 +94,28 @@ export function SkillsAndToolsSection() {
         >
           {SKILLS_AND_TOOLS.map(({ id, imageUrl, label }, index) => (
             <Carousel.Item key={id}>
-              <SkillItem
-                key={id}
-                variants={Variants.itemFromTop}
-                imageUrl={imageUrl}
-                label={label}
-                initial="hidden"
-                whileInView="show"
-                viewport={{
-                  once: true,
+              <div
+                style={{
+                  display: "flex",
+                  width: "100%",
+                  height: "100%",
+                  alignItems: "center",
+                  justifyContent: "center",
                 }}
-                custom={index % (4 * 2)}
-              />
+              >
+                <SkillItem
+                  key={id}
+                  variants={Variants.itemFromTop}
+                  imageUrl={imageUrl}
+                  label={label}
+                  initial="hidden"
+                  whileInView="show"
+                  viewport={{
+                    once: true,
+                  }}
+                  custom={index % (4 * 2)}
+                />
+              </div>
             </Carousel.Item>
           ))}
         </Carousel>

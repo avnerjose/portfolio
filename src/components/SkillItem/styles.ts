@@ -6,6 +6,7 @@ export const Container = styled(motion.div, {
   flexDirection: "column",
   alignItems: "center",
   justifyContent: "center",
+  alignSelf: "center",
   background: "$gray800",
   padding: 16,
   aspectRatio: "1/1",

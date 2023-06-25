@@ -53,22 +53,18 @@ export function WorkExperienceItem({
         viewport={{ once: true }}
         custom={animationDelay}
       >
-        <WorkExperienceTitle variants={Variants.itemFromLeft}>
-          {title}
-        </WorkExperienceTitle>
+        <WorkExperienceTitle>{title}</WorkExperienceTitle>
         {sortedJobs?.map((job) => (
-          <JobContainer key={job.name.trim()}>
-            <JobTitle variants={Variants.itemFromLeft}>
+          <JobContainer
+            variants={Variants.itemFromBottom}
+            key={job.name.trim()}
+          >
+            <JobTitle>
               {job.name} | {formatDate(new Date(job.startDate), locale)} -{" "}
               {job.endDate ? formatDate(new Date(job.endDate), locale) : "Now"}{" "}
             </JobTitle>
             {job.description.map((item, i) => (
-              <Paragraph
-                variants={Variants.itemFromLeft}
-                color="gray"
-                size="small"
-                key={i}
-              >
+              <Paragraph color="gray" size="small" key={i}>
                 {item}
               </Paragraph>
             ))}

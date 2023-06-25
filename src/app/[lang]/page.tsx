@@ -11,10 +11,10 @@ interface IndexPageProps {
 }
 
 export default function IndexPage({ params: { lang } }: IndexPageProps) {
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    const timeout = setTimeout(() => setIsLoading(false), 4000);
+    const timeout = setTimeout(() => setIsLoading(false), 3000);
 
     return () => clearTimeout(timeout);
   }, []);

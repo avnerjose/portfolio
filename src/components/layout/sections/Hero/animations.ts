@@ -8,8 +8,8 @@ export const content: Variants = {
     opacity: 1,
     transition: {
       delay: 0.5,
-      delayChildren: 1,
-      staggerChildren: 0.2,
+      delayChildren: 0.4,
+      staggerChildren: 0.1,
     },
   },
 };
@@ -22,6 +22,9 @@ export const itemFromBottom: Variants = {
   show: {
     y: 0,
     opacity: 1,
+    transition: {
+      ease: "linear",
+    },
   },
 };
 
