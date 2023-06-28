@@ -12,6 +12,7 @@ import { Button } from "@/components/Button";
 import { useLanguage } from "@/hooks/useLanguage";
 import { useGetResumeQuery } from "@/graphql/generated";
 import * as Variants from "./animations";
+import useScrollDirection from "@/hooks/useScrollDirection";
 
 const WEBSITE_SECTIONS = [
   { label: "About", to: "about" },
@@ -25,6 +26,7 @@ export function Header() {
   const [showLogo, setShowLogo] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState(-1);
+  const [hideHeader, setHideHeader] = useState(false);
   const { locale } = useLanguage();
   const { data } = useGetResumeQuery({
     variables: {
@@ -32,6 +34,7 @@ export function Header() {
     },
   });
   const resumeUrl = data?.resumes[0].file?.url;
+  const scrollDirection = useScrollDirection();
 
   const isMobile = useMediaQuery({
     query: "(max-width: 768px)",
@@ -56,13 +59,25 @@ export function Header() {
     setShowLogo(true);
   }, []);
 
+  useEffect(() => {
+    if (isMobile) {
+      if (scrollDirection === "down") {
+        setHideHeader(true);
+      } else if (scrollDirection === "up") {
+        setHideHeader(false);
+      }
+    }
+  }, [scrollDirection]);
+
   return (
     <header
       className={classNames(
-        "fixed right-0 left-0 top-0 z-[100] min-h-[85px] transition-all ease-main-button duration-[500ms]",
+        "fixed right-0 left-0 z-[100] min-h-[85px] transition-all ease-main-button duration-[500ms]",
         {
           "bg-gray-900": Math.abs(activeSection) % 2 === 1,
           "bg-gray-800": Math.abs(activeSection) % 2 === 0,
+          "top-0": !hideHeader,
+          "top-[-100%]": hideHeader,
         }
       )}
     >
