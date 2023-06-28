@@ -5,7 +5,6 @@ import Carousel from "react-grid-carousel";
 import { SkillItem } from "@/components/SkillItem";
 import { NumberedHeading } from "@/components/NumberedHeading";
 import * as Variants from "./animations";
-import { Container, Content } from "./styles";
 
 const SKILLS_AND_TOOLS = [
   {
@@ -54,8 +53,8 @@ export function SkillsAndToolsSection() {
   const sectionRef = useRef(null);
 
   return (
-    <Container id="skills" ref={sectionRef}>
-      <Content>
+    <section id="skills" ref={sectionRef}>
+      <div className="min-h-screen px-4 py-8 max-w-[1120px] m-auto">
         <NumberedHeading
           variants={Variants.itemFromFromLeft}
           initial="hidden"
@@ -119,7 +118,7 @@ export function SkillsAndToolsSection() {
             </Carousel.Item>
           ))}
         </Carousel>
-      </Content>
-    </Container>
+      </div>
+    </section>
   );
 }

@@ -1,5 +1,4 @@
 import { PaginationItem } from "./PaginationItem";
-import { Container } from "./styles";
 
 interface PaginationProps {
   totalResults: number;
@@ -18,14 +17,15 @@ export function Pagination({
   const pageNumbers = [...new Array(pageAmount)].map((_, i) => i + 1);
 
   return (
-    <Container>
+    <ol className="flex gap-4 mt-4 list-none self-end">
       {pageNumbers.map((i) => (
         <PaginationItem
           label={i}
+          key={i}
           isActive={i === currentPage}
           onClick={() => onPageChange(i)}
         />
       ))}
-    </Container>
+    </ol>
   );
 }

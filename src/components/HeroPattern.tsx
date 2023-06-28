@@ -1,9 +1,9 @@
 import { motion } from "framer-motion";
-import { Container } from "./styles";
 
 export function HeroPattern() {
   return (
-    <Container
+    <motion.svg
+      className="absolute top-0 left-[13%] z-[1]"
       id="hero"
       width="1217"
       height="479"
@@ -424,6 +424,6 @@ export function HeroPattern() {
           <stop offset="1" stopColor="#323238" stopOpacity="0.3" />
         </linearGradient>
       </defs>
-    </Container>
+    </motion.svg>
   );
 }

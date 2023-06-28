@@ -1,15 +1,9 @@
 import * as Variants from "./animations";
-import {
-  Container,
-  Content,
-  Trail,
-  WorkExperienceTitle,
-  JobTitle,
-  JobContainer,
-} from "./styles";
+
 import { Paragraph } from "../Paragraph";
 import { formatDate } from "@/utils/format-date";
 import { useLanguage } from "@/hooks/useLanguage";
+import { motion } from "framer-motion";
 
 interface WorkExperienceItem {
   animationDelay: number;
@@ -35,39 +29,44 @@ export function WorkExperienceItem({
   );
 
   return (
-    <Container>
-      <Trail
+    <article className="flex relative mb-4">
+      <motion.div
+        className="flex h-8 w-8 bg-green-400 rounded-full shadow-trail after:absolute after:content-[''] after:block after:h-[calc(100%-48px)] after:w-[2px] after:bg-gray-500 after:bottom-0 after:left-4"
         variants={Variants.itemFromBottom}
         initial="hidden"
         whileInView="show"
         viewport={{ once: true }}
         custom={animationDelay}
       />
-      <Content
+      <motion.div
+        className="flex flex-col flex-1 ml-2"
         variants={Variants.content}
         initial="hidden"
         whileInView="show"
         viewport={{ once: true }}
         custom={animationDelay}
       >
-        <WorkExperienceTitle>{title}</WorkExperienceTitle>
+        <motion.h3 className="text-green-400 font-bold text-2xl">
+          {title}
+        </motion.h3>
         {sortedJobs?.map((job) => (
-          <JobContainer
+          <motion.div
+            className="mb-4"
             variants={Variants.itemFromBottom}
             key={job.name.trim()}
           >
-            <JobTitle>
+            <motion.h4 className="text-[22px]">
               {job.name} | {formatDate(new Date(job.startDate), lang)} -{" "}
               {job.endDate ? formatDate(new Date(job.endDate), lang) : "Now"}{" "}
-            </JobTitle>
+            </motion.h4>
             {job.description.map((item, i) => (
               <Paragraph color="gray" size="small" key={i}>
                 {item}
               </Paragraph>
             ))}
-          </JobContainer>
+          </motion.div>
         ))}
-      </Content>
-    </Container>
+      </motion.div>
+    </article>
   );
 }

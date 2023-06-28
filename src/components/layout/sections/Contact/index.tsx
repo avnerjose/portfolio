@@ -12,7 +12,6 @@ import { NumberedHeading } from "@/components/NumberedHeading";
 import { Paragraph } from "@/components/Paragraph";
 import particlesConfig from "./particles.json";
 import * as Variants from "./animations";
-import { ContactForm, Container, Content, MainContent } from "./styles";
 import { ZodFormattedError, z } from "zod";
 
 const contactFormSchema = z.object({
@@ -78,14 +77,20 @@ export function ContactSection() {
   };
 
   return (
-    <Container id="contact" ref={sectionRef}>
+    <section
+      className="bg-gray-800 relative overflow-hidden"
+      id="contact"
+      ref={sectionRef}
+    >
       <Particles
         id="tsparticles"
+        className="absolute z-0 inset-0"
         init={particlesInit}
         options={JSON.parse(JSON.stringify(particlesConfig))}
       />
 
-      <Content
+      <motion.div
+        className="flex flex-col min-h-[calc(100vh-85px)] px-6 py-8 text-center max-w-[1120px] m-auto"
         variants={Variants.content}
         initial="hidden"
         whileInView="show"
@@ -96,15 +101,21 @@ export function ContactSection() {
           number={5}
           label="Contact"
         />
-        <MainContent>
-          <motion.h2 variants={Variants.itemFromBottom}>
+        <motion.div className="flex gap-4 p-4 rounded-lg  flex-col items-center justify-center m-auto w-full md:w-[70%] z-[1]">
+          <motion.h2
+            className="font-bold text-4xl md:text-6xl"
+            variants={Variants.itemFromBottom}
+          >
             Let's get in touch
           </motion.h2>
           <Paragraph variants={Variants.itemFromBottom}>
             Got a question or proposal? Go ahead, I’ll try my best to get back
             to you!
           </Paragraph>
-          <ContactForm onSubmit={handleFormSubmit}>
+          <form
+            className="flex p-4 flex-col w-full gap-4 items-center max-w-[500px]"
+            onSubmit={handleFormSubmit}
+          >
             <input
               id="name"
               type="text"
@@ -112,9 +123,10 @@ export function ContactSection() {
               placeholder="Name"
               value={name}
               onChange={(e) => setName(e.target.value)}
+              className="w-full bg-gray-900 p-4 text-white rounded-lg focus:outline focus:outline-green-400"
             />
             <ValidationError
-              className="validation-error"
+              className="self-start text-red-500"
               field="name"
               errors={errors}
             />
@@ -125,9 +137,10 @@ export function ContactSection() {
               placeholder="E-mail"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+              className="w-full bg-gray-900 p-4 text-white rounded-lg focus:outline focus:outline-green-400"
             />
             <ValidationError
-              className="validation-error"
+              className="self-start text-red-500"
               field="email"
               errors={errors}
             />
@@ -137,9 +150,10 @@ export function ContactSection() {
               placeholder="Message"
               value={message}
               onChange={(e) => setMessage(e.target.value)}
+              className="w-full bg-gray-900 p-4 text-white rounded-lg focus:outline focus:outline-green-400 h-[120px] resize-none"
             />
             <ValidationError
-              className="validation-error"
+              className="self-start text-red-500"
               field="message"
               errors={errors}
             />
@@ -147,9 +161,9 @@ export function ContactSection() {
               Contact me
             </Button>
             <ValidationError errors={state.errors} />
-          </ContactForm>
-        </MainContent>
-      </Content>
-    </Container>
+          </form>
+        </motion.div>
+      </motion.div>
+    </section>
   );
 }

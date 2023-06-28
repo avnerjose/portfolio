@@ -1,3 +1,4 @@
+"use client"
 import { Locale } from "@/graphql/generated";
 import { PropsWithChildren, createContext, useEffect, useState } from "react";
 

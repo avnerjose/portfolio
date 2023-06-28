@@ -31,13 +31,13 @@ export const globalStyles = globalCss({
     color: "$white",
   },
 
-  body: {
-    "&.blur": {
-      "section > *": {
-        filter: "blur(5px) brightness(0.7)",
-        pointerEvents: "none",
-        userSelect: "none",
-      },
-    },
-  },
+  // body: {
+  //   "&.blur": {
+  //     "section > *": {
+  //       filter: "blur(5px) brightness(0.7)",
+  //       pointerEvents: "none",
+  //       userSelect: "none",
+  //     },
+  //   },
+  // },
 });

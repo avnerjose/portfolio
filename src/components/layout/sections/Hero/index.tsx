@@ -3,20 +3,13 @@
 import { useParallax } from "react-scroll-parallax";
 
 import { Paragraph } from "@/components/Paragraph";
-import * as Variants from "./animations";
-import {
-  Container,
-  Content,
-  Span,
-  TechBubble,
-  Title,
-  Subtitle,
-} from "./styles";
-import { useTranslation } from "@/app/i18n/client";
+import { Button } from "@/components/Button";
 import { HeroPattern } from "@/components/HeroPattern";
-import { useRef } from "react";
-import { ButtonLink } from "@/components/ButtonLink";
+import { useTranslation } from "@/app/i18n/client";
 import { useLanguage } from "@/hooks/useLanguage";
+import * as Variants from "./animations";
+import { useRef } from "react";
+import { motion } from "framer-motion";
 
 export function HeroSection() {
   const { lang } = useLanguage();
@@ -27,30 +20,63 @@ export function HeroSection() {
   const { ref: ref3 } = useParallax<HTMLDivElement>({ speed: -40 });
 
   return (
-    <Container id="hero" ref={sectionRef}>
+    <section className="relative overflow-hidden" id="hero" ref={sectionRef}>
       <HeroPattern />
-      <Content variants={Variants.content} initial="hidden" animate="show">
-        <Span variants={Variants.itemFromLeft}>{t("myNameIs")}</Span>
-        <Title variants={Variants.itemFromBottom}>Avner José.</Title>
-        <Subtitle color="gray" variants={Variants.itemFromBottom}>
+      <motion.div
+        className="flex flex-col justify-center p-6 max-w-[1120px] m-auto min-h-screen overflow-hidden z-10"
+        variants={Variants.content}
+        initial="hidden"
+        animate="show"
+      >
+        <motion.span
+          className="text-green-400 mb-2"
+          variants={Variants.itemFromLeft}
+        >
+          {t("myNameIs")}
+        </motion.span>
+        <motion.h1
+          className="text-4xl md:text-5xl lg:text-7xl font-bold mb-2 z-10"
+          variants={Variants.itemFromBottom}
+        >
+          Avner José.
+        </motion.h1>
+        <motion.p
+          className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-500 mb-4 z-10" 
+          color="gray"
+          variants={Variants.itemFromBottom}
+        >
           {t("occupation")}
-        </Subtitle>
+        </motion.p>
         <Paragraph variants={Variants.itemFromRight}>
           {t("description")}
         </Paragraph>
-        <ButtonLink to="contact" smooth spy offset={-85}>
-          {t("contactMe")}
-        </ButtonLink>
-        <TechBubble variants={Variants.itemFromTop1} ref={ref1}>
-          <img src="/images/react.svg" alt="ReactJS" />
-        </TechBubble>
-        <TechBubble variants={Variants.itemFromTop2} ref={ref2} size="medium">
+        <div className="mt-8 z-10">
+          <Button as="link" to="contact" smooth spy offset={-85}>
+            {t("contactMe")}
+          </Button>
+        </div>
+        <motion.div
+          className="hidden lg:flex items-center justify-center rounded-full bg-gray-800 absolute h-[184px] w-[184px] top-[40px] right-[140px] shadow-tech-bubble z-50"
+          variants={Variants.itemFromTop1}
+          ref={ref1}
+        >
+          <img className="h-[124px]" src="/images/react.svg" alt="ReactJS" />
+        </motion.div>
+        <motion.div
+          className="hidden lg:flex items-center justify-center rounded-full bg-gray-800 absolute h-[156px] w-[156px] top-[72%] right-[320px] shadow-tech-bubble z-50"
+          variants={Variants.itemFromTop2}
+          ref={ref2}
+        >
           <img src="/images/typescript.svg" alt="Typescript" />
-        </TechBubble>
-        <TechBubble variants={Variants.itemFromTop3} ref={ref3} size="small">
+        </motion.div>
+        <motion.div
+          className="hidden lg:flex items-center justify-center rounded-full bg-gray-800 absolute h-[124px] w-[124px] top-[5%] right-[520px] shadow-tech-bubble z-50"
+          variants={Variants.itemFromTop3}
+          ref={ref3}
+        >
           <img src="/images/html.svg" alt="HTML" />
-        </TechBubble>
-      </Content>
-    </Container>
+        </motion.div>
+      </motion.div>
+    </section>
   );
 }

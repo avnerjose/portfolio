@@ -1,12 +1,11 @@
 import { AnimatedLogoIcon } from "@/components/AnimatedLogoIcon";
-import { Container, LogoContainer } from "./styles";
 
 export function LoadingPage() {
   return (
-    <Container>
-      <LogoContainer>
+    <div className="flex bg-gray-900 h-screen w-screen items-center justify-center">
+      <div className="w-[150px] h-[150px]">
         <AnimatedLogoIcon />
-      </LogoContainer>
-    </Container>
+      </div>
+    </div>
   );
 }

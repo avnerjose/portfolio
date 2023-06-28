@@ -1,0 +1,7 @@
+query GetResume($locale: [Locale!]!) {
+  resumes(locales: $locale) {
+    file {
+      url
+    }
+  }
+}

@@ -6,10 +6,11 @@ import { ProjectItem } from "@/components/ProjectItem";
 import { ProjectMapper } from "@/mappers/ProjectMapper";
 import { useMediaQuery } from "react-responsive";
 import { ProjectItemMobile } from "@/components/ProjectItem/Mobile";
-import * as Variants from "../animations";
-import { Container } from "./styles";
+import * as Variants from "./animations";
 import { useEffect, useMemo, useState } from "react";
 import { Pagination } from "@/components/Pagination";
+import * as Tabs from "@radix-ui/react-tabs";
+
 
 interface ProjectTabProps {
   tabValue: string;
@@ -66,7 +67,7 @@ export function ProjectTab({
   }, [categories, projectsPerPage, skip]);
 
   return (
-    <Container className="TabsContent" value={tabValue}>
+    <Tabs.Content className="flex flex-col overflow-hidden data-[state=active]:py-8" value={tabValue}>
       {projectsList}
       <Pagination
         currentPage={currentPage}
@@ -74,6 +75,6 @@ export function ProjectTab({
         resultsPerPage={projectsPerPage}
         totalResults={mappedData?.pageInfo.totalResults ?? 0}
       />
-    </Container>
+    </Tabs.Content>
   );
 }

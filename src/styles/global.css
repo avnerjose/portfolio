@@ -1,0 +1,82 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --gray900: #14141b;
+  --gray800: #1d1d25;
+  --green400: #15c196;
+}
+
+* {
+  scrollbar-width: "thin";
+  scrollbar-color: var(--gray900) var(--gray800);
+}
+
+*::-webkit-scrollbar {
+  width: 8px;
+}
+
+*::-webkit-scrollbar-track {
+  background: var(--gray900);
+}
+
+*::-webkit-scrollbar-thumb {
+  backgroundcolor: var(--gray800);
+  border-radius: 10px;
+}
+
+button {
+  transform-style: preserve-3d;
+}
+
+article#project-item:nth-of-type(2n + 1) > div:first-child {
+  grid-area: 1 / 1 / -1 / 7 !important;
+  grid-column: 1 / 8 !important;
+}
+
+/* Corresponds to > div:last-child in Stitches */
+article#project-item:nth-of-type(2n + 1) > div:last-child {
+  text-align: right !important;
+  grid-area: 1 / 6 / -1 / -1 !important;
+}
+
+/* Corresponds to & div:last-child in Stitches */
+article#project-item:nth-of-type(2n + 1) > div:last-child div:last-child {
+  justify-content: flex-end !important;
+}
+
+/* Corresponds to & div:not(last-child) in Stitches */
+article#project-item:nth-of-type(2n + 1) > div:last-child div:not(:last-child) {
+  justify-content: flex-end !important;
+}
+
+article#project-item .image-wrapper {
+  grid-area: 1 / 6 / -1 / -1;
+}
+
+article#project-item .content {
+  grid-area: 1 / 1 / -1 / 7;
+}
+
+section#skills span[type="next"],
+section#skills span[type="prev"] {
+  background: var(--green400);
+  opacity: 1;
+}
+
+section#skills span[type="next"]::before,
+section#skills span[type="prev"]::before {
+  border-color: white;
+}
+
+main {
+  background: var(--gray900);
+  color: white;
+}
+
+body.blur-body section > * {
+  filter: blur(5px) brightness(0.7);
+  pointer-events: none;
+  user-select: none;
+}

@@ -1,8 +1,13 @@
-import { ApolloClient, InMemoryCache } from "@apollo/client";
+import { ApolloClient, HttpLink, InMemoryCache } from "@apollo/client";
+import { registerApolloClient } from "@apollo/experimental-nextjs-app-support/rsc";
 
-const client = new ApolloClient({
-  uri: "https://us-east-1-shared-usea1-02.cdn.hygraph.com/content/cle6hrau12p4l01urdr85779c/master",
-  cache: new InMemoryCache(),
+const { getClient } = registerApolloClient(() => {
+  return new ApolloClient({
+    link: new HttpLink({
+      uri: "https://us-east-1-shared-usea1-02.cdn.hygraph.com/content/cle6hrau12p4l01urdr85779c/master",
+    }),
+    cache: new InMemoryCache(),
+  });
 });
 
-export { client };
+export const client = getClient();

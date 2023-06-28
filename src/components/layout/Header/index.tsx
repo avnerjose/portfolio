@@ -5,11 +5,13 @@ import { BarChart } from "react-feather";
 import { useMediaQuery } from "react-responsive";
 import { Link } from "react-scroll";
 import { AnimatePresence, motion } from "framer-motion";
+import classNames from "classnames";
 
 import { MobileMenu } from "@/components/layout/MobileMenu";
 import { Button } from "@/components/Button";
+import { useLanguage } from "@/hooks/useLanguage";
+import { useGetResumeQuery } from "@/graphql/generated";
 import * as Variants from "./animations";
-import { Container, Content, Navigation } from "./styles";
 
 const WEBSITE_SECTIONS = [
   { label: "About", to: "about" },
@@ -23,6 +25,13 @@ export function Header() {
   const [showLogo, setShowLogo] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState(-1);
+  const { locale } = useLanguage();
+  const { data } = useGetResumeQuery({
+    variables: {
+      locale: [locale],
+    },
+  });
+  const resumeUrl = data?.resumes[0].file?.url;
 
   const isMobile = useMediaQuery({
     query: "(max-width: 768px)",
@@ -41,23 +50,34 @@ export function Header() {
     setActiveSection(index + 1);
   };
 
+  const handleOpenResumeFile = () => window.open(resumeUrl, "_blank");
+
   useEffect(() => {
     setShowLogo(true);
   }, []);
 
   return (
-    <Container
-      color={Math.abs(activeSection) % 2 === 1 ? "darkGray" : "lightGray"}
+    <header
+      className={classNames(
+        "fixed right-0 left-0 top-0 z-[100] min-h-[85px] transition-all ease-main-button duration-[500ms]",
+        {
+          "bg-gray-900": Math.abs(activeSection) % 2 === 1,
+          "bg-gray-800": Math.abs(activeSection) % 2 === 0,
+        }
+      )}
     >
-      <Content>
+      <div className="max-w-[1120px] py-4 px-6 m-auto flex items-center justify-between">
         {showLogo && (
-          <motion.img
-            variants={Variants.logo}
-            initial="hidden"
-            animate="show"
-            src={`/images/${isMobile ? "logoIcon.svg" : "logo.svg"}`}
-            alt="Logo"
-          />
+          <Link to="hero" className="cursor-pointer" smooth spy offset={-85}>
+            <motion.img
+              variants={Variants.logo}
+              initial="hidden"
+              animate="show"
+              src={`/images/${isMobile ? "logoIcon.svg" : "logo.svg"}`}
+              className="h-[52px] md:h-[unset]"
+              alt="Logo"
+            />
+          </Link>
         )}
         {isMobile && showLogo ? (
           <motion.div
@@ -65,11 +85,16 @@ export function Header() {
             initial="hidden"
             animate="show"
           >
-            <BarChart size={32} onClick={handleOpenMobileMenu} />
+            <BarChart
+              className="text-green-400 cursor-pointer rotate-[270deg] focus:outline-green-400 focus:outline-dashed"
+              size={32}
+              onClick={handleOpenMobileMenu}
+            />
           </motion.div>
         ) : (
-          <Navigation>
+          <nav className="flex items-center gap-4 lg:gap-6">
             <motion.ul
+              className="flex list-none gap-4 lg:gap-6"
               variants={Variants.container}
               initial="hidden"
               animate="show"
@@ -81,7 +106,8 @@ export function Header() {
                     smooth
                     spy
                     offset={-85}
-                    activeClass="active"
+                    activeClass="before:content-['<'] before:text-green-400 after:content-['/>'] after:text-green-400"
+                    className="text-white text-lg cursor-pointer transition-all duration-[0.2s] hover:text-green-400"
                     onSetActive={handleSetActive}
                     onSetInactive={handleSetInactive}
                   >
@@ -92,23 +118,25 @@ export function Header() {
             </motion.ul>
             <Button
               variants={Variants.button}
+              onClick={handleOpenResumeFile}
               initial="hidden"
               animate="show"
               size="small"
             >
               Resume
             </Button>
-          </Navigation>
+          </nav>
         )}
-      </Content>
+      </div>
       <AnimatePresence>
         {isMobileMenuOpen && (
           <MobileMenu
             onClose={handleCloseMobileMenu}
             setActiveSection={setActiveSection}
+            resumeUrl={resumeUrl ?? ""}
           />
         )}
       </AnimatePresence>
-    </Container>
+    </header>
   );
 }

@@ -1,19 +1,21 @@
 "use client";
 
 import { useRef, useState } from "react";
+import { motion } from "framer-motion";
+import * as Tabs from "@radix-ui/react-tabs";
+
 import { Categories } from "@/graphql/generated";
 import { NumberedHeading } from "@/components/NumberedHeading";
 import * as Variants from "./animations";
 import { ProjectTab } from "./ProjectTab";
-import { Container, Content, TabsList, TabsRoot, TabsTrigger } from "./styles";
 
 export function MyProjectsSection() {
   const sectionRef = useRef(null);
   const [selectedTab, setSelectedTab] = useState("tab1");
 
   return (
-    <Container id="projects" ref={sectionRef}>
-      <Content>
+    <section className="bg-gray-800" id="projects" ref={sectionRef}>
+      <motion.div className="flex flex-col min-h-[calc(100vh-85px)] px-6 py-8 max-w-[1120px] m-auto">
         <NumberedHeading
           variants={Variants.itemFromLeft}
           number={3}
@@ -24,17 +26,30 @@ export function MyProjectsSection() {
             once: true,
           }}
         />
-        <TabsRoot
+        <div className="mb-8" />
+        <Tabs.Root
+          className="flex flex-col"
           defaultValue="tab1"
           value={selectedTab}
           onValueChange={(value) => setSelectedTab(value)}
         >
-          <TabsList className="TabsList" aria-label="Manage your account">
-            <TabsTrigger value="tab1">
+          <Tabs.List
+            className="flex flex-shrink-0"
+            aria-label="Manage your account"
+          >
+            <Tabs.Trigger
+              className="flex justify-center items-center text-center bg-transparent text-white [overflow-wrap:break-word] p-[2px] pb-4 w-full cursor-pointer data-[state='active']:border-b data-[state='active']:border-green-400"
+              value="tab1"
+            >
               Personal projects & challenges
-            </TabsTrigger>
-            <TabsTrigger value="tab2">Courses & events</TabsTrigger>
-          </TabsList>
+            </Tabs.Trigger>
+            <Tabs.Trigger
+              className="flex justify-center items-center text-center bg-transparent text-white [overflow-wrap:break-word] p-[2px] pb-4 w-full cursor-pointer data-[state='active']:border-b data-[state='active']:border-green-400"
+              value="tab2"
+            >
+              Courses & events
+            </Tabs.Trigger>
+          </Tabs.List>
           <ProjectTab
             tabValue="tab1"
             categories={[Categories.PersonalProject, Categories.Challenge]}
@@ -45,8 +60,8 @@ export function MyProjectsSection() {
             categories={[Categories.Event, Categories.Course]}
             isSelected={selectedTab === "tab2"}
           />
-        </TabsRoot>
-      </Content>
-    </Container>
+        </Tabs.Root>
+      </motion.div>
+    </section>
   );
 }

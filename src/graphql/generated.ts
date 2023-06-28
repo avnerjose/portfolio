@@ -532,6 +532,7 @@ export type Asset = Node & {
   documentInStages: Array<Asset>;
   /** The file name */
   fileName: Scalars['String'];
+  fileResume: Array<Resume>;
   /** The file handle */
   handle: Scalars['String'];
   /** The height of the file */
@@ -585,6 +586,20 @@ export type AssetDocumentInStagesArgs = {
   includeCurrent?: Scalars['Boolean'];
   inheritLocale?: Scalars['Boolean'];
   stages?: Array<Stage>;
+};
+
+
+/** Asset system model */
+export type AssetFileResumeArgs = {
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  forceParentLocale?: InputMaybe<Scalars['Boolean']>;
+  last?: InputMaybe<Scalars['Int']>;
+  locales?: InputMaybe<Array<Locale>>;
+  orderBy?: InputMaybe<ResumeOrderByInput>;
+  skip?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<ResumeWhereInput>;
 };
 
 
@@ -681,6 +696,7 @@ export type AssetConnection = {
 export type AssetCreateInput = {
   createdAt?: InputMaybe<Scalars['DateTime']>;
   fileName: Scalars['String'];
+  fileResume?: InputMaybe<ResumeCreateManyInlineInput>;
   handle: Scalars['String'];
   height?: InputMaybe<Scalars['Float']>;
   /** Inline mutations for managing document localizations excluding the default locale */
@@ -766,6 +782,9 @@ export type AssetManyWhereInput = {
   documentInStages_every?: InputMaybe<AssetWhereStageInput>;
   documentInStages_none?: InputMaybe<AssetWhereStageInput>;
   documentInStages_some?: InputMaybe<AssetWhereStageInput>;
+  fileResume_every?: InputMaybe<ResumeWhereInput>;
+  fileResume_none?: InputMaybe<ResumeWhereInput>;
+  fileResume_some?: InputMaybe<ResumeWhereInput>;
   id?: InputMaybe<Scalars['ID']>;
   /** All values containing the given string. */
   id_contains?: InputMaybe<Scalars['ID']>;
@@ -858,6 +877,7 @@ export type AssetTransformationInput = {
 
 export type AssetUpdateInput = {
   fileName?: InputMaybe<Scalars['String']>;
+  fileResume?: InputMaybe<ResumeUpdateManyInlineInput>;
   handle?: InputMaybe<Scalars['String']>;
   height?: InputMaybe<Scalars['Float']>;
   /** Manage document localizations */
@@ -1040,6 +1060,9 @@ export type AssetWhereInput = {
   fileName_not_starts_with?: InputMaybe<Scalars['String']>;
   /** All values starting with the given string. */
   fileName_starts_with?: InputMaybe<Scalars['String']>;
+  fileResume_every?: InputMaybe<ResumeWhereInput>;
+  fileResume_none?: InputMaybe<ResumeWhereInput>;
+  fileResume_some?: InputMaybe<ResumeWhereInput>;
   handle?: InputMaybe<Scalars['String']>;
   /** All values containing the given string. */
   handle_contains?: InputMaybe<Scalars['String']>;
@@ -1975,6 +1998,8 @@ export type Mutation = {
   createJob?: Maybe<Job>;
   /** Create one project */
   createProject?: Maybe<Project>;
+  /** Create one resume */
+  createResume?: Maybe<Resume>;
   /** Create one scheduledRelease */
   createScheduledRelease?: Maybe<ScheduledRelease>;
   /** Create one workExperience */
@@ -2014,6 +2039,13 @@ export type Mutation = {
   /** Delete many Project documents, return deleted documents */
   deleteManyProjectsConnection: ProjectConnection;
   /**
+   * Delete many Resume documents
+   * @deprecated Please use the new paginated many mutation (deleteManyResumesConnection)
+   */
+  deleteManyResumes: BatchPayload;
+  /** Delete many Resume documents, return deleted documents */
+  deleteManyResumesConnection: ResumeConnection;
+  /**
    * Delete many WorkExperience documents
    * @deprecated Please use the new paginated many mutation (deleteManyWorkExperiencesConnection)
    */
@@ -2022,6 +2054,8 @@ export type Mutation = {
   deleteManyWorkExperiencesConnection: WorkExperienceConnection;
   /** Delete one project from _all_ existing stages. Returns deleted document. */
   deleteProject?: Maybe<Project>;
+  /** Delete one resume from _all_ existing stages. Returns deleted document. */
+  deleteResume?: Maybe<Resume>;
   /** Delete and return scheduled operation */
   deleteScheduledOperation?: Maybe<ScheduledOperation>;
   /** Delete one scheduledRelease from _all_ existing stages. Returns deleted document. */
@@ -2063,6 +2097,13 @@ export type Mutation = {
   /** Publish many Project documents */
   publishManyProjectsConnection: ProjectConnection;
   /**
+   * Publish many Resume documents
+   * @deprecated Please use the new paginated many mutation (publishManyResumesConnection)
+   */
+  publishManyResumes: BatchPayload;
+  /** Publish many Resume documents */
+  publishManyResumesConnection: ResumeConnection;
+  /**
    * Publish many WorkExperience documents
    * @deprecated Please use the new paginated many mutation (publishManyWorkExperiencesConnection)
    */
@@ -2071,6 +2112,8 @@ export type Mutation = {
   publishManyWorkExperiencesConnection: WorkExperienceConnection;
   /** Publish one project */
   publishProject?: Maybe<Project>;
+  /** Publish one resume */
+  publishResume?: Maybe<Resume>;
   /** Publish one workExperience */
   publishWorkExperience?: Maybe<WorkExperience>;
   /** Schedule to publish one aboutMe */
@@ -2081,6 +2124,8 @@ export type Mutation = {
   schedulePublishJob?: Maybe<Job>;
   /** Schedule to publish one project */
   schedulePublishProject?: Maybe<Project>;
+  /** Schedule to publish one resume */
+  schedulePublishResume?: Maybe<Resume>;
   /** Schedule to publish one workExperience */
   schedulePublishWorkExperience?: Maybe<WorkExperience>;
   /** Unpublish one aboutMe from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
@@ -2091,6 +2136,8 @@ export type Mutation = {
   scheduleUnpublishJob?: Maybe<Job>;
   /** Unpublish one project from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
   scheduleUnpublishProject?: Maybe<Project>;
+  /** Unpublish one resume from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
+  scheduleUnpublishResume?: Maybe<Resume>;
   /** Unpublish one workExperience from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
   scheduleUnpublishWorkExperience?: Maybe<WorkExperience>;
   /** Unpublish one aboutMe from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
@@ -2128,6 +2175,13 @@ export type Mutation = {
   /** Find many Project documents that match criteria in specified stage and unpublish from target stages */
   unpublishManyProjectsConnection: ProjectConnection;
   /**
+   * Unpublish many Resume documents
+   * @deprecated Please use the new paginated many mutation (unpublishManyResumesConnection)
+   */
+  unpublishManyResumes: BatchPayload;
+  /** Find many Resume documents that match criteria in specified stage and unpublish from target stages */
+  unpublishManyResumesConnection: ResumeConnection;
+  /**
    * Unpublish many WorkExperience documents
    * @deprecated Please use the new paginated many mutation (unpublishManyWorkExperiencesConnection)
    */
@@ -2136,6 +2190,8 @@ export type Mutation = {
   unpublishManyWorkExperiencesConnection: WorkExperienceConnection;
   /** Unpublish one project from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
   unpublishProject?: Maybe<Project>;
+  /** Unpublish one resume from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
+  unpublishResume?: Maybe<Resume>;
   /** Unpublish one workExperience from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
   unpublishWorkExperience?: Maybe<WorkExperience>;
   /** Update one aboutMe */
@@ -2173,6 +2229,13 @@ export type Mutation = {
   /** Update many Project documents */
   updateManyProjectsConnection: ProjectConnection;
   /**
+   * Update many resumes
+   * @deprecated Please use the new paginated many mutation (updateManyResumesConnection)
+   */
+  updateManyResumes: BatchPayload;
+  /** Update many Resume documents */
+  updateManyResumesConnection: ResumeConnection;
+  /**
    * Update many workExperiences
    * @deprecated Please use the new paginated many mutation (updateManyWorkExperiencesConnection)
    */
@@ -2181,6 +2244,8 @@ export type Mutation = {
   updateManyWorkExperiencesConnection: WorkExperienceConnection;
   /** Update one project */
   updateProject?: Maybe<Project>;
+  /** Update one resume */
+  updateResume?: Maybe<Resume>;
   /** Update one scheduledRelease */
   updateScheduledRelease?: Maybe<ScheduledRelease>;
   /** Update one workExperience */
@@ -2193,6 +2258,8 @@ export type Mutation = {
   upsertJob?: Maybe<Job>;
   /** Upsert one project */
   upsertProject?: Maybe<Project>;
+  /** Upsert one resume */
+  upsertResume?: Maybe<Resume>;
   /** Upsert one workExperience */
   upsertWorkExperience?: Maybe<WorkExperience>;
 };
@@ -2215,6 +2282,11 @@ export type MutationCreateJobArgs = {
 
 export type MutationCreateProjectArgs = {
   data: ProjectCreateInput;
+};
+
+
+export type MutationCreateResumeArgs = {
+  data: ResumeCreateInput;
 };
 
 
@@ -2303,6 +2375,21 @@ export type MutationDeleteManyProjectsConnectionArgs = {
 };
 
 
+export type MutationDeleteManyResumesArgs = {
+  where?: InputMaybe<ResumeManyWhereInput>;
+};
+
+
+export type MutationDeleteManyResumesConnectionArgs = {
+  after?: InputMaybe<Scalars['ID']>;
+  before?: InputMaybe<Scalars['ID']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  skip?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<ResumeManyWhereInput>;
+};
+
+
 export type MutationDeleteManyWorkExperiencesArgs = {
   where?: InputMaybe<WorkExperienceManyWhereInput>;
 };
@@ -2320,6 +2407,11 @@ export type MutationDeleteManyWorkExperiencesConnectionArgs = {
 
 export type MutationDeleteProjectArgs = {
   where: ProjectWhereUniqueInput;
+};
+
+
+export type MutationDeleteResumeArgs = {
+  where: ResumeWhereUniqueInput;
 };
 
 
@@ -2461,6 +2553,24 @@ export type MutationPublishManyProjectsConnectionArgs = {
 };
 
 
+export type MutationPublishManyResumesArgs = {
+  to?: Array<Stage>;
+  where?: InputMaybe<ResumeManyWhereInput>;
+};
+
+
+export type MutationPublishManyResumesConnectionArgs = {
+  after?: InputMaybe<Scalars['ID']>;
+  before?: InputMaybe<Scalars['ID']>;
+  first?: InputMaybe<Scalars['Int']>;
+  from?: InputMaybe<Stage>;
+  last?: InputMaybe<Scalars['Int']>;
+  skip?: InputMaybe<Scalars['Int']>;
+  to?: Array<Stage>;
+  where?: InputMaybe<ResumeManyWhereInput>;
+};
+
+
 export type MutationPublishManyWorkExperiencesArgs = {
   locales?: InputMaybe<Array<Locale>>;
   publishBase?: InputMaybe<Scalars['Boolean']>;
@@ -2491,6 +2601,12 @@ export type MutationPublishProjectArgs = {
   to?: Array<Stage>;
   where: ProjectWhereUniqueInput;
   withDefaultLocale?: InputMaybe<Scalars['Boolean']>;
+};
+
+
+export type MutationPublishResumeArgs = {
+  to?: Array<Stage>;
+  where: ResumeWhereUniqueInput;
 };
 
 
@@ -2547,6 +2663,14 @@ export type MutationSchedulePublishProjectArgs = {
 };
 
 
+export type MutationSchedulePublishResumeArgs = {
+  releaseAt?: InputMaybe<Scalars['DateTime']>;
+  releaseId?: InputMaybe<Scalars['String']>;
+  to?: Array<Stage>;
+  where: ResumeWhereUniqueInput;
+};
+
+
 export type MutationSchedulePublishWorkExperienceArgs = {
   locales?: InputMaybe<Array<Locale>>;
   publishBase?: InputMaybe<Scalars['Boolean']>;
@@ -2595,6 +2719,14 @@ export type MutationScheduleUnpublishProjectArgs = {
   releaseId?: InputMaybe<Scalars['String']>;
   unpublishBase?: InputMaybe<Scalars['Boolean']>;
   where: ProjectWhereUniqueInput;
+};
+
+
+export type MutationScheduleUnpublishResumeArgs = {
+  from?: Array<Stage>;
+  releaseAt?: InputMaybe<Scalars['DateTime']>;
+  releaseId?: InputMaybe<Scalars['String']>;
+  where: ResumeWhereUniqueInput;
 };
 
 
@@ -2720,6 +2852,24 @@ export type MutationUnpublishManyProjectsConnectionArgs = {
 };
 
 
+export type MutationUnpublishManyResumesArgs = {
+  from?: Array<Stage>;
+  where?: InputMaybe<ResumeManyWhereInput>;
+};
+
+
+export type MutationUnpublishManyResumesConnectionArgs = {
+  after?: InputMaybe<Scalars['ID']>;
+  before?: InputMaybe<Scalars['ID']>;
+  first?: InputMaybe<Scalars['Int']>;
+  from?: Array<Stage>;
+  last?: InputMaybe<Scalars['Int']>;
+  skip?: InputMaybe<Scalars['Int']>;
+  stage?: InputMaybe<Stage>;
+  where?: InputMaybe<ResumeManyWhereInput>;
+};
+
+
 export type MutationUnpublishManyWorkExperiencesArgs = {
   from?: Array<Stage>;
   locales?: InputMaybe<Array<Locale>>;
@@ -2747,6 +2897,12 @@ export type MutationUnpublishProjectArgs = {
   locales?: InputMaybe<Array<Locale>>;
   unpublishBase?: InputMaybe<Scalars['Boolean']>;
   where: ProjectWhereUniqueInput;
+};
+
+
+export type MutationUnpublishResumeArgs = {
+  from?: Array<Stage>;
+  where: ResumeWhereUniqueInput;
 };
 
 
@@ -2844,6 +3000,23 @@ export type MutationUpdateManyProjectsConnectionArgs = {
 };
 
 
+export type MutationUpdateManyResumesArgs = {
+  data: ResumeUpdateManyInput;
+  where?: InputMaybe<ResumeManyWhereInput>;
+};
+
+
+export type MutationUpdateManyResumesConnectionArgs = {
+  after?: InputMaybe<Scalars['ID']>;
+  before?: InputMaybe<Scalars['ID']>;
+  data: ResumeUpdateManyInput;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  skip?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<ResumeManyWhereInput>;
+};
+
+
 export type MutationUpdateManyWorkExperiencesArgs = {
   data: WorkExperienceUpdateManyInput;
   where?: InputMaybe<WorkExperienceManyWhereInput>;
@@ -2864,6 +3037,12 @@ export type MutationUpdateManyWorkExperiencesConnectionArgs = {
 export type MutationUpdateProjectArgs = {
   data: ProjectUpdateInput;
   where: ProjectWhereUniqueInput;
+};
+
+
+export type MutationUpdateResumeArgs = {
+  data: ResumeUpdateInput;
+  where: ResumeWhereUniqueInput;
 };
 
 
@@ -2900,6 +3079,12 @@ export type MutationUpsertJobArgs = {
 export type MutationUpsertProjectArgs = {
   upsert: ProjectUpsertInput;
   where: ProjectWhereUniqueInput;
+};
+
+
+export type MutationUpsertResumeArgs = {
+  upsert: ResumeUpsertInput;
+  where: ResumeWhereUniqueInput;
 };
 
 
@@ -3651,6 +3836,14 @@ export type Query = {
   projects: Array<Project>;
   /** Retrieve multiple projects using the Relay connection interface */
   projectsConnection: ProjectConnection;
+  /** Retrieve a single resume */
+  resume?: Maybe<Resume>;
+  /** Retrieve document version */
+  resumeVersion?: Maybe<DocumentVersion>;
+  /** Retrieve multiple resumes */
+  resumes: Array<Resume>;
+  /** Retrieve multiple resumes using the Relay connection interface */
+  resumesConnection: ResumeConnection;
   /** Retrieve a single scheduledOperation */
   scheduledOperation?: Maybe<ScheduledOperation>;
   /** Retrieve multiple scheduledOperations */
@@ -3839,6 +4032,44 @@ export type QueryProjectsConnectionArgs = {
 };
 
 
+export type QueryResumeArgs = {
+  locales?: Array<Locale>;
+  stage?: Stage;
+  where: ResumeWhereUniqueInput;
+};
+
+
+export type QueryResumeVersionArgs = {
+  where: VersionWhereInput;
+};
+
+
+export type QueryResumesArgs = {
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  locales?: Array<Locale>;
+  orderBy?: InputMaybe<ResumeOrderByInput>;
+  skip?: InputMaybe<Scalars['Int']>;
+  stage?: Stage;
+  where?: InputMaybe<ResumeWhereInput>;
+};
+
+
+export type QueryResumesConnectionArgs = {
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  locales?: Array<Locale>;
+  orderBy?: InputMaybe<ResumeOrderByInput>;
+  skip?: InputMaybe<Scalars['Int']>;
+  stage?: Stage;
+  where?: InputMaybe<ResumeWhereInput>;
+};
+
+
 export type QueryScheduledOperationArgs = {
   locales?: Array<Locale>;
   stage?: Stage;
@@ -3992,6 +4223,405 @@ export type RgbaInput = {
   r: Scalars['RGBAHue'];
 };
 
+export type Resume = Node & {
+  __typename?: 'Resume';
+  /** The time the document was created */
+  createdAt: Scalars['DateTime'];
+  /** User that created this document */
+  createdBy?: Maybe<User>;
+  /** Get the document in other stages */
+  documentInStages: Array<Resume>;
+  file?: Maybe<Asset>;
+  /** List of Resume versions */
+  history: Array<Version>;
+  /** The unique identifier */
+  id: Scalars['ID'];
+  /** The time the document was published. Null on documents in draft stage. */
+  publishedAt?: Maybe<Scalars['DateTime']>;
+  /** User that last published this document */
+  publishedBy?: Maybe<User>;
+  scheduledIn: Array<ScheduledOperation>;
+  /** System stage field */
+  stage: Stage;
+  /** The time the document was updated */
+  updatedAt: Scalars['DateTime'];
+  /** User that last updated this document */
+  updatedBy?: Maybe<User>;
+};
+
+
+export type ResumeCreatedByArgs = {
+  forceParentLocale?: InputMaybe<Scalars['Boolean']>;
+  locales?: InputMaybe<Array<Locale>>;
+};
+
+
+export type ResumeDocumentInStagesArgs = {
+  includeCurrent?: Scalars['Boolean'];
+  inheritLocale?: Scalars['Boolean'];
+  stages?: Array<Stage>;
+};
+
+
+export type ResumeFileArgs = {
+  forceParentLocale?: InputMaybe<Scalars['Boolean']>;
+  locales?: InputMaybe<Array<Locale>>;
+};
+
+
+export type ResumeHistoryArgs = {
+  limit?: Scalars['Int'];
+  skip?: Scalars['Int'];
+  stageOverride?: InputMaybe<Stage>;
+};
+
+
+export type ResumePublishedByArgs = {
+  forceParentLocale?: InputMaybe<Scalars['Boolean']>;
+  locales?: InputMaybe<Array<Locale>>;
+};
+
+
+export type ResumeScheduledInArgs = {
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  forceParentLocale?: InputMaybe<Scalars['Boolean']>;
+  last?: InputMaybe<Scalars['Int']>;
+  locales?: InputMaybe<Array<Locale>>;
+  skip?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<ScheduledOperationWhereInput>;
+};
+
+
+export type ResumeUpdatedByArgs = {
+  forceParentLocale?: InputMaybe<Scalars['Boolean']>;
+  locales?: InputMaybe<Array<Locale>>;
+};
+
+export type ResumeConnectInput = {
+  /** Allow to specify document position in list of connected documents, will default to appending at end of list */
+  position?: InputMaybe<ConnectPositionInput>;
+  /** Document to connect */
+  where: ResumeWhereUniqueInput;
+};
+
+/** A connection to a list of items. */
+export type ResumeConnection = {
+  __typename?: 'ResumeConnection';
+  aggregate: Aggregate;
+  /** A list of edges. */
+  edges: Array<ResumeEdge>;
+  /** Information to aid in pagination. */
+  pageInfo: PageInfo;
+};
+
+export type ResumeCreateInput = {
+  createdAt?: InputMaybe<Scalars['DateTime']>;
+  file?: InputMaybe<AssetCreateOneInlineInput>;
+  updatedAt?: InputMaybe<Scalars['DateTime']>;
+};
+
+export type ResumeCreateManyInlineInput = {
+  /** Connect multiple existing Resume documents */
+  connect?: InputMaybe<Array<ResumeWhereUniqueInput>>;
+  /** Create and connect multiple existing Resume documents */
+  create?: InputMaybe<Array<ResumeCreateInput>>;
+};
+
+export type ResumeCreateOneInlineInput = {
+  /** Connect one existing Resume document */
+  connect?: InputMaybe<ResumeWhereUniqueInput>;
+  /** Create and connect one Resume document */
+  create?: InputMaybe<ResumeCreateInput>;
+};
+
+/** An edge in a connection. */
+export type ResumeEdge = {
+  __typename?: 'ResumeEdge';
+  /** A cursor for use in pagination. */
+  cursor: Scalars['String'];
+  /** The item at the end of the edge. */
+  node: Resume;
+};
+
+/** Identifies documents */
+export type ResumeManyWhereInput = {
+  /** Logical AND on all given filters. */
+  AND?: InputMaybe<Array<ResumeWhereInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: InputMaybe<Array<ResumeWhereInput>>;
+  /** Logical OR on all given filters. */
+  OR?: InputMaybe<Array<ResumeWhereInput>>;
+  /** Contains search across all appropriate fields. */
+  _search?: InputMaybe<Scalars['String']>;
+  createdAt?: InputMaybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  createdAt_gt?: InputMaybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  createdAt_gte?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  createdAt_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']>>>;
+  /** All values less than the given value. */
+  createdAt_lt?: InputMaybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  createdAt_lte?: InputMaybe<Scalars['DateTime']>;
+  /** Any other value that exists and is not equal to the given value. */
+  createdAt_not?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are not contained in given list. */
+  createdAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']>>>;
+  createdBy?: InputMaybe<UserWhereInput>;
+  documentInStages_every?: InputMaybe<ResumeWhereStageInput>;
+  documentInStages_none?: InputMaybe<ResumeWhereStageInput>;
+  documentInStages_some?: InputMaybe<ResumeWhereStageInput>;
+  file?: InputMaybe<AssetWhereInput>;
+  id?: InputMaybe<Scalars['ID']>;
+  /** All values containing the given string. */
+  id_contains?: InputMaybe<Scalars['ID']>;
+  /** All values ending with the given string. */
+  id_ends_with?: InputMaybe<Scalars['ID']>;
+  /** All values that are contained in given list. */
+  id_in?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  id_not?: InputMaybe<Scalars['ID']>;
+  /** All values not containing the given string. */
+  id_not_contains?: InputMaybe<Scalars['ID']>;
+  /** All values not ending with the given string */
+  id_not_ends_with?: InputMaybe<Scalars['ID']>;
+  /** All values that are not contained in given list. */
+  id_not_in?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
+  /** All values not starting with the given string. */
+  id_not_starts_with?: InputMaybe<Scalars['ID']>;
+  /** All values starting with the given string. */
+  id_starts_with?: InputMaybe<Scalars['ID']>;
+  publishedAt?: InputMaybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  publishedAt_gt?: InputMaybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  publishedAt_gte?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  publishedAt_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']>>>;
+  /** All values less than the given value. */
+  publishedAt_lt?: InputMaybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  publishedAt_lte?: InputMaybe<Scalars['DateTime']>;
+  /** Any other value that exists and is not equal to the given value. */
+  publishedAt_not?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are not contained in given list. */
+  publishedAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']>>>;
+  publishedBy?: InputMaybe<UserWhereInput>;
+  scheduledIn_every?: InputMaybe<ScheduledOperationWhereInput>;
+  scheduledIn_none?: InputMaybe<ScheduledOperationWhereInput>;
+  scheduledIn_some?: InputMaybe<ScheduledOperationWhereInput>;
+  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  updatedAt_gt?: InputMaybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  updatedAt_gte?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  updatedAt_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']>>>;
+  /** All values less than the given value. */
+  updatedAt_lt?: InputMaybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  updatedAt_lte?: InputMaybe<Scalars['DateTime']>;
+  /** Any other value that exists and is not equal to the given value. */
+  updatedAt_not?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are not contained in given list. */
+  updatedAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']>>>;
+  updatedBy?: InputMaybe<UserWhereInput>;
+};
+
+export enum ResumeOrderByInput {
+  CreatedAtAsc = 'createdAt_ASC',
+  CreatedAtDesc = 'createdAt_DESC',
+  IdAsc = 'id_ASC',
+  IdDesc = 'id_DESC',
+  PublishedAtAsc = 'publishedAt_ASC',
+  PublishedAtDesc = 'publishedAt_DESC',
+  UpdatedAtAsc = 'updatedAt_ASC',
+  UpdatedAtDesc = 'updatedAt_DESC'
+}
+
+export type ResumeUpdateInput = {
+  file?: InputMaybe<AssetUpdateOneInlineInput>;
+};
+
+export type ResumeUpdateManyInlineInput = {
+  /** Connect multiple existing Resume documents */
+  connect?: InputMaybe<Array<ResumeConnectInput>>;
+  /** Create and connect multiple Resume documents */
+  create?: InputMaybe<Array<ResumeCreateInput>>;
+  /** Delete multiple Resume documents */
+  delete?: InputMaybe<Array<ResumeWhereUniqueInput>>;
+  /** Disconnect multiple Resume documents */
+  disconnect?: InputMaybe<Array<ResumeWhereUniqueInput>>;
+  /** Override currently-connected documents with multiple existing Resume documents */
+  set?: InputMaybe<Array<ResumeWhereUniqueInput>>;
+  /** Update multiple Resume documents */
+  update?: InputMaybe<Array<ResumeUpdateWithNestedWhereUniqueInput>>;
+  /** Upsert multiple Resume documents */
+  upsert?: InputMaybe<Array<ResumeUpsertWithNestedWhereUniqueInput>>;
+};
+
+export type ResumeUpdateManyInput = {
+  /** No fields in updateMany data input */
+  _?: InputMaybe<Scalars['String']>;
+};
+
+export type ResumeUpdateManyWithNestedWhereInput = {
+  /** Update many input */
+  data: ResumeUpdateManyInput;
+  /** Document search */
+  where: ResumeWhereInput;
+};
+
+export type ResumeUpdateOneInlineInput = {
+  /** Connect existing Resume document */
+  connect?: InputMaybe<ResumeWhereUniqueInput>;
+  /** Create and connect one Resume document */
+  create?: InputMaybe<ResumeCreateInput>;
+  /** Delete currently connected Resume document */
+  delete?: InputMaybe<Scalars['Boolean']>;
+  /** Disconnect currently connected Resume document */
+  disconnect?: InputMaybe<Scalars['Boolean']>;
+  /** Update single Resume document */
+  update?: InputMaybe<ResumeUpdateWithNestedWhereUniqueInput>;
+  /** Upsert single Resume document */
+  upsert?: InputMaybe<ResumeUpsertWithNestedWhereUniqueInput>;
+};
+
+export type ResumeUpdateWithNestedWhereUniqueInput = {
+  /** Document to update */
+  data: ResumeUpdateInput;
+  /** Unique document search */
+  where: ResumeWhereUniqueInput;
+};
+
+export type ResumeUpsertInput = {
+  /** Create document if it didn't exist */
+  create: ResumeCreateInput;
+  /** Update document if it exists */
+  update: ResumeUpdateInput;
+};
+
+export type ResumeUpsertWithNestedWhereUniqueInput = {
+  /** Upsert data */
+  data: ResumeUpsertInput;
+  /** Unique document search */
+  where: ResumeWhereUniqueInput;
+};
+
+/** This contains a set of filters that can be used to compare values internally */
+export type ResumeWhereComparatorInput = {
+  /** This field can be used to request to check if the entry is outdated by internal comparison */
+  outdated_to?: InputMaybe<Scalars['Boolean']>;
+};
+
+/** Identifies documents */
+export type ResumeWhereInput = {
+  /** Logical AND on all given filters. */
+  AND?: InputMaybe<Array<ResumeWhereInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: InputMaybe<Array<ResumeWhereInput>>;
+  /** Logical OR on all given filters. */
+  OR?: InputMaybe<Array<ResumeWhereInput>>;
+  /** Contains search across all appropriate fields. */
+  _search?: InputMaybe<Scalars['String']>;
+  createdAt?: InputMaybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  createdAt_gt?: InputMaybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  createdAt_gte?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  createdAt_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']>>>;
+  /** All values less than the given value. */
+  createdAt_lt?: InputMaybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  createdAt_lte?: InputMaybe<Scalars['DateTime']>;
+  /** Any other value that exists and is not equal to the given value. */
+  createdAt_not?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are not contained in given list. */
+  createdAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']>>>;
+  createdBy?: InputMaybe<UserWhereInput>;
+  documentInStages_every?: InputMaybe<ResumeWhereStageInput>;
+  documentInStages_none?: InputMaybe<ResumeWhereStageInput>;
+  documentInStages_some?: InputMaybe<ResumeWhereStageInput>;
+  file?: InputMaybe<AssetWhereInput>;
+  id?: InputMaybe<Scalars['ID']>;
+  /** All values containing the given string. */
+  id_contains?: InputMaybe<Scalars['ID']>;
+  /** All values ending with the given string. */
+  id_ends_with?: InputMaybe<Scalars['ID']>;
+  /** All values that are contained in given list. */
+  id_in?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  id_not?: InputMaybe<Scalars['ID']>;
+  /** All values not containing the given string. */
+  id_not_contains?: InputMaybe<Scalars['ID']>;
+  /** All values not ending with the given string */
+  id_not_ends_with?: InputMaybe<Scalars['ID']>;
+  /** All values that are not contained in given list. */
+  id_not_in?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
+  /** All values not starting with the given string. */
+  id_not_starts_with?: InputMaybe<Scalars['ID']>;
+  /** All values starting with the given string. */
+  id_starts_with?: InputMaybe<Scalars['ID']>;
+  publishedAt?: InputMaybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  publishedAt_gt?: InputMaybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  publishedAt_gte?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  publishedAt_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']>>>;
+  /** All values less than the given value. */
+  publishedAt_lt?: InputMaybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  publishedAt_lte?: InputMaybe<Scalars['DateTime']>;
+  /** Any other value that exists and is not equal to the given value. */
+  publishedAt_not?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are not contained in given list. */
+  publishedAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']>>>;
+  publishedBy?: InputMaybe<UserWhereInput>;
+  scheduledIn_every?: InputMaybe<ScheduledOperationWhereInput>;
+  scheduledIn_none?: InputMaybe<ScheduledOperationWhereInput>;
+  scheduledIn_some?: InputMaybe<ScheduledOperationWhereInput>;
+  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  updatedAt_gt?: InputMaybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  updatedAt_gte?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  updatedAt_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']>>>;
+  /** All values less than the given value. */
+  updatedAt_lt?: InputMaybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  updatedAt_lte?: InputMaybe<Scalars['DateTime']>;
+  /** Any other value that exists and is not equal to the given value. */
+  updatedAt_not?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are not contained in given list. */
+  updatedAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']>>>;
+  updatedBy?: InputMaybe<UserWhereInput>;
+};
+
+/** The document in stages filter allows specifying a stage entry to cross compare the same document between different stages */
+export type ResumeWhereStageInput = {
+  /** Logical AND on all given filters. */
+  AND?: InputMaybe<Array<ResumeWhereStageInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: InputMaybe<Array<ResumeWhereStageInput>>;
+  /** Logical OR on all given filters. */
+  OR?: InputMaybe<Array<ResumeWhereStageInput>>;
+  /** This field contains fields which can be set as true or false to specify an internal comparison */
+  compareWithParent?: InputMaybe<ResumeWhereComparatorInput>;
+  /** Specify the stage to compare with */
+  stage?: InputMaybe<Stage>;
+};
+
+/** References Resume record uniquely */
+export type ResumeWhereUniqueInput = {
+  id?: InputMaybe<Scalars['ID']>;
+};
+
 /** Custom type representing a rich text value comprising of raw rich text ast, html, markdown and text values */
 export type RichText = {
   __typename?: 'RichText';
@@ -4087,7 +4717,7 @@ export type ScheduledOperationUpdatedByArgs = {
   locales?: InputMaybe<Array<Locale>>;
 };
 
-export type ScheduledOperationAffectedDocument = AboutMe | Asset | Job | Project | WorkExperience;
+export type ScheduledOperationAffectedDocument = AboutMe | Asset | Job | Project | Resume | WorkExperience;
 
 export type ScheduledOperationConnectInput = {
   /** Allow to specify document position in list of connected documents, will default to appending at end of list */
@@ -6173,6 +6803,13 @@ export type GetProjectsWithPaginationAndFilterQueryVariables = Exact<{
 
 export type GetProjectsWithPaginationAndFilterQuery = { __typename?: 'Query', projects: Array<{ __typename?: 'Project', id: string, title: string, category: Categories, description: string, webUrl?: string | null, repoUrl: string, tags: Array<Tags>, thumbnail?: { __typename?: 'Asset', url: string } | null }>, projectsConnection: { __typename?: 'ProjectConnection', pageInfo: { __typename?: 'PageInfo', pageSize?: number | null } } };
 
+export type GetResumeQueryVariables = Exact<{
+  locale: Array<Locale> | Locale;
+}>;
+
+
+export type GetResumeQuery = { __typename?: 'Query', resumes: Array<{ __typename?: 'Resume', file?: { __typename?: 'Asset', url: string } | null }> };
+
 export type GetWorkExperiencesQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -6295,6 +6932,56 @@ export function useGetProjectsWithPaginationAndFilterLazyQuery(baseOptions?: Apo
 export type GetProjectsWithPaginationAndFilterQueryHookResult = ReturnType<typeof useGetProjectsWithPaginationAndFilterQuery>;
 export type GetProjectsWithPaginationAndFilterLazyQueryHookResult = ReturnType<typeof useGetProjectsWithPaginationAndFilterLazyQuery>;
 export type GetProjectsWithPaginationAndFilterQueryResult = Apollo.QueryResult<GetProjectsWithPaginationAndFilterQuery, GetProjectsWithPaginationAndFilterQueryVariables>;
+export const GetResumeDocument = gql`
+    query GetResume($locale: [Locale!]!) {
+  resumes(locales: $locale) {
+    file {
+      url
+    }
+  }
+}
+    `;
+export type GetResumeProps<TChildProps = {}, TDataName extends string = 'data'> = {
+      [key in TDataName]: ApolloReactHoc.DataValue<GetResumeQuery, GetResumeQueryVariables>
+    } & TChildProps;
+export function withGetResume<TProps, TChildProps = {}, TDataName extends string = 'data'>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  GetResumeQuery,
+  GetResumeQueryVariables,
+  GetResumeProps<TChildProps, TDataName>>) {
+    return ApolloReactHoc.withQuery<TProps, GetResumeQuery, GetResumeQueryVariables, GetResumeProps<TChildProps, TDataName>>(GetResumeDocument, {
+      alias: 'getResume',
+      ...operationOptions
+    });
+};
+
+/**
+ * __useGetResumeQuery__
+ *
+ * To run a query within a React component, call `useGetResumeQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetResumeQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetResumeQuery({
+ *   variables: {
+ *      locale: // value for 'locale'
+ *   },
+ * });
+ */
+export function useGetResumeQuery(baseOptions: Apollo.QueryHookOptions<GetResumeQuery, GetResumeQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetResumeQuery, GetResumeQueryVariables>(GetResumeDocument, options);
+      }
+export function useGetResumeLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetResumeQuery, GetResumeQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetResumeQuery, GetResumeQueryVariables>(GetResumeDocument, options);
+        }
+export type GetResumeQueryHookResult = ReturnType<typeof useGetResumeQuery>;
+export type GetResumeLazyQueryHookResult = ReturnType<typeof useGetResumeLazyQuery>;
+export type GetResumeQueryResult = Apollo.QueryResult<GetResumeQuery, GetResumeQueryVariables>;
 export const GetWorkExperiencesDocument = gql`
     query GetWorkExperiences {
   workExperiences {
