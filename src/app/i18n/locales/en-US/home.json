@@ -4,5 +4,20 @@
   "contactMe": "Contact me",
   "description": "Currently located in Brazil. I’m a Computer Engineering student in my last year of college and also a web developer passionate about building websites and apps.",
   "personal_project": "Personal Project",
-  "event": "Event"
+  "event": "Event",
+  "about": "About",
+  "skills": "Skills",
+  "projects": "Projects",
+  "experience": "Experience",
+  "contact": "Contact",
+  "resume": "Resume",
+  "aboutMe": "About me",
+  "skillsAndTools": "Skills and Tools",
+  "myProjects": "My Projects",
+  "workExperience": "Work Experience",
+  "personalProjectsAndChallenges": "Personal projects & challenges",
+  "coursesAndEvents": "Courses & events",
+  "letsGetInTouch": "Let's get in touch",
+  "gotAProposal": "Got a question or proposal? Go ahead, I’ll try my best to get back to you!",
+  "now": "Now"
 }

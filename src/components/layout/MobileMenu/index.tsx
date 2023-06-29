@@ -5,6 +5,8 @@ import { motion } from "framer-motion";
 
 import { Button } from "@/components/Button";
 import * as Variants from "./animations";
+import { useLanguage } from "@/hooks/useLanguage";
+import { useTranslation } from "@/app/i18n/client";
 
 interface MobileMenuProps {
   onClose: () => void;
@@ -13,11 +15,11 @@ interface MobileMenuProps {
 }
 
 const WEBSITE_SECTIONS = [
-  { label: "About me", to: "about" },
-  { label: "Skills and tools", to: "skills" },
-  { label: "My Projects", to: "projects" },
-  { label: "Work Experience", to: "experience" },
-  { label: "Contact", to: "contact" },
+  { label: "aboutMe", to: "about" },
+  { label: "skillsAndTools", to: "skills" },
+  { label: "myProjects", to: "projects" },
+  { label: "workExperience", to: "experience" },
+  { label: "contact", to: "contact" },
 ];
 
 export function MobileMenu({
@@ -25,6 +27,9 @@ export function MobileMenu({
   setActiveSection,
   resumeUrl,
 }: MobileMenuProps) {
+  const { lang } = useLanguage();
+  const { t } = useTranslation(lang, "home");
+
   const handleLinkClick = (to: string) => {
     const index = WEBSITE_SECTIONS.findIndex((item) => item.to === to);
 
@@ -74,14 +79,16 @@ export function MobileMenu({
                 className="text-white focus:text-green-400 focus:outline-none"
               >
                 <span className="text-green-400 font-bold">{i + 1}.</span>{" "}
-                {item.label}
+                {t(item.label)}
                 <span className="text-green-400 font-bold">.</span>
               </Link>
             </li>
           ))}
         </ul>
       </nav>
-      <Button onClick={handleOpenResumeFile} className="self-center">Resume</Button>
+      <Button onClick={handleOpenResumeFile} className="self-center">
+        Resume
+      </Button>
       <footer className="flex gap-4 bg-gray-900 p-4 w-full mt-4 self-center">
         <a href="https://github.com/avnerjose" target="_blank">
           <GitHub className="text-gray-500" size={20} />

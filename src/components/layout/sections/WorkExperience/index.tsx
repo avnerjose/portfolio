@@ -6,10 +6,16 @@ import { WorkExperienceItem } from "@/components/WorkExperienceItem";
 import { useGetWorkExperiencesQuery } from "@/graphql/generated";
 import * as Variants from "./animations";
 import { useLanguage } from "@/hooks/useLanguage";
+import { useTranslation } from "@/app/i18n/client";
 
 export function WorkExperienceSection() {
-  const { lang } = useLanguage();
-  const { data } = useGetWorkExperiencesQuery();
+  const { lang, locale } = useLanguage();
+  const { t } = useTranslation(lang, "home");
+  const { data } = useGetWorkExperiencesQuery({
+    variables: {
+      locale: [locale],
+    },
+  });
   const sectionRef = useRef(null);
 
   return (
@@ -21,9 +27,9 @@ export function WorkExperienceSection() {
           whileInView="show"
           viewport={{ once: true }}
           number={4}
-          label="Work Experience"
+          label={t("workExperience")}
         />
-        <div className="h-8"/>
+        <div className="h-8" />
         {data?.workExperiences.map((workExperience, i) => (
           <WorkExperienceItem
             key={workExperience.id}

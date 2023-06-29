@@ -8,8 +8,12 @@ import { Categories } from "@/graphql/generated";
 import { NumberedHeading } from "@/components/NumberedHeading";
 import * as Variants from "./animations";
 import { ProjectTab } from "./ProjectTab";
+import { useLanguage } from "@/hooks/useLanguage";
+import { useTranslation } from "@/app/i18n/client";
 
 export function MyProjectsSection() {
+  const { lang } = useLanguage();
+  const { t } = useTranslation(lang, "home");
   const sectionRef = useRef(null);
   const [selectedTab, setSelectedTab] = useState("tab1");
 
@@ -19,7 +23,7 @@ export function MyProjectsSection() {
         <NumberedHeading
           variants={Variants.itemFromLeft}
           number={3}
-          label="My Projects"
+          label={t("myProjects")}
           initial="hidden"
           whileInView="show"
           viewport={{
@@ -41,13 +45,13 @@ export function MyProjectsSection() {
               className="flex justify-center items-center text-center bg-transparent text-white [overflow-wrap:break-word] p-[2px] pb-4 w-full cursor-pointer data-[state='active']:border-b data-[state='active']:border-green-400"
               value="tab1"
             >
-              Personal projects & challenges
+              {t("personalProjectsAndChallenges")}
             </Tabs.Trigger>
             <Tabs.Trigger
               className="flex justify-center items-center text-center bg-transparent text-white [overflow-wrap:break-word] p-[2px] pb-4 w-full cursor-pointer data-[state='active']:border-b data-[state='active']:border-green-400"
               value="tab2"
             >
-              Courses & events
+              {t("coursesAndEvents")}
             </Tabs.Trigger>
           </Tabs.List>
           <ProjectTab

@@ -6798,6 +6798,7 @@ export type GetProjectsWithPaginationAndFilterQueryVariables = Exact<{
   projectsPerPage?: InputMaybe<Scalars['Int']>;
   skip?: InputMaybe<Scalars['Int']>;
   categories?: InputMaybe<Array<InputMaybe<Categories>> | InputMaybe<Categories>>;
+  locale: Array<Locale> | Locale;
 }>;
 
 
@@ -6810,7 +6811,9 @@ export type GetResumeQueryVariables = Exact<{
 
 export type GetResumeQuery = { __typename?: 'Query', resumes: Array<{ __typename?: 'Resume', file?: { __typename?: 'Asset', url: string } | null }> };
 
-export type GetWorkExperiencesQueryVariables = Exact<{ [key: string]: never; }>;
+export type GetWorkExperiencesQueryVariables = Exact<{
+  locale: Array<Locale> | Locale;
+}>;
 
 
 export type GetWorkExperiencesQuery = { __typename?: 'Query', workExperiences: Array<{ __typename?: 'WorkExperience', id: string, title: string, jobs: Array<{ __typename?: 'Job', name: string, startDate: any, endDate?: any | null, description: Array<string> }> }> };
@@ -6865,11 +6868,12 @@ export type GetAboutMeQueryHookResult = ReturnType<typeof useGetAboutMeQuery>;
 export type GetAboutMeLazyQueryHookResult = ReturnType<typeof useGetAboutMeLazyQuery>;
 export type GetAboutMeQueryResult = Apollo.QueryResult<GetAboutMeQuery, GetAboutMeQueryVariables>;
 export const GetProjectsWithPaginationAndFilterDocument = gql`
-    query GetProjectsWithPaginationAndFilter($projectsPerPage: Int = 3, $skip: Int = 0, $categories: [Categories] = []) {
+    query GetProjectsWithPaginationAndFilter($projectsPerPage: Int = 3, $skip: Int = 0, $categories: [Categories] = [], $locale: [Locale!]!) {
   projects(
     first: $projectsPerPage
     skip: $skip
     where: {category_in: $categories}
+    locales: $locale
   ) {
     id
     title
@@ -6918,10 +6922,11 @@ export function withGetProjectsWithPaginationAndFilter<TProps, TChildProps = {},
  *      projectsPerPage: // value for 'projectsPerPage'
  *      skip: // value for 'skip'
  *      categories: // value for 'categories'
+ *      locale: // value for 'locale'
  *   },
  * });
  */
-export function useGetProjectsWithPaginationAndFilterQuery(baseOptions?: Apollo.QueryHookOptions<GetProjectsWithPaginationAndFilterQuery, GetProjectsWithPaginationAndFilterQueryVariables>) {
+export function useGetProjectsWithPaginationAndFilterQuery(baseOptions: Apollo.QueryHookOptions<GetProjectsWithPaginationAndFilterQuery, GetProjectsWithPaginationAndFilterQueryVariables>) {
         const options = {...defaultOptions, ...baseOptions}
         return Apollo.useQuery<GetProjectsWithPaginationAndFilterQuery, GetProjectsWithPaginationAndFilterQueryVariables>(GetProjectsWithPaginationAndFilterDocument, options);
       }
@@ -6983,8 +6988,8 @@ export type GetResumeQueryHookResult = ReturnType<typeof useGetResumeQuery>;
 export type GetResumeLazyQueryHookResult = ReturnType<typeof useGetResumeLazyQuery>;
 export type GetResumeQueryResult = Apollo.QueryResult<GetResumeQuery, GetResumeQueryVariables>;
 export const GetWorkExperiencesDocument = gql`
-    query GetWorkExperiences {
-  workExperiences {
+    query GetWorkExperiences($locale: [Locale!]!) {
+  workExperiences(locales: $locale) {
     id
     title
     jobs {
@@ -7024,10 +7029,11 @@ export function withGetWorkExperiences<TProps, TChildProps = {}, TDataName exten
  * @example
  * const { data, loading, error } = useGetWorkExperiencesQuery({
  *   variables: {
+ *      locale: // value for 'locale'
  *   },
  * });
  */
-export function useGetWorkExperiencesQuery(baseOptions?: Apollo.QueryHookOptions<GetWorkExperiencesQuery, GetWorkExperiencesQueryVariables>) {
+export function useGetWorkExperiencesQuery(baseOptions: Apollo.QueryHookOptions<GetWorkExperiencesQuery, GetWorkExperiencesQueryVariables>) {
         const options = {...defaultOptions, ...baseOptions}
         return Apollo.useQuery<GetWorkExperiencesQuery, GetWorkExperiencesQueryVariables>(GetWorkExperiencesDocument, options);
       }

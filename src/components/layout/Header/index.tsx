@@ -13,13 +13,14 @@ import { useLanguage } from "@/hooks/useLanguage";
 import { useGetResumeQuery } from "@/graphql/generated";
 import * as Variants from "./animations";
 import useScrollDirection from "@/hooks/useScrollDirection";
+import { useTranslation } from "@/app/i18n/client";
 
 const WEBSITE_SECTIONS = [
-  { label: "About", to: "about" },
-  { label: "Skills", to: "skills" },
-  { label: "Projects", to: "projects" },
-  { label: "Experience", to: "experience" },
-  { label: "Contact", to: "contact" },
+  { to: "about" },
+  { to: "skills" },
+  { to: "projects" },
+  { to: "experience" },
+  { to: "contact" },
 ];
 
 export function Header() {
@@ -27,7 +28,7 @@ export function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState(-1);
   const [hideHeader, setHideHeader] = useState(false);
-  const { locale } = useLanguage();
+  const { locale, lang } = useLanguage();
   const { data } = useGetResumeQuery({
     variables: {
       locale: [locale],
@@ -35,6 +36,7 @@ export function Header() {
   });
   const resumeUrl = data?.resumes[0].file?.url;
   const scrollDirection = useScrollDirection();
+  const { t } = useTranslation(lang, "home");
 
   const isMobile = useMediaQuery({
     query: "(max-width: 768px)",
@@ -126,7 +128,7 @@ export function Header() {
                     onSetActive={handleSetActive}
                     onSetInactive={handleSetInactive}
                   >
-                    {item.label}
+                    {t(item.to)}
                   </Link>
                 </motion.li>
               ))}
@@ -138,7 +140,7 @@ export function Header() {
               animate="show"
               size="small"
             >
-              Resume
+              {t("resume")}
             </Button>
           </nav>
         )}

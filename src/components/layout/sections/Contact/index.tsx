@@ -13,6 +13,8 @@ import { Paragraph } from "@/components/Paragraph";
 import particlesConfig from "./particles.json";
 import * as Variants from "./animations";
 import { ZodFormattedError, z } from "zod";
+import { useLanguage } from "@/hooks/useLanguage";
+import { useTranslation } from "@/app/i18n/client";
 
 const contactFormSchema = z.object({
   email: z.string().email("Invalid e-mail").nonempty("E-mail is required"),
@@ -21,6 +23,8 @@ const contactFormSchema = z.object({
 });
 
 export function ContactSection() {
+  const { lang } = useLanguage();
+  const { t } = useTranslation(lang, "home");
   const sectionRef = useRef(null);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -99,18 +103,17 @@ export function ContactSection() {
         <NumberedHeading
           variants={Variants.itemFromLeft}
           number={5}
-          label="Contact"
+          label={t("contact")}
         />
         <motion.div className="flex gap-4 p-4 rounded-lg  flex-col items-center justify-center m-auto w-full md:w-[70%] z-[1]">
           <motion.h2
             className="font-bold text-4xl md:text-6xl"
             variants={Variants.itemFromBottom}
           >
-            Let's get in touch
+            {t("letsGetInTouch")}
           </motion.h2>
           <Paragraph variants={Variants.itemFromBottom}>
-            Got a question or proposal? Go ahead, I’ll try my best to get back
-            to you!
+            {t("gotAProposal")}
           </Paragraph>
           <form
             className="flex p-4 flex-col w-full gap-4 items-center max-w-[500px]"
@@ -158,7 +161,7 @@ export function ContactSection() {
               errors={errors}
             />
             <Button type="submit" variants={Variants.itemFromBottom}>
-              Contact me
+              {t("contactMe")}
             </Button>
             <ValidationError errors={state.errors} />
           </form>

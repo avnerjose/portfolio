@@ -5,6 +5,8 @@ import Carousel from "react-grid-carousel";
 import { SkillItem } from "@/components/SkillItem";
 import { NumberedHeading } from "@/components/NumberedHeading";
 import * as Variants from "./animations";
+import { useLanguage } from "@/hooks/useLanguage";
+import { useTranslation } from "@/app/i18n/client";
 
 const SKILLS_AND_TOOLS = [
   {
@@ -51,6 +53,8 @@ const SKILLS_AND_TOOLS = [
 
 export function SkillsAndToolsSection() {
   const sectionRef = useRef(null);
+  const { lang } = useLanguage();
+  const { t } = useTranslation(lang, "home");
 
   return (
     <section id="skills" ref={sectionRef}>
@@ -63,7 +67,7 @@ export function SkillsAndToolsSection() {
             once: true,
           }}
           number={2}
-          label="Skills and tools"
+          label={t("skillsAndTools")}
         />
 
         <Carousel

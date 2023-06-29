@@ -2,11 +2,13 @@ query GetProjectsWithPaginationAndFilter(
   $projectsPerPage: Int = 3
   $skip: Int = 0
   $categories: [Categories] = []
+  $locale: [Locale!]!
 ) {
   projects(
     first: $projectsPerPage
     skip: $skip
     where: { category_in: $categories }
+    locales: $locale
   ) {
     id
     title

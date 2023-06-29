@@ -6,5 +6,8 @@ export const formatDate = (date: Date, locale: string) => {
 
   const formattedDate = date.toLocaleString(locale, formatOptions);
 
-  return formattedDate.split(" ").join("/");
+  return formattedDate
+    .split(" ")
+    .filter((item) => item !== "de")
+    .join("/");
 };

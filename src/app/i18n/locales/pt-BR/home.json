@@ -4,5 +4,20 @@
   "contactMe": "Entre em contato",
   "description": "Sou um estudante de Engenharia da computação em meu último ano de faculdade e também um web developer apaixonado em construir website e aplicativos.",
   "personal_project": "Projeto pessoal",
-  "event": "Evento"
+  "event": "Evento",
+  "about": "Sobre",
+  "skills": "Habilidades",
+  "projects": "Projetos",
+  "experience": "Experiência",
+  "contact": "Contato",
+  "resume": "Currículo",
+  "aboutMe": "Sobre mim",
+  "skillsAndTools": "Habilidades e Ferramentas",
+  "myProjects": "Meus Projetos",
+  "workExperience": "Experiências de Trabalho",
+  "personalProjectsAndChallenges": "Projetos pessoais & desafios",
+  "coursesAndEvents": "Cursos & eventos",
+  "letsGetInTouch": "Entre em contato comigo",
+  "gotAProposal": "Tem uma pergunta ou proposta? Vá em frente, tentarei meu melhor para te responder.",
+  "now": "Agora"
 }

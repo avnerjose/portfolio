@@ -9,9 +9,11 @@ import * as Variants from "./animation";
 import { Locale, useGetAboutMeQuery } from "@/graphql/generated";
 import { AnimatedAvatarShapes } from "@/components/AnimatedAvatarShapes";
 import { useLanguage } from "@/hooks/useLanguage";
+import { useTranslation } from "@/app/i18n/client";
 
 export function AboutMeSection() {
-  const { locale } = useLanguage();
+  const { locale, lang } = useLanguage();
+  const { t } = useTranslation(lang, "home");
   const { data } = useGetAboutMeQuery({
     variables: {
       locale: [locale],
@@ -36,7 +38,7 @@ export function AboutMeSection() {
             <NumberedHeading
               variants={Variants.itemFromLeft}
               number={1}
-              label="About me"
+              label={t("aboutMe")}
             />
           </div>
           {data?.aboutMes[0].content.map((item, i) => (

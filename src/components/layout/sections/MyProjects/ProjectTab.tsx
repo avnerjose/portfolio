@@ -10,7 +10,7 @@ import * as Variants from "./animations";
 import { useEffect, useMemo, useState } from "react";
 import { Pagination } from "@/components/Pagination";
 import * as Tabs from "@radix-ui/react-tabs";
-
+import { useLanguage } from "@/hooks/useLanguage";
 
 interface ProjectTabProps {
   tabValue: string;
@@ -25,18 +25,20 @@ export function ProjectTab({
 }: ProjectTabProps) {
   const [currentPage, setCurrentPage] = useState(1);
   const projectsPerPage = 3;
+  const { locale } = useLanguage();
   const skip = useMemo(() => currentPage * projectsPerPage - projectsPerPage, [
     currentPage,
     projectsPerPage,
   ]);
   const [
     getProjects,
-    { loading, data },
+    { data },
   ] = useGetProjectsWithPaginationAndFilterLazyQuery({
     variables: {
       categories,
       projectsPerPage,
       skip,
+      locale: [locale],
     },
   });
   const mappedData = ProjectMapper.getProjectsWithPaginationAndFilterQuery(
@@ -67,7 +69,10 @@ export function ProjectTab({
   }, [categories, projectsPerPage, skip]);
 
   return (
-    <Tabs.Content className="flex flex-col overflow-hidden data-[state=active]:py-8" value={tabValue}>
+    <Tabs.Content
+      className="flex flex-col overflow-hidden data-[state=active]:py-8"
+      value={tabValue}
+    >
       {projectsList}
       <Pagination
         currentPage={currentPage}

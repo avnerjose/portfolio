@@ -1,5 +1,5 @@
-query GetWorkExperiences {
-  workExperiences {
+query GetWorkExperiences($locale: [Locale!]!) {
+  workExperiences(locales: $locale) {
     id
     title
     jobs {

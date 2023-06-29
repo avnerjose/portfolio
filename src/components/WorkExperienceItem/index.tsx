@@ -4,6 +4,7 @@ import { Paragraph } from "../Paragraph";
 import { formatDate } from "@/utils/format-date";
 import { useLanguage } from "@/hooks/useLanguage";
 import { motion } from "framer-motion";
+import { useTranslation } from "@/app/i18n/client";
 
 interface WorkExperienceItem {
   animationDelay: number;
@@ -23,6 +24,7 @@ export function WorkExperienceItem({
   animationDelay,
 }: WorkExperienceItem) {
   const { lang } = useLanguage();
+  const {t} = useTranslation(lang, "home");
   const sortedJobs = [...jobs]?.sort(
     (j1, j2) =>
       new Date(j2.startDate).getTime() - new Date(j1.startDate).getTime()
@@ -55,9 +57,9 @@ export function WorkExperienceItem({
             variants={Variants.itemFromBottom}
             key={job.name.trim()}
           >
-            <motion.h4 className="text-[22px]">
+            <motion.h4 className="text-[22px] capitalize">
               {job.name} | {formatDate(new Date(job.startDate), lang)} -{" "}
-              {job.endDate ? formatDate(new Date(job.endDate), lang) : "Now"}{" "}
+              {job.endDate ? formatDate(new Date(job.endDate), lang) : t("now")}{" "}
             </motion.h4>
             {job.description.map((item, i) => (
               <Paragraph color="gray" size="small" key={i}>
