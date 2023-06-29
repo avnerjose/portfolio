@@ -65,7 +65,7 @@ export function MobileMenu({
       >
         <X className="text-green-400 self-end justify-self-start" size={32} />
       </button>
-      <nav className="flex-1">
+      <nav className="flex-1 flex items-center justify-center">
         <ul className="flex flex-col items-center justify-center w-full text-[20px]">
           {WEBSITE_SECTIONS.map((item, i) => (
             <li className="mt-4" key={i}>
