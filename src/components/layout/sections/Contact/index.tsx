@@ -15,6 +15,7 @@ import * as Variants from "./animations";
 import { ZodFormattedError, z } from "zod";
 import { useLanguage } from "@/hooks/useLanguage";
 import { useTranslation } from "@/app/i18n/client";
+import { useMediaQuery } from "react-responsive";
 
 const contactFormSchema = z.object({
   email: z.string().email("Invalid e-mail").nonempty("E-mail is required"),
@@ -36,6 +37,7 @@ export function ContactSection() {
     }>
   >([]);
   const [state, handleSubmit] = useForm("moqzrewg");
+  const isMobile = useMediaQuery({ query: "(max-width: 768px)" });
 
   const particlesInit = useCallback(async (engine: Engine) => {
     await loadFull(engine);
@@ -86,12 +88,14 @@ export function ContactSection() {
       id="contact"
       ref={sectionRef}
     >
-      <Particles
-        id="tsparticles"
-        className="absolute z-0 inset-0"
-        init={particlesInit}
-        options={JSON.parse(JSON.stringify(particlesConfig))}
-      />
+      {!isMobile && (
+        <Particles
+          id="tsparticles"
+          className="absolute z-0 inset-0"
+          init={particlesInit}
+          options={JSON.parse(JSON.stringify(particlesConfig))}
+        />
+      )}
 
       <motion.div
         className="flex flex-col min-h-[calc(100vh-85px)] px-6 py-8 text-center max-w-[1120px] m-auto"
@@ -112,7 +116,7 @@ export function ContactSection() {
           >
             {t("letsGetInTouch")}
           </motion.h2>
-          <Paragraph variants={Variants.itemFromBottom}>
+          <Paragraph color="white" variants={Variants.itemFromBottom}>
             {t("gotAProposal")}
           </Paragraph>
           <form

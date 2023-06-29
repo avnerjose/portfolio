@@ -87,7 +87,7 @@ export function MobileMenu({
         </ul>
       </nav>
       <Button onClick={handleOpenResumeFile} className="self-center">
-        Resume
+        {t("resume")}
       </Button>
       <footer className="flex gap-4 bg-gray-900 p-4 w-full mt-4 self-center">
         <a href="https://github.com/avnerjose" target="_blank">
