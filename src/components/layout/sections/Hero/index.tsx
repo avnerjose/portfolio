@@ -20,7 +20,7 @@ export function HeroSection() {
   const { ref: ref3 } = useParallax<HTMLDivElement>({ speed: -40 });
 
   return (
-    <section className="relative overflow-hidden" id="hero" ref={sectionRef}>
+    <section className="relative overflow-hidden w-screen" id="hero" ref={sectionRef}>
       <HeroPattern />
       <motion.div
         className="flex flex-col justify-center p-6 max-w-[1120px] m-auto min-h-screen overflow-hidden z-10"

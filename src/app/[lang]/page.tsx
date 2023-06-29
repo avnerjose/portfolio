@@ -8,7 +8,7 @@ export default function IndexPage() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    const timeout = setTimeout(() => setIsLoading(false), 2500);
+    const timeout = setTimeout(() => setIsLoading(false), 2000);
 
     return () => clearTimeout(timeout);
   }, []);
