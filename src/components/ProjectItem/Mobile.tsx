@@ -17,7 +17,7 @@ export function ProjectItemMobile({
   const { t } = useTranslation(lang, "home");
 
   const tagsList = tags?.map((tag) => (
-    <span className="text-gray-500" key={tag}>
+    <span className="text-gray-400" key={tag}>
       {tag}
     </span>
   ));
@@ -39,11 +39,11 @@ export function ProjectItemMobile({
       <p className="text-white my-4">{description}</p>
       <div className="flex gap-2">{tagsList}</div>
       <div className="flex mt-4 gap-2">
-        <a href={repoUrl}>
+        <a aria-label="Github repository" href={repoUrl}>
           <GitHub className="text-white" size={32} />
         </a>
         {webUrl && (
-          <a href={webUrl}>
+          <a aria-label="Deployed website" href={webUrl}>
             <ExternalLink className="text-white" size={32} />
           </a>
         )}

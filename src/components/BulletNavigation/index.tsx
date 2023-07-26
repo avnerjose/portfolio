@@ -15,7 +15,7 @@ const WEBSITE_SECTIONS = [
 
 export function BulletNavigation() {
   return (
-    <nav className="hidden xl:flex fixed right-16 bottom-1/2 translate-y-[50%] z-50">
+    <nav aria-label="bullet navigation" className="hidden xl:flex fixed right-16 bottom-1/2 translate-y-[50%] z-50">
       <motion.ul
         className="hidden w-4 xl:flex flex-col items-center gap-4 list-none"
         variants={Variants.list}

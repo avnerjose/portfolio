@@ -18,8 +18,7 @@ export function ProjectItem({
 
   return (
     <motion.article
-      id="project-item"
-      className="grid grid-cols-[repeat(12,1fr)] mb-[2rem]"
+      className="project-item grid grid-cols-[repeat(12,1fr)] mb-[2rem]"
       {...rest}
     >
       <div className="col-[1/8] image-wrapper relative h-[fit-content] hover:before:content-none before:absolute before:content-[''] before:inset-0 before:z-[1] before:bg-[rgba(20,20,27,0.5)]">
@@ -45,17 +44,17 @@ export function ProjectItem({
         <p className="w-full bg-gray-900 p-4 rounded-lg">{description}</p>
         <div className="flex gap-2 mt-4">
           {tags?.map((item) => (
-            <span className="text-gray-500" key={item}>
+            <span className="text-gray-400" key={item}>
               {item}
             </span>
           ))}
         </div>
         <div className="flex mt-4 gap-2">
-          <a href={repoUrl}>
+          <a aria-label="github repository" href={repoUrl}>
             <GitHub className="text-white" size={32} />
           </a>
           {webUrl && (
-            <a href={webUrl}>
+            <a aria-label="deployed webiste" href={webUrl}>
               <ExternalLink className="text-white" size={32} />
             </a>
           )}

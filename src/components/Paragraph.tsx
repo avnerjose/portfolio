@@ -3,7 +3,7 @@ import { HTMLMotionProps, motion } from "framer-motion";
 import classname from "classnames";
 
 interface ParagraphProps extends HTMLMotionProps<"p"> {
-  color?: "gray" | "white";
+  color?: "gray" | "light-gray" | "white";
   size?: "big" | "small";
 }
 
@@ -18,6 +18,7 @@ export function Paragraph({
       {...rest}
       className={classname("mt-2", {
         "text-gray-500": color === "gray",
+        "text-gray-400": color === "light-gray",
         "text-white": color === "white",
         "text-[18px] md:text-xl": size === "big",
         "text-base": size === "small",

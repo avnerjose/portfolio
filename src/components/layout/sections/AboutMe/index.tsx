@@ -42,7 +42,7 @@ export function AboutMeSection() {
             />
           </div>
           {data?.aboutMes[0].content.map((item, i) => (
-            <Paragraph key={i} variants={Variants.itemFromBottom}>
+            <Paragraph key={i} color="light-gray" variants={Variants.itemFromBottom}>
               {item}
             </Paragraph>
           ))}

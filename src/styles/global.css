@@ -30,32 +30,32 @@ button {
   transform-style: preserve-3d;
 }
 
-article#project-item:nth-of-type(2n + 1) > div:first-child {
+article.project-item:nth-of-type(2n + 1) > div:first-child {
   grid-area: 1 / 1 / -1 / 7 !important;
   grid-column: 1 / 8 !important;
 }
 
 /* Corresponds to > div:last-child in Stitches */
-article#project-item:nth-of-type(2n + 1) > div:last-child {
+article.project-item:nth-of-type(2n + 1) > div:last-child {
   text-align: right !important;
   grid-area: 1 / 6 / -1 / -1 !important;
 }
 
 /* Corresponds to & div:last-child in Stitches */
-article#project-item:nth-of-type(2n + 1) > div:last-child div:last-child {
+article.project-item:nth-of-type(2n + 1) > div:last-child div:last-child {
   justify-content: flex-end !important;
 }
 
 /* Corresponds to & div:not(last-child) in Stitches */
-article#project-item:nth-of-type(2n + 1) > div:last-child div:not(:last-child) {
+article.project-item:nth-of-type(2n + 1) > div:last-child div:not(:last-child) {
   justify-content: flex-end !important;
 }
 
-article#project-item .image-wrapper {
+article.project-item .image-wrapper {
   grid-area: 1 / 6 / -1 / -1;
 }
 
-article#project-item .content {
+article.project-item .content {
   grid-area: 1 / 1 / -1 / 7;
 }
 

@@ -53,7 +53,7 @@ export function MobileMenu({
   return (
     <motion.aside
       className="fixed bg-gray-800 top-0 right-0 bottom-0 z-[100] w-[min(400px,100vw)] max-h-[100vh] flex flex-col"
-      tabIndex={1}
+      tabIndex={0}
       variants={Variants.menu}
       initial="hidden"
       animate="show"
@@ -62,8 +62,9 @@ export function MobileMenu({
       <button
         className="mt-8 mr-6 self-end bg-transparent border-none focus:outline-green-400 focus:outline-dashed"
         onClick={onClose}
+       
       >
-        <X className="text-green-400 self-end justify-self-start" size={32} />
+        <X  aria-label="Close menu" className="text-green-400 self-end justify-self-start" size={32} />
       </button>
       <nav className="flex-1 flex items-center justify-center">
         <ul className="flex flex-col items-center justify-center w-full text-[20px]">
@@ -91,10 +92,10 @@ export function MobileMenu({
       </Button>
       <footer className="flex gap-4 bg-gray-900 p-4 w-full mt-4 self-center">
         <a href="https://github.com/avnerjose" target="_blank">
-          <GitHub className="text-gray-500" size={20} />
+          <GitHub aria-label="github" className="text-gray-500" size={20} />
         </a>
         <a href="https://linkedin.com/in/avnerjose" target="_blank">
-          <Linkedin className="text-gray-500" size={20} />
+          <Linkedin aria-label="linkedin" className="text-gray-500" size={20} />
         </a>
       </footer>
     </motion.aside>

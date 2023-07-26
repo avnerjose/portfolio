@@ -91,7 +91,7 @@ export function Header() {
               initial="hidden"
               animate="show"
               src={`/images/${isMobile ? "logoIcon.svg" : "logo.svg"}`}
-              className="h-[52px] md:h-[unset]"
+              className="h-[52px] w-[46px] md:h-[unset]"
               alt="Logo"
             />
           </Link>

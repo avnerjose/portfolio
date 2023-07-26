@@ -4,7 +4,6 @@ export function HeroPattern() {
   return (
     <motion.svg
       className="absolute top-0 left-[13%] z-[1]"
-      id="hero"
       width="1217"
       height="479"
       viewBox="0 0 1217 479"

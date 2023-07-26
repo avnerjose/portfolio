@@ -35,7 +35,7 @@ export function SocialMediaLinks({
           href="https://github.com/avnerjose"
           target="_blank"
         >
-          <GitHub />
+          <GitHub aria-label="github" />
         </a>
       </motion.li>
       <motion.li
@@ -47,7 +47,7 @@ export function SocialMediaLinks({
           href="https://linkedin.com/in/avnerjose"
           target="_blank"
         >
-          <Linkedin />
+          <Linkedin aria-label="linkedin" />
         </a>
       </motion.li>
     </motion.ul>

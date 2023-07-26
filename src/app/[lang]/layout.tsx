@@ -35,7 +35,7 @@ export default function RootLayout({
     <ParallaxProvider>
       <LanguageContextProvider lang={lang}>
         <ApolloWrapper>
-          <html>
+          <html lang={lang}>
             <head>
               <link
                 rel="shortcut icon"
